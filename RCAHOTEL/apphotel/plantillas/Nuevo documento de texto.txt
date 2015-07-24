@@ -1,0 +1,24 @@
+ <li><a href="#">Gestion Operativa</a>
+                    <ul>
+                    <li><a href="#">Adm. Cliente</a></li>
+                    <li><a href="#">Adm. Habitaciones</a></li>
+                    <li><a href="#">Adm. Reservaciones</a></li>
+                    <li><a href="#">Adm. Tipos Habit.</a></li>
+              		</ul>
+                    </li>
+                    
+                    <li><a href="#">Gestion Contable</a>
+                    <ul>
+                    <li><a href="#">Adm. Productos</a></li>
+                    <li><a href="#">Adm. Factura</a></li>
+                    <li><a href="#">Adm. Egresos</a></li>
+                    <li><a href="#">Adm. Ingresos</a></li>   
+              		</ul>
+                    </li>
+                    
+                    <li><a href="#">Gestion Seguridad</a>
+                    <ul>
+                    <li><a href="#">Adm. Empleados</a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+              		</ul>

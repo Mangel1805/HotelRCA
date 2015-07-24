@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>RCA HOTEL</title>
+<style type="text/css">@import "{{STATIC_URL}}/static/css/login.css";</style>
+    <style type="text/css">
+#envoltura{position:middle;margin-left:500px;margin-top:5px;width:420px}
+#mensaje{background: #ececec;border: 1px solid #000;border-radius:2px;box-shadow: 0 0 0 2px rgba(255,255,255,.1);display: none;font-weight: bold;height: 20px;line-height: 20px;left: 30px;position: absolute;right: 30px;text-align: center;top: -50px}
+#mensaje.mensaje-rojo{border-color: #e9322d;color: #e9322d;}
+#mensaje.mensaje-verde{border-color: #46a546;color: #46a546;}
+#contenedor{background-color:#356AA0;box-shadow: 0 0 0 5px rgba(255,255,255,.3);-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}
+#cabecera{border-bottom: 1px solid #666;color:#FFF;font-family:'Trebuchet MS', Helvetica, sans-serif;font-size:28px;height:50px;line-height:50px;text-shadow: 1px 1px 2px #000000;text-align:center}
+#cuerpo{background:#ececec;border:solid #ccc;border-width: 1px 0;padding:10px 20px;}
+.mensaje { text-align:center; color:red; font-weight:bold; padding:4px; }
+form,p{margin:0}
+p{padding-bottom: 5px}
+.mb10{margin-bottom: 10px}
+label{color: #666;font-weight: bold}
+input{border: 1px solid #999;border-radius:2px;box-shadow: 0 0 0 2px rgba(0,0,0,.1);font:bold 12px Arial, Helvetica, sans-serif;height: 24px;line-height: 24px;padding:0 2px;}
+input#usuario{background: #fff url({{STATIC_URL}}/static/img/login-sprite.png) no-repeat 0 -23px;padding-left: 20px;width: 244px}
+input#contrasenia{background:#fff url({{STATIC_URL}}/static/img/login-sprite.png) no-repeat 0 -53px;padding-left: 20px;width: 244px}
+input#usuario_ol{background:#fff url({{STATIC_URL}}/static/img/correo.jpg) no-repeat 0 1px;padding-left: 31px;width: 233px}
+.oculto{display: none}
+.captcha img{border:1px solid #999;float: left;margin-right: 10px}
+.captcha input{width: 60px;text-transform: uppercase}
+.boton{background: #ccc;color: #666;background: -moz-linear-gradient(top,#eee,#ccc);background: -webkit-linear-gradient(top,#eee,#ccc);background: linear-gradient(top,#eee,#ccc);padding:0 10px;}
+.boton:active{position: relative;top: 1px}
+#pie{border-top: 1px solid #666;color: #fff;font-size: 11px;height: 24px;line-height: 24px;text-align: center}
+#nota{padding-top: 20px;}
+#nota a{background:url({{STATIC_URL}}/static/img/login-sprite.png) no-repeat;display: block;height: 18px;margin: 0 auto;opacity:.28;overflow: hidden;text-indent: 100%;-webkit-transition:opacity .3s linear;-moz-transition:opacity .3s linear;transition:opacity .3s linear;width: 125px}
+#nota a:hover{opacity:.5}
+
+    </style>
+</head>
+<body bgcolor="#e6e6fa">
+<div id="envoltura">
+<div id="mensaje">Mensaje...</div>
+<div id="contenedor" class="curva">
+	<div id="cabecera" class="tac">
+		<img src="{{STATIC_URL}}/static/images/logo.jpg" alt="Form Login" width="65" style="width: 50px; height: 50px; color: #FF2B30;" />
+	</div>
+	<div id="cuerpo">
+	<form id="form-registro" action="" method="post" autocomplete="off">
+        <p><label for="Nombre">Nombres:</label></p>
+        <p class="mb10"><input name="txtNombre" type="text" id="usuarioo" autofocus required /></p>
+		<p><label for="Apellido">Apellido:</label></p>
+		<p class="mb10"><input name="txtApellido" type="text" id="contraseniaa" required /></p>
+		<p><label for="Email">E-mail</label></p>
+		<p class="mb10"><input name="txtEmail" type="text" id="email" required /></p>
+    <p><label for="Ciudad">Ciudad: </label></p>
+    <p class="mb10"><input name="txtCiu" type="text" id="Ciu" required /></p>
+    <p><label for="Direccion">Direccion: </label></p>
+    <p class="mb10"><input name="txtDir" type="text" id="Dir" required /></p>
+    <p><label for="Telef">Telefono o Celular: </label></p>
+    <p class="mb10"><input name="txtTelf" type="text" id="telf" required /></p>
+    <p><label for="Ocup">Ocupacion: </label></p>
+    <p class="mb10"><input name="txtocup" type="text" id="ocupa" placeholder="Ejem: abogado" required /></p>
+        <p>
+          <label for="Nombre">Tipo Identificacion:
+            <select name="txtIdenti" id="txtIdenti">
+              <option>Elija su tipo de Identidad....</option>
+              <option>Cedula</option>
+              <option>Pasaporte</option>
+            </select>
+          </label>
+          </br>
+        </p>
+        <p><label for="Ident">Identificacion:</label></p>
+		<p class="mb10"><input name="txtIdent" type="text" id="ident" required /></p>
+        
+		<p>
+          <label for="FechN">Fecha de nacimineto:
+            <select name="txtFechND" id="txtFechND">
+              <option>Dia</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+              <option>15</option>
+              <option>16</option>
+              <option>17</option>
+              <option>18</option>
+              <option>19</option>
+              <option>20</option>
+              <option>21</option>
+              <option>22</option>
+              <option>23</option>
+              <option>24</option>
+              <option>25</option>
+              <option>26</option>
+              <option>27</option>
+              <option>28</option>
+              <option>29</option>
+              <option>30</option>
+              <option>31</option>
+            </select>
+            <select name="txtFechNM" id="txtFechNM">
+              <option>Mes</option>
+              <option>Enero</option>
+              <option>Febrero</option>
+              <option>Marzo</option>
+              <option>Abril</option>
+              <option>Mayo</option>
+              <option>Junio</option>
+              <option>Julio</option>
+              <option>Agosto</option>
+              <option>Septiembre</option>
+              <option>Octubre</option>
+              <option>Noviembre</option>
+              <option>Diciembre</option>
+              
+            </select>
+            <select name="txtFechNA" id="txtFechNA">
+              <option>Año</option>
+              <option>1960</option>
+              <option>1961</option>
+              <option>1962</option>
+              <option>1963</option>
+              <option>1964</option>
+              <option>1965</option>
+              <option>1966</option>
+              <option>1967</option>
+              <option>1968</option>
+              <option>1969</option>
+              <option>1970</option>
+              <option>1971</option>
+              <option>1972</option>
+              <option>1973</option>
+              <option>1974</option>
+              <option>1975</option>
+              <option>1976</option>
+              <option>1977</option>
+              <option>1978</option>
+              <option>1979</option>
+              <option>1980</option>
+              <option>1981</option>
+              <option>1982</option>
+              <option>1983</option>
+              <option>1984</option>
+              <option>1985</option>
+              <option>1986</option>
+              <option>1987</option>
+              <option>1988</option>
+              <option>1989</option>
+              <option>1990</option>
+              <option>1991</option>              
+              <option>1992</option>
+              <option>1993</option>
+              <option>1994</option>
+              <option>1995</option>
+              <option>1996</option>
+              <option>1997</option>
+              <option>1998</option>
+              <option>1999</option>
+              <option>2000</option>
+              <option>2001</option>
+            </select>
+          </label>
+          </br>
+        </p>
+        
+    </form><br>
+    <form action="#" method="post">
+		<p>
+        <label for="usuarior">Usuario:</label></p>
+        <p class="mb10"><input name="usuarior" type="text" id="usuarior" autofocus required /></p>
+		<p><label for="contraseniar">Contrase&ntilde;a:</label></p>
+		<p class="mb10"><input name="passwdr" type="password" id="contraseniar" required />
+	    </p>
+        <p><label for="contraseniarc">Confirmar Contrase&ntilde;a:</label></p>
+		<p class="mb10"><input name="passwdrc" type="password" id="contraseniarc" required />
+	    </p>
+        <p align="center"><input name="submit" type="submit" id="submit" value="ENVIAR" class="boton" /></p>
+        <br>
+    </form>
+	</div>
+	<div id="pie" class="tac">Sistema de Gesti&oacute;n de  RCA Hotel</div>
+</div><!-- fin contenedor -->
+</div>
+</body>
+</html>

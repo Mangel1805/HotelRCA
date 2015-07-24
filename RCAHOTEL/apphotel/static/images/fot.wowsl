@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualLightBox>
+    <Gallery version="2.5">
+        <Settings>
+            <AppName>WOW Slider</AppName>
+            <AppUrlS>WOWSlider.com</AppUrlS>
+            <AppVersion>7.4</AppVersion>
+            <AutoPlay>true</AutoPlay>
+            <AutoPlayVideo>false</AutoPlayVideo>
+            <Captions>true</Captions>
+            <CaptionsEffect>parallax</CaptionsEffect>
+            <Controls>true</Controls>
+            <FullScreen>false</FullScreen>
+            <GalleryName>fot</GalleryName>
+            <GallerySuffix>1</GallerySuffix>
+            <HtmlCharset>UTF-8</HtmlCharset>
+            <ImageAspectRatio>true</ImageAspectRatio>
+            <ImageEffect>glass_parallax,parallax,collage</ImageEffect>
+            <ImageFillColor>#000000</ImageFillColor>
+            <ImageHeight>408</ImageHeight>
+            <ImageQuality>90</ImageQuality>
+            <ImageShrink2>true</ImageShrink2>
+            <ImageStretch>true</ImageStretch>
+            <ImageTemplate>C:/Program Files (x86)/WOW Slider/templates/backgnd/bootstrap/</ImageTemplate>
+            <ImageTemplateName>Bootstrap</ImageTemplateName>
+            <ImageWidth>583</ImageWidth>
+            <Images>true</Images>
+            <JoomlaType>2.5</JoomlaType>
+            <OneLoop>false</OneLoop>
+            <OrderRandom>false</OrderRandom>
+            <PlayPause>true</PlayPause>
+            <Preloader>false</Preloader>
+            <PublishFileName>C:/RCAHOTEL/apphotel/static/images/wow slider.html</PublishFileName>
+            <PublishIndex>wow slider.html</PublishIndex>
+            <PublishPath>C:/RCAHOTEL/apphotel/static/images</PublishPath>
+            <PublishPreview>true</PublishPreview>
+            <PublishType>file</PublishType>
+            <RelativePath>false</RelativePath>
+            <ShowBullets>1</ShowBullets>
+            <ShowControls>false</ShowControls>
+            <ShowTooltips>1</ShowTooltips>
+            <SizeStyle>1</SizeStyle>
+            <SlideshowDelay>20</SlideshowDelay>
+            <SlideshowDuration>20</SlideshowDuration>
+            <SoundEnable>0</SoundEnable>
+            <SoundFileName></SoundFileName>
+            <StopOnHover>false</StopOnHover>
+            <SwipeSupport>2</SwipeSupport>
+            <TemplateFont>Helvetica Neue</TemplateFont>
+            <TemplateName>bootstrap</TemplateName>
+            <ThumbAlign>bottom</ThumbAlign>
+            <ThumbFormat>jpg</ThumbFormat>
+            <ThumbHeight>48</ThumbHeight>
+            <ThumbQuality>90</ThumbQuality>
+            <ThumbWidth>0</ThumbWidth>
+            <Thumbnails>false</Thumbnails>
+            <TooltipPos>bottom</TooltipPos>
+            <noFrame>0</noFrame>
+        </Settings>
+        <Images RelativePath="false">
+            <Image>
+                <url>C:/RCAHOTEL/apphotel/static/images/hab.png</url>
+                <title>Habitacion Matrimonial</title>
+                <filesize>117681</filesize>
+            </Image>
+            <Image>
+                <url>C:/RCAHOTEL/apphotel/static/images/hab1.png</url>
+                <title>Mini Suites</title>
+                <filesize>1997353</filesize>
+            </Image>
+            <Image>
+                <url>C:/RCAHOTEL/apphotel/static/images/habitacionc.JPG</url>
+                <title>Habitacion Familia</title>
+                <filesize>73784</filesize>
+            </Image>
+            <Image>
+                <url>C:/RCAHOTEL/apphotel/static/images/habitaciond.jpg</url>
+                <title>Habitacion Doble</title>
+                <filesize>42220</filesize>
+            </Image>
+            <Image>
+                <url>C:/RCAHOTEL/apphotel/static/images/habitacionm.JPG</url>
+                <title>Habitacion Sencilla</title>
+                <filesize>73542</filesize>
+            </Image>
+            <Image>
+                <url>C:/RCAHOTEL/apphotel/static/images/habitaciont.JPG</url>
+                <title>Habitacion Tiple</title>
+                <filesize>95041</filesize>
+            </Image>
+            <Image>
+                <url>C:/RCAHOTEL/apphotel/static/images/hotelrca.jpg</url>
+                <title>RCA Hotel</title>
+                <filesize>644533</filesize>
+            </Image>
+            <Image>
+                <url>C:/RCAHOTEL/apphotel/static/images/hotelrca2.jpg</url>
+                <title> RCA Hotel</title>
+                <filesize>37225</filesize>
+            </Image>
+        </Images>
+    </Gallery>
+</VisualLightBox>

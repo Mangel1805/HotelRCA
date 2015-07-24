@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>RCA HOTEL</title>
+<style type="text/css">@import "{{STATIC_URL}}/static/css/login.css";</style>
+     <script>
+        function verificar(){
+
+                if ((document.getElementById("usuario_ol").value).length == 0) {
+                    document.getElementById("usuario_ol").focus();
+                    alert("Ingrese El Correo Electronico");
+                }
+        }
+    </script>
+    <style type="text/css">
+#envoltura{position:relative;margin-left:500px;margin-top:146px;width:350px}
+#mensaje{background: #ececec;border: 1px solid #000;border-radius:2px;box-shadow: 0 0 0 2px rgba(255,255,255,.1);display: none;font-weight: bold;height: 20px;line-height: 20px;left: 30px;position: absolute;right: 30px;text-align: center;top: -50px}
+#mensaje.mensaje-rojo{border-color: #e9322d;color: #e9322d;}
+#mensaje.mensaje-verde{border-color: #46a546;color: #46a546;}
+#contenedor{background-color:#356AA0;box-shadow: 0 0 0 5px rgba(255,255,255,.3);-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}
+#cabecera{border-bottom: 1px solid #666;color:#FFF;font-family:'Trebuchet MS', Helvetica, sans-serif;font-size:28px;height:50px;line-height:50px;text-shadow: 1px 1px 2px #000000;text-align:center}
+#cuerpo{background:#ececec;border:solid #ccc;border-width: 1px 0;padding:10px 20px;}
+.mensaje { text-align:center; color:red; font-weight:bold; padding:4px; }
+form,p{margin:0}
+p{padding-bottom: 5px}
+.mb10{margin-bottom: 10px}
+label{color: #666;font-weight: bold}
+input{border: 1px solid #999;border-radius:2px;box-shadow: 0 0 0 2px rgba(0,0,0,.1);font:bold 12px Arial, Helvetica, sans-serif;height: 24px;line-height: 24px;padding:0 2px;}
+input#usuario{background: #fff url({{STATIC_URL}}/static/img/login-sprite.png) no-repeat 0 -23px;padding-left: 20px;width: 244px}
+input#contrasenia{background:#fff url({{STATIC_URL}}/static/img/login-sprite.png) no-repeat 0 -53px;padding-left: 20px;width: 244px}
+input#usuario_ol{background:#fff url({{STATIC_URL}}/static/img/correo.jpg) no-repeat 0 1px;padding-left: 31px;width: 233px}
+.oculto{display: none}
+.captcha img{border:1px solid #999;float: left;margin-right: 10px}
+.captcha input{width: 60px;text-transform: uppercase}
+.boton{background: #ccc;color: #666;background: -moz-linear-gradient(top,#eee,#ccc);background: -webkit-linear-gradient(top,#eee,#ccc);background: linear-gradient(top,#eee,#ccc);padding:0 10px;}
+.boton:active{position: relative;top: 1px}
+#pie{border-top: 1px solid #666;color: #fff;font-size: 11px;height: 24px;line-height: 24px;text-align: center}
+#nota{padding-top: 20px;}
+#nota a{background:url({{STATIC_URL}}/static/img/login-sprite.png) no-repeat;display: block;height: 18px;margin: 0 auto;opacity:.28;overflow: hidden;text-indent: 100%;-webkit-transition:opacity .3s linear;-moz-transition:opacity .3s linear;transition:opacity .3s linear;width: 125px}
+#nota a:hover{opacity:.5}
+
+    </style>
+</head>
+<body bgcolor="#e6e6fa">
+<div id="envoltura">
+<div id="mensaje">Mensaje...</div>
+<div id="contenedor" class="curva">
+	<div id="cabecera" class="tac">
+		<img src="{{STATIC_URL}}/static/images/logo.jpg" alt="Form Login" width="158" style="width: 50px; height: 50px; color: #FF2B30;" />
+	</div>
+	<div id="cuerpo">
+	<form id="form-login" action="" method="post" autocomplete="off">
+        <p><label for="usuario">Usuario:</label></p>
+        <p class="mb10"><input name="usuario" type="text" id="usuario" autofocus required /></p>
+		<p><label for="contrasenia">Contrase&ntilde;a:</label></p>
+		<p class="mb10"><input name="passwd" type="password" id="contrasenia" required /></p>
+		<p align="center"><input name="submit" type="submit" id="submit" value="iniciar sesi&oacute;n" class="boton" /></p>
+    </form>
+		<br><br>
+    <form action="/recuperar/" method="post">
+		<p>
+	    <label for="usuario">Recuperar Contrase&ntilde;a:</label></p>
+        <p class="mb10"><input name="usuario_ol" type="email" required id="usuario_ol"/></p>
+        <p align="center"><input name="submit" type="submit" id="submit" value="Correo Electr&oacute;nico"  class="boton" /></p>
+        <!--<a href="/recuperar/" onclick="verificar();"><p align="center"><input name="submit" type="submit" id="submit" value="Recuperar Contrase&ntilde;a" class="boton" /></p></a>-->
+        <br>
+    </form>
+	</div>
+	<div id="pie" class="tac">Sistema de Gesti&oacute;n de  RCA Hotel</div>
+</div><!-- fin contenedor -->
+</div>
+</body>
+</html>
