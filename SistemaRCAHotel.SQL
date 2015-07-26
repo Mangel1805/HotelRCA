@@ -174,7 +174,8 @@ ALTER TABLE "usuario" ADD CONSTRAINT "Key9" PRIMARY KEY ("id_persona")
 -- Table ingresos
 
 CREATE TABLE "ingresos"(
- "id_fecha_egreso" Serial NOT NULL,
+ "id_ingreso" Serial NOT NULL,
+ "ing_fecha" Date NOT NULL,
  "ing_detalle" Character varying(70) NOT NULL,
  "ing_tipo" Character varying(40) NOT NULL,
  "ing_valor" Double precision NOT NULL,
@@ -190,13 +191,14 @@ CREATE INDEX "IX_Relationship10" ON "ingresos" ("id_persona")
 
 -- Add keys for table ingresos
 
-ALTER TABLE "ingresos" ADD CONSTRAINT "Key10" PRIMARY KEY ("id_fecha_egreso")
+ALTER TABLE "ingresos" ADD CONSTRAINT "Key10" PRIMARY KEY ("id_ingreso")
 ;
 
 -- Table egresos
 
 CREATE TABLE "egresos"(
- "id_fac_ingreso" Serial NOT NULL,
+ "id_egreso" Serial NOT NULL,
+ "egr_fecha" Date NOT NULL,
  "egr_articulo" Character varying(50) NOT NULL,
  "egr_tipo" Character varying(30) NOT NULL,
  "egr_detalle" Character varying(80) NOT NULL,
@@ -215,7 +217,7 @@ CREATE INDEX "IX_Relationship11" ON "egresos" ("id_persona")
 
 -- Add keys for table egresos
 
-ALTER TABLE "egresos" ADD CONSTRAINT "Key11" PRIMARY KEY ("id_fac_ingreso")
+ALTER TABLE "egresos" ADD CONSTRAINT "Key11" PRIMARY KEY ("id_egreso")
 ;
 
 -- Table datos_hotel
