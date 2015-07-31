@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+	<h1>Eliminar el servico </h1>
+ 
+	<Form  action = ""  method = "post" > {%  csrf_token  %} 
+    <p> " " {{  servicios.id_productos}} Pedidos por el Cliente {{servicios.cli_codigo  }}  </p> 
+    <input  type = "submit"  value = "Aceptar "  /> 
+	</form>
+
+{% endblock content %}

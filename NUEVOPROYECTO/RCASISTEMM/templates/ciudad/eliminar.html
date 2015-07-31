@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+	<h1>Eliminar la Ciudad</h1>
+ 
+	<Form  action = ""  method = "post" > {%  csrf_token  %} 
+    <p>  {{  ciudad  }}  </p> 
+    <input  type = "submit"  value = "Aceptar "  /> 
+	</form>
+
+{% endblock content %}
