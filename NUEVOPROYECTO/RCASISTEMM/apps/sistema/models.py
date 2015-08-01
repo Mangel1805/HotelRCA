@@ -116,20 +116,20 @@ class Productos(models.Model):
 class ServicioCliente(models.Model):
     id_productos = models.ForeignKey(Productos, blank=True, null=True)
     cli_codigo = models.ForeignKey(Cliente, blank=True, null=True)
+    ser_cantidad = models.IntegerField()
     ser_total = models.FloatField()
     def __unicode__(self):
         return str(self.id_productos)
     
 
 class Factura(models.Model):
+    fac_fecha = models.DateField()
     fac_subtotal = models.FloatField()
     fac_iva = models.FloatField()
     fac_total = models.FloatField()
     fac_estado = models.ForeignKey(EstadosFactura, blank=True, null=True)
     id_Reservacion = models.ForeignKey(Reservacion, blank=True, null=True)
     id_servicio = models.ForeignKey(ServicioCliente, blank=True, null=True)
-
-
 
 
 class EstadosIngreso(models.Model):
@@ -144,7 +144,6 @@ class Ingresos(models.Model):
     ing_tipo = models.CharField(max_length=40)
     ing_valor = models.FloatField()
     ing_estado = models.ForeignKey(EstadosIngreso,blank=True,null=True)
-
 
 
 class EstadosEgresos(models.Model):
