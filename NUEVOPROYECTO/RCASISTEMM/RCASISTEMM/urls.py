@@ -15,5 +15,5 @@ urlpatterns = patterns('',
     url(r'^ciudad/',include('apps.ciudad.urls')),
     url(r'^servicio/',include('apps.servicios.urls')),
     url(r'^reservacion/',include('apps.reservaciones.urls')),
-
+    url(r'^factura/',include('apps.facturas.urls')),
 )

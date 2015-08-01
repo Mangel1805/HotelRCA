@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'apps.ciudad',
     'apps.servicios',
     'apps.reservaciones',
+    'apps.facturas',
     'bootstrap3',
 
 

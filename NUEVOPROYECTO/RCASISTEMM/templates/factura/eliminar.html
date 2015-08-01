@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+	<h1>Eliminar Factura</h1>
+ 
+	<Form  action = ""  method = "post" > {%  csrf_token  %} 
+    <p> ¿Deseas eliminar la Factura " {{  facturas.id  }} "? </p> 
+    <input  type = "submit"   = "Aceptar "  /> 
+	</form>
+
+{% endblock content %}

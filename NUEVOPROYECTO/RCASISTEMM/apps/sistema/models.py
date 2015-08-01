@@ -44,7 +44,7 @@ class Cliente(models.Model):
     cli_estado = models.ForeignKey(EstadosCliente,blank=True, null=True)
     ciu_codigo = models.ForeignKey(Ciudad,blank=True, null=True)
     def __unicode__(self):
-		return self.cli_nombre
+		return self.cli_nombre +" "+ self.cli_apellido
     
 
 
@@ -92,7 +92,8 @@ class Reservacion(models.Model):
     rec_fecha_fin = models.DateField()
     rec_estado = models.ForeignKey(EstadosReservacion, blank=True, null=True)
     def __unicode__(self):
-        return str(self.id_hab_numero)
+        return str(self.cli_codigo)+" habitacion "+str(self.id_hab_numero)
+
 class EstadosFactura(models.Model):
     est_fact_tipo=models.CharField(max_length=8)
 
