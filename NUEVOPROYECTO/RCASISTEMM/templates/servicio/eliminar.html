@@ -4,7 +4,7 @@
  
 	<Form  action = ""  method = "post" > {%  csrf_token  %} 
     <p> " " {{  servicios.id_productos}} Pedidos por el Cliente {{servicios.cli_codigo  }}  </p> 
-    <input  type = "submit"  value = "Aceptar "  /> 
+    <input class="btn btn-danger" type="submit" value="Confirmar">
 	</form>
 
 {% endblock content %}

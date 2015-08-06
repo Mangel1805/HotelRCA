@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-	<h1>Eliminar Cliente</h1>
+	<h1>Eliminar el Cliente</h1>
  
 	<Form  action = ""  method = "post" > {%  csrf_token  %} 
-    <p> ¿Seguro que quieres eliminar " {{  clientes  }} "? </p> 
-    <input  type = "submit"  value = "Confirmar "  /> 
+    <p> <h3> {{  cliente.cli_nombre  }} {{cliente.cli_apellido}} </h3></p> 
+     <input class="btn btn-danger" type="submit" value="Confirmar">
 	</form>
 
 {% endblock content %}

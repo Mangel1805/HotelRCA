@@ -4,7 +4,7 @@
  
 	<Form  action = ""  method = "post" > {%  csrf_token  %} 
     <p> {{  reservaciones.id_hab_numero}} realizada por el cliente {{  reservaciones.cli_codigo}} el dia  {{  reservaciones.rec_fecha_inicio}} </p> 
-    <input  type = "submit"  value = "Aceptar "  /> 
+    <input class="btn btn-danger" type="submit" value="Confirmar"> 
 	</form>
 
 {% endblock content %}

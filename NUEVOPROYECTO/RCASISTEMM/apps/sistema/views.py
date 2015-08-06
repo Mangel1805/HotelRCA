@@ -22,7 +22,7 @@ class editarCliente(UpdateView):
 class eliminarCliente(DeleteView):
 	model=Cliente
 	context_object_name="cliente"
-	template_name='clinete/eliminar.html'
+	template_name='cliente/eliminar.html'
 	success_url=reverse_lazy('listarCliente')
 
 class listarCliente(ListView):
