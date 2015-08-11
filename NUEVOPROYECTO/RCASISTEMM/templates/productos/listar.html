@@ -52,7 +52,7 @@
 			          	<td >{{producto.id}}</td>
 		          		<td ><a href="javascript:cargarDatos({{producto.id}})">{{producto.pro_nombre}}</a></td>
 			            <td >{{producto.pro_descripcion}}</td>
-			            <td >{{producto.pro_costo}}</td>
+			            <td >$ {{producto.pro_costo}}</td>
 			            <td >{{producto.pro_estado}}</td>
 			          </tr>
 		          {% endfor %}
@@ -88,7 +88,7 @@
 					
 				}
 				else{
-					window.open("/productos/modificar/"+document.getElementById("obtener_id").value,"_self");
+					window.open("/producto/modificar/"+document.getElementById("obtener_id").value,"_self");
 				}
 				
 			}
@@ -96,7 +96,7 @@
 				if(document.getElementById("obtener_id").value==''){
 					
 				}else{
-					window.open("/productos/eliminar/"+document.getElementById("obtener_id").value,"_self");
+					window.open("/producto/eliminar/"+document.getElementById("obtener_id").value,"_self");
 				}
 			}
 		}

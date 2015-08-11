@@ -39,7 +39,7 @@ class Cliente(models.Model):
     cli_apellido = models.CharField(max_length=30)
     cli_telefono = models.CharField(max_length=10)
     cli_direccion = models.CharField(max_length=80)
-    cli_email = models.CharField(max_length=140)
+    cli_email  = models.EmailField()
     cli_ocupacion = models.CharField(max_length=20)
     cli_estado = models.ForeignKey(EstadosCliente,blank=True, null=True)
     ciu_codigo = models.ForeignKey(Ciudad,blank=True, null=True)
@@ -124,7 +124,7 @@ class ServicioCliente(models.Model):
     
 
 class Factura(models.Model):
-    fac_fecha = models.DateField()
+    fac_fecha = models.DateTimeField(auto_now_add=True)
     fac_subtotal = models.FloatField()
     fac_iva = models.FloatField()
     fac_total = models.FloatField()
@@ -140,7 +140,7 @@ class EstadosIngreso(models.Model):
         return self.est_ing_tipo
 
 class Ingresos(models.Model):
-    ing_fecha = models.DateField()
+    ing_fecha = models.DateTimeField(auto_now_add=True)
     ing_detalle = models.CharField(max_length=70)
     ing_tipo = models.CharField(max_length=40)
     ing_valor = models.FloatField()
@@ -154,7 +154,7 @@ class EstadosEgresos(models.Model):
         return self.est_egr_tipo
 
 class Egresos(models.Model):
-    egr_fecha = models.DateField()
+    egr_fecha = models.DateTimeField(auto_now_add=True)
     egr_articulo = models.CharField(max_length=50)
     egr_tipo = models.CharField(max_length=30)
     egr_detalle = models.CharField(max_length=80)

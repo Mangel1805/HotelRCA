@@ -15,15 +15,17 @@ urlpatterns = patterns('',
     url(r'^servicios/$', 'apps.inicio.views.servicios'),
     url(r'^contactenos/$', 'apps.inicio.views.contactenos'),
     url(r'^sistema/$', 'apps.inicio.views.sistema'),
-    url(r'^login/$', 'apps.inicio.views.login'),
+   # url(r'^login/$', 'apps.inicio.views.login'),
     url(r'^registrarse/$', 'apps.inicio.views.registrarse'),
     url(r'^reservacion/$', 'apps.inicio.views.reservacion'),
     url(r'^imprimir/$', 'apps.inicio.views.imprimir'),
     #admin
     url(r'^admin/', include(admin.site.urls)),
+
     #sistema
+   
     url(r'^cliente/',include('apps.sistema.urls')),
-    url(r'^productos/',include('apps.productos.urls')),
+    url(r'^producto/',include('apps.productos.urls')),
     url(r'^categoriaHabitacion/',include('apps.categoriaHabitacion.urls')),
     url(r'^tipoHabitacion/',include('apps.tipohabitacion.urls')),
     url(r'^habitacion/',include('apps.habitaciones.urls')),
