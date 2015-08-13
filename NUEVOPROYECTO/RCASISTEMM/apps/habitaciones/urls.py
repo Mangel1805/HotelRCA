@@ -11,4 +11,5 @@ urlpatterns = patterns('',
     url(r'^modificar/(?P<pk>[\d]+)$', modificarHabitacion.as_view(),name='editarHabitacion'),
     url(r'^eliminar/(?P<pk>[\d]+)$', eliminarHabitacion.as_view(),name='eliminarHabitacion'),
     url(r'^listar/$', listarHabitacion.as_view(),name='listarHabitacion'),
+url(r'^generar_pdf/$','apps.habitaciones.views.generar_pdf', name='pdf_Habitaciones'),
 )

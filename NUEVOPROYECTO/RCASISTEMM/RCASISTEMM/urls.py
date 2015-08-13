@@ -12,6 +12,8 @@ urlpatterns = patterns('',
     #sistema
     #url(r'^$',include('apps.inicio.urls')),
     url(r'^cliente/',include('apps.sistema.urls')),
+    url(r'^ingreso/',include('apps.ingresos.urls')),
+    url(r'^egreso/',include('apps.egresos.urls')),
     url(r'^producto/',include('apps.productos.urls')),
     url(r'^categoriaHabitacion/',include('apps.categoriaHabitacion.urls')),
     url(r'^tipoHabitacion/',include('apps.tipohabitacion.urls')),

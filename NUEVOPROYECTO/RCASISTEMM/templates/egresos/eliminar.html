@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+	<h1>Eliminar Egreso</h1>
+ 
+	<Form  action = ""  method = "post" > {%  csrf_token  %} 
+    <p> ¿Seguro que quieres eliminar " {{  egresos  }} "? </p> 
+     <input class="btn btn-danger" type="submit" value="Confirmar">
+	</form>
+
+{% endblock content %}

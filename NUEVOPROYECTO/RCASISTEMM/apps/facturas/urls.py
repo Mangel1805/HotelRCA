@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     url(r'^modificar/(?P<pk>[\d]+)$', editarFactura.as_view(),name='editarFactura'),
     url(r'^eliminar/(?P<pk>[\d]+)$', eliminarFactura.as_view(),name='eliminarFactura'),
     url(r'^listar/$', listarFactura.as_view(),name='listarFactura'),
-
+    url(r'^generar_pdf/$','apps.facturas.views.generar_pdf', name='pdf_Facturas'),
     #*********************PROVEEDOR***************************************
     
     

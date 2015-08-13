@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Registrar Nuevo Egreso</h1>
+    <form method="post">
+    {% load bootstrap3 %}
+    <div id="form">
+        {% csrf_token %}
+	    {% bootstrap_form form %}
+	    <!--<ul   > 
+	        <li  Identificación = "sujeto"  clase = "contacto" > {{form.cli_cedula}} </li> 
+	        
+    	</ul> 
+	    -->
+ <input class="btn btn-danger" type="submit" value="Agregar">	<form>
+	
+
+{% endblock content %}

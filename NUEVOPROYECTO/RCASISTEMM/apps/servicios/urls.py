@@ -11,4 +11,5 @@ urlpatterns = patterns('',
     url(r'^modificar/(?P<pk>[\d]+)$', modificarServicio.as_view(),name='editarServicio'),
     url(r'^eliminar/(?P<pk>[\d]+)$', eliminarServicio.as_view(),name='eliminarServicio'),
     url(r'^listar/$', listarServicio.as_view(),name='listarServicio'),
+    url(r'^generar_pdf/$','apps.servicios.views.generar_pdf', name='pdf_Servicios'),
 )

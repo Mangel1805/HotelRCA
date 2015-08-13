@@ -84,7 +84,7 @@ class Habitacion(models.Model):
     estado = models.ForeignKey(EstadosHabitacion, blank=True, null=True)
 
     def __unicode__(self):
-        return str(self.numero)+" "+str(self.tipo)
+        return str(self.habitacion)+" "+str(self.tipo)
 
 class Reservacion(models.Model):
     habitacion = models.ForeignKey(Habitacion, blank=True, null=True)
