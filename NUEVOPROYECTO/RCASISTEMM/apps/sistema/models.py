@@ -11,166 +11,170 @@
 from __future__ import unicode_literals
 
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Categoria(models.Model):
     
-    cat_nombre = models.CharField(max_length=40)
-    cat_descripcion = models.CharField(max_length=70)
+    nombre = models.CharField(max_length=40)
+    descripcion = models.CharField(max_length=70)
     
     def __unicode__(self):
-        return self.cat_nombre +" "+ self.cat_descripcion
+        return self.nombre +" "+ self.descripcion
 
 class Ciudad(models.Model):
-    ciu_nombre = models.CharField(max_length=50)
-    ciu_descripcion = models.CharField(max_length=140)
+    nombre = models.CharField(max_length=50)
+    descripcion = models.CharField(max_length=140)
 
     def __unicode__(self):
-		return self.ciu_nombre
+		return self.nombre
+
 class EstadosCliente(models.Model):
-    est_cli_tipo=models.CharField(max_length=8)
+    estado=models.CharField(max_length=8)
 
     def __unicode__(self):
-        return self.est_cli_tipo
+        return self.estado
 
 class Cliente(models.Model):
-    cli_cedula = models.CharField(max_length=10)
-    cli_nombre = models.CharField(max_length=30)
-    cli_apellido = models.CharField(max_length=30)
-    cli_telefono = models.CharField(max_length=10)
-    cli_direccion = models.CharField(max_length=80)
-    cli_email  = models.EmailField()
-    cli_ocupacion = models.CharField(max_length=20)
-    cli_estado = models.ForeignKey(EstadosCliente,blank=True, null=True)
-    ciu_codigo = models.ForeignKey(Ciudad,blank=True, null=True)
+    cedula = models.CharField(max_length=10)
+    nombre = models.CharField(max_length=30)
+    apellido = models.CharField(max_length=30)
+    telefono = models.CharField(max_length=10)
+    direccion = models.CharField(max_length=80)
+    email  = models.EmailField()
+    ocupacion = models.CharField(max_length=20)
+    estado = models.ForeignKey(EstadosCliente,blank=True, null=True)
+    ciudad = models.ForeignKey(Ciudad,blank=True, null=True)
     def __unicode__(self):
-		return self.cli_nombre +" "+ self.cli_apellido
+		return self.nombre +" "+ self.apellido
     
 
 
 class DatosHotel(models.Model):
-    dat_ruc = models.CharField(max_length=13)
-    dat_direccion = models.CharField(max_length=70)
-    dat_telefono = models.CharField(max_length=10)
-    dat_organigrama = models.CharField(max_length=60)
+    ruc = models.CharField(max_length=13)
+    direccion = models.CharField(max_length=140)
+    telefono = models.CharField(max_length=10)
+    organigrama = models.CharField(max_length=140)
 
 
 
 class TipoHabitacion(models.Model):
-    tip_hab_nombre = models.CharField(max_length=50)
-    tip_hab_descripcion = models.CharField(max_length=70)
+    nombre = models.CharField(max_length=50)
+    descripcion = models.CharField(max_length=70)
     
     def __unicode__(self):
-        return self.tip_hab_nombre+" "+self.tip_hab_descripcion
+        return self.nombre+" "+self.descripcion
 
 class EstadosHabitacion(models.Model):
-    est_habi_tipo=models.CharField(max_length=8)
+    estado=models.CharField(max_length=8)
 
     def __unicode__(self):
-        return self.est_habi_tipo
+        return self.estado
 
 class EstadosReservacion(models.Model):
-    est_rec_tipo=models.CharField(max_length=8)
+    estado=models.CharField(max_length=8)
 
     def __unicode__(self):
-        return self.est_rec_tipo
+        return self.estado
 
 class Habitacion(models.Model):
-    hab_numero= models.IntegerField()
-    id_tip_hab = models.ForeignKey(TipoHabitacion, blank=True, null=True)
-    id_categoria = models.ForeignKey(Categoria, blank=True, null=True)
-    hab_precio = models.FloatField()
-    hab_estado = models.ForeignKey(EstadosHabitacion, blank=True, null=True)
+    habitacion= models.IntegerField()
+    tipo = models.ForeignKey(TipoHabitacion, blank=True, null=True)
+    categoria = models.ForeignKey(Categoria, blank=True, null=True)
+    precio = models.FloatField()
+    estado = models.ForeignKey(EstadosHabitacion, blank=True, null=True)
 
     def __unicode__(self):
-        return str(self.hab_numero)+str(self.id_tip_hab)
+        return str(self.numero)+" "+str(self.tipo)
 
 class Reservacion(models.Model):
-    id_hab_numero = models.ForeignKey(Habitacion, blank=True, null=True)
-    cli_codigo = models.ForeignKey(Cliente, blank=True, null=True)
-    rec_fecha_inicio = models.DateField()
-    rec_fecha_fin = models.DateField()
-    rec_estado = models.ForeignKey(EstadosReservacion, blank=True, null=True)
+    habitacion = models.ForeignKey(Habitacion, blank=True, null=True)
+    cliente = models.ForeignKey(Cliente, blank=True, null=True)
+    fecha_inicio = models.DateField()
+    fecha_fin = models.DateField()
+    estado = models.ForeignKey(EstadosReservacion, blank=True, null=True)
     def __unicode__(self):
-        return str(self.cli_codigo)+" habitacion "+str(self.id_hab_numero)
+        return str(self.cliente)+" habitacion "+str(self.habitacion)
 
 class EstadosFactura(models.Model):
-    est_fact_tipo=models.CharField(max_length=8)
+    estado=models.CharField(max_length=8)
 
     def __unicode__(self):
-        return self.est_fact_tipo
+        return self.estado
 
 class EstadosProducto(models.Model):
-    est_pro_tipo=models.CharField(max_length=8)
+    estado=models.CharField(max_length=8)
   
     def __unicode__(self):
-        return self.est_pro_tipo
+        return self.estado
 
 class Productos(models.Model):
-    pro_nombre = models.CharField(max_length=30)
-    pro_descripcion = models.CharField(max_length=60)
-    pro_costo = models.FloatField()
-    pro_estado = models.ForeignKey(EstadosProducto,blank=True,null=True)
+    nombre = models.CharField(max_length=30)
+    descripcion = models.CharField(max_length=60)
+    costo = models.FloatField()
+    estado = models.ForeignKey(EstadosProducto,blank=True,null=True)
     def __unicode__(self):
-        return self.pro_nombre
+        return self.nombre
 
 class ServicioCliente(models.Model):
-    id_productos = models.ForeignKey(Productos, blank=True, null=True)
-    cli_codigo = models.ForeignKey(Cliente, blank=True, null=True)
-    ser_cantidad = models.IntegerField()
-    ser_total = models.FloatField()
+    producto = models.ForeignKey(Productos, blank=True, null=True)
+    cliente = models.ForeignKey(Cliente, blank=True, null=True)
+    cantidad = models.IntegerField()
+    total = models.FloatField()
     def __unicode__(self):
-        return str(self.id_productos)
+        return str(self.producto)
     
 
 class Factura(models.Model):
-    fac_fecha = models.DateTimeField(auto_now_add=True)
-    fac_subtotal = models.FloatField()
-    fac_iva = models.FloatField()
-    fac_total = models.FloatField()
-    fac_estado = models.ForeignKey(EstadosFactura, blank=True, null=True)
-    id_Reservacion = models.ForeignKey(Reservacion, blank=True, null=True)
-    id_servicio = models.ForeignKey(ServicioCliente, blank=True, null=True)
-
+    fecha = models.DateTimeField(auto_now_add=True)
+    subtotal = models.FloatField()
+    iva = models.FloatField()
+    total = models.FloatField()
+    estado = models.ForeignKey(EstadosFactura, blank=True, null=True)
+    reservacion = models.ForeignKey(Reservacion, blank=True, null=True)
+    #id_servicio = models.ForeignKey(ServicioCliente, blank=True, null=True)
+    def __unicode__(self):
+        return str("Fact - ")+str(self.id)
 
 class EstadosIngreso(models.Model):
-    est_ing_tipo=models.CharField(max_length=8)
+    estado=models.CharField(max_length=8)
     
     def __unicode__(self):
-        return self.est_ing_tipo
+        return self.estado
 
 class Ingresos(models.Model):
-    ing_fecha = models.DateTimeField(auto_now_add=True)
-    ing_detalle = models.CharField(max_length=70)
-    ing_tipo = models.CharField(max_length=40)
-    ing_valor = models.FloatField()
-    ing_estado = models.ForeignKey(EstadosIngreso,blank=True,null=True)
+    usuario = models.OneToOneField(User)
+    fecha = models.DateTimeField(auto_now_add=True)
+    detalle = models.CharField(max_length=140)
+    tipo = models.CharField(max_length=140)
+    valor = models.FloatField()
+    estado = models.ForeignKey(EstadosIngreso,blank=True,null=True)
 
 
 class EstadosEgresos(models.Model):
-    est_egr_tipo=models.CharField(max_length=8)
+    estado=models.CharField(max_length=8)
 
     def __unicode__(self):
-        return self.est_egr_tipo
+        return self.estado
 
 class Egresos(models.Model):
-    egr_fecha = models.DateTimeField(auto_now_add=True)
-    egr_articulo = models.CharField(max_length=50)
-    egr_tipo = models.CharField(max_length=30)
-    egr_detalle = models.CharField(max_length=80)
-    egr_cantidad = models.IntegerField()
-    egr_precio_unitario = models.FloatField()
-    egr_precio_total = models.FloatField()
-    egr_estado = models.ForeignKey(EstadosEgresos, blank=True, null=True)
-
-
-
-
+    usuario = models.OneToOneField(User)
+    fecha = models.DateTimeField(auto_now_add=True)
+    articulo = models.CharField(max_length=140)
+    tipo = models.CharField(max_length=140)
+    detalle = models.CharField(max_length=140)
+    cantidad = models.IntegerField()
+    precio_unitario = models.FloatField()
+    precio_total = models.FloatField()
+    estado = models.ForeignKey(EstadosEgresos, blank=True, null=True)
 
 
     
+class FacturaServicios(models.Model):
+    servico=models.ForeignKey(ServicioCliente,blank=True,null=True)
+    factura=models.ForeignKey(Factura,blank=True,null=True)
+    
+    def __unicode__(self):
+        return str("cod - ")+str(self.id)
 
 
-
-
-   
+       

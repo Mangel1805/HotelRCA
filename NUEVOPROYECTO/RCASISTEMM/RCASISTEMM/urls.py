@@ -1,29 +1,16 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from apps.inicio.views import inicio
+#from apps.inicio.views import inicio
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'RCASISTEMM.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
-   
+     
     #Fachada 
-    url(r'^$', inicio),
-    url(r'^inicio/$', 'apps.inicio.views.inicio'),
-    url(r'^nosotros/$', 'apps.inicio.views.nosotros'),
-    url(r'^galeria/$', 'apps.inicio.views.galeria'),
-    url(r'^servicios/$', 'apps.inicio.views.servicios'),
-    url(r'^contactenos/$', 'apps.inicio.views.contactenos'),
-    url(r'^sistema/$', 'apps.inicio.views.sistema'),
-   # url(r'^login/$', 'apps.inicio.views.login'),
-    url(r'^registrarse/$', 'apps.inicio.views.registrarse'),
-    url(r'^reservacion/$', 'apps.inicio.views.reservacion'),
-    url(r'^imprimir/$', 'apps.inicio.views.imprimir'),
+    url(r'^' , include('apps.inicio.urls')),
+    
     #admin
     url(r'^admin/', include(admin.site.urls)),
 
     #sistema
-   
+    #url(r'^$',include('apps.inicio.urls')),
     url(r'^cliente/',include('apps.sistema.urls')),
     url(r'^producto/',include('apps.productos.urls')),
     url(r'^categoriaHabitacion/',include('apps.categoriaHabitacion.urls')),

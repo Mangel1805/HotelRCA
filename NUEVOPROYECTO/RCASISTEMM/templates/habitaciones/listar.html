@@ -52,11 +52,11 @@
 		          {% for hab in habitacion %}
 			          <tr id="row{{hab.id}}" class="active">
 			          	<td >{{hab.id}}</td>
-		          		<td ><a href="javascript:cargarDatos({{hab.id}})">{{hab.hab_numero}}</td>
-			            <td >{{hab.id_tip_hab}}</td>
-			            <td >{{hab.id_categoria}}</td>
-			            <td >{{hab.hab_precio}}</td>
-			            <td >{{hab.hab_estado}}</td>
+		          		<td ><a href="javascript:cargarDatos({{hab.id}})">{{hab.habitacion}}</td>
+			            <td >{{hab.tipo}}</td>
+			            <td >{{hab.categoria}}</td>
+			            <td >{{hab.precio}}</td>
+			            <td >{{hab.estado}}</td>
 
 			          </tr>
 		          {% endfor %}

@@ -55,15 +55,15 @@
 		          {% for cliente in  clientes %}
 			          <tr id="row{{cliente.id}}" class="active">
 			          	<td >{{cliente.id}}</td>
-		          		<td ><a href="javascript:cargarDatos({{cliente.id}})">{{cliente.cli_cedula}}</a></td>
-			            <td >{{cliente.cli_nombre}}</td>
-			            <td >{{cliente.cli_apellido}}</td>
-			            <td >{{cliente.cli_telefono}}</td>
-			            <td >{{cliente.cli_direccion}}</d>
-			            <td >{{cliente.cli_email}}</td>
-			            <td >{{cliente.cli_ocupacion}}</td>
-			            <td >{{cliente.cli_estado}}</td>
-			            <td >{{cliente.ciu_codigo}}</td>
+		          		<td ><a href="javascript:cargarDatos({{cliente.id}})">{{cliente.cedula}}</a></td>
+			            <td >{{cliente.nombre}}</td>
+			            <td >{{cliente.apellido}}</td>
+			            <td >{{cliente.telefono}}</td>
+			            <td >{{cliente.direccion}}</d>
+			            <td >{{cliente.email}}</td>
+			            <td >{{cliente.ocupacion}}</td>
+			            <td >{{cliente.estado}}</td>
+			            <td >{{cliente.ciudad}}</td>
 			          	
 			           
 			          </tr>

@@ -50,10 +50,10 @@
 		          {% for servicio in servicios %}
 			          <tr id="row{{servicio.id}}" class="active">
 			          	<td >{{servicio.id}}</td>
-		          		<td ><a href="javascript:cargarDatos({{servicio.id}})">{{servicio.id_productos}}</a></td>
-		          		<td >{{servicio.cli_codigo}}</td>
-		          		<td >{{servicio.ser_cantidad}}</td>
-			            <td >{{servicio.ser_total}}</td>
+		          		<td ><a href="javascript:cargarDatos({{servicio.id}})">{{servicio.producto}}</a></td>
+		          		<td >{{servicio.cliente}}</td>
+		          		<td >{{servicio.cantidad}}</td>
+			            <td >{{servicio.total}}</td>
 			       
 
 

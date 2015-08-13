@@ -52,11 +52,11 @@
 		          {% for reservacion in reservaciones %}
 			          <tr id="row{{reservacion.id}}"class="active">
 			          	<td >{{reservacion.id}}</td>
-		          		<td ><a href="javascript:cargarDatos({{reservacion.id}})">{{reservacion.id_hab_numero}}</a></td>
-		          		<td >{{reservacion.cli_codigo}}</td>
-			            <td >{{reservacion.rec_fecha_inicio}}</td>
-						<td >{{reservacion.rec_fecha_fin}}</td>
-						<td >{{reservacion.rec_estado}}</td>
+		          		<td ><a href="javascript:cargarDatos({{reservacion.id}})">{{reservacion.habitacion}}</a></td>
+		          		<td >{{reservacion.cliente}}</td>
+			            <td >{{reservacion.fecha_inicio}}</td>
+						<td >{{reservacion.fecha_fin}}</td>
+						<td >{{reservacion.estado}}</td>
 
 
 			          </tr>

@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.inicio',
     'apps.sistema',
     'apps.productos',
     'apps.categoriaHabitacion',
@@ -52,6 +53,8 @@ INSTALLED_APPS = (
 
 
 )
+
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -109,3 +112,8 @@ STATICFILES_DIRS=(
     RUTA_PROYECTO.child('static')),
 TEMPLATE_DIRS=(
     RUTA_PROYECTO.child('templates')),
+
+from django.core.urlresolvers import reverse_lazy
+LOGIN_URL = reverse_lazy('login')
+LOGIN_REDIRECT_URL = reverse_lazy('login')
+LOGOUT_URL = reverse_lazy('logout')

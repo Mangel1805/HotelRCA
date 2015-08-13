@@ -50,10 +50,10 @@
 		          {% for producto in productos %}
 			          <tr id="row{{producto.id}}" class="active">
 			          	<td >{{producto.id}}</td>
-		          		<td ><a href="javascript:cargarDatos({{producto.id}})">{{producto.pro_nombre}}</a></td>
-			            <td >{{producto.pro_descripcion}}</td>
-			            <td >$ {{producto.pro_costo}}</td>
-			            <td >{{producto.pro_estado}}</td>
+		          		<td ><a href="javascript:cargarDatos({{producto.id}})">{{producto.nombre}}</a></td>
+			            <td >{{producto.descripcion}}</td>
+			            <td >$ {{producto.costo}}</td>
+			            <td >{{producto.estado}}</td>
 			          </tr>
 		          {% endfor %}
 	      	</tbody>

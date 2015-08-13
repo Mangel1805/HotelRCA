@@ -43,7 +43,7 @@
 	            <td class="success">TOTAL</td>
 	            <td class="success">ESTADO</td>
 	            <td class="success">RESERVACION</td>
-	            <td class="success">SERVICIO</td>
+	            
 	          </tr>
 	        </thead>
 	        <tbody >
@@ -52,13 +52,13 @@
 		          {% for factura in facturas %}
 			          <tr id="row{{factura.id}}"class="active">
 			          	<td >{{factura.id}}</td>
-		          		<td ><a href="javascript:cargarDatos({{factura.id}})">{{factura.fac_fecha}}</a></td>
-			            <td >{{factura.fac_subtotal}}</td>
-			            <td >{{factura.fac_iva}}</td>
-			            <td >{{factura.fac_total}}</td>
-			            <td >{{factura.fac_estado}}</td>
-			            <td >{{factura.id_Reservacion}}</td>
-			            <td >{{factura.id_servicio}}</td>
+		          		<td ><a href="javascript:cargarDatos({{factura.id}})">{{factura.fecha}}</a></td>
+			            <td >{{factura.subtotal}}</td>
+			            <td >{{factura.iva}}</td>
+			            <td >{{factura.total}}</td>
+			            <td >{{factura.estado}}</td>
+			            <td >{{factura.reservacion}}</td>
+			            
 			          </tr>
 		          {% endfor %}
 	      	</tbody>
