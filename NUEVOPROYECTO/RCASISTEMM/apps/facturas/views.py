@@ -9,21 +9,22 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import Table
 
 
-from django.shortcuts import render
-from apps.sistema.models import Factura
+from django.shortcuts import render, redirect, render_to_response, RequestContext, HttpResponse, HttpResponseRedirect
+from apps.sistema.models import Factura,Cliente,Productos,Factura
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,UpdateView,DeleteView
 from django.http import HttpResponse
 from django.core import serializers	
-
+#from django.template import Context, Template,RequestContext
 
 class index(TemplateView):
 	template_name='inicio/index.html'
 
-class crearFactura(CreateView):
-	template_name='factura/crear.html'
-	model=Factura
-	success_url=reverse_lazy('listarFactura')
+def generarVentaFactura(request):
+    
+    cntx={'listarclientes':Cliente.objects.all(), 'listarproductos':Productos.objects.all(), 'nFactura': 1+Factura.objects.count()}
+    return render_to_response('factura/crear.html', cntx, context_instance=RequestContext(request))
+
 
 class editarFactura(UpdateView):
 	model=Factura

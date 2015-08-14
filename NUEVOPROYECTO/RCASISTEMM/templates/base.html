@@ -8,6 +8,8 @@
 
 <!-- Bootstrap -->
 <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css">
+<link rel="stylesheet" href="{{STATIC_URL}}css/stilo.css">
+
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -156,11 +158,25 @@
     </div>
   </div>
 </footer>
+{% block modales %}
+
+{% endblock %}
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 <script src="{{STATIC_URL}}js/jquery-1.11.2.min.js"></script> 
 <!-- Include all compiled plugins (below), or include individual files as needed --> 
 <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/jquery.ui.touch-punch.min.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/bootstrap.min.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/bootstrap-select.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/bootstrap-switch.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/flatui-checkbox.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/flatui-radio.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/jquery.placeholder.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/typeahead.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/application.js"></script>
+
 {%block js%}
 {%endblock%}
 </body>
+
 </html>

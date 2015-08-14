@@ -80,7 +80,7 @@ class Habitacion(models.Model):
     habitacion= models.IntegerField()
     tipo = models.ForeignKey(TipoHabitacion, blank=True, null=True)
     categoria = models.ForeignKey(Categoria, blank=True, null=True)
-    precio = models.FloatField()
+    precio = models.DecimalField(max_digits=8,decimal_places=2)
     estado = models.ForeignKey(EstadosHabitacion, blank=True, null=True)
 
     def __unicode__(self):
@@ -110,7 +110,7 @@ class EstadosProducto(models.Model):
 class Productos(models.Model):
     nombre = models.CharField(max_length=30)
     descripcion = models.CharField(max_length=60)
-    costo = models.FloatField()
+    costo = models.DecimalField(max_digits=8,decimal_places=2)
     estado = models.ForeignKey(EstadosProducto,blank=True,null=True)
     def __unicode__(self):
         return self.nombre
@@ -119,16 +119,16 @@ class ServicioCliente(models.Model):
     producto = models.ForeignKey(Productos, blank=True, null=True)
     cliente = models.ForeignKey(Cliente, blank=True, null=True)
     cantidad = models.IntegerField()
-    total = models.FloatField()
+    total = models.DecimalField(max_digits=8,decimal_places=2)
     def __unicode__(self):
         return str(self.producto)
     
 
 class Factura(models.Model):
-    fecha = models.DateTimeField(auto_now_add=True)
-    subtotal = models.FloatField()
-    iva = models.FloatField()
-    total = models.FloatField()
+    fecha = models.DateField(auto_now_add=True)
+    subtotal = models.DecimalField(max_digits=8,decimal_places=2)
+    iva = models.DecimalField(max_digits=8,decimal_places=2)
+    total = models.DecimalField(max_digits=8,decimal_places=2)
     estado = models.ForeignKey(EstadosFactura, blank=True, null=True)
     reservacion = models.ForeignKey(Reservacion, blank=True, null=True)
     #id_servicio = models.ForeignKey(ServicioCliente, blank=True, null=True)
@@ -143,10 +143,10 @@ class EstadosIngreso(models.Model):
 
 class Ingresos(models.Model):
     usuario = models.OneToOneField(User)
-    fecha = models.DateTimeField(auto_now_add=True)
+    fecha = models.DateField(auto_now_add=True)
     detalle = models.CharField(max_length=140)
     tipo = models.CharField(max_length=140)
-    valor = models.FloatField()
+    valor = models.DecimalField(max_digits=8,decimal_places=2)
     estado = models.ForeignKey(EstadosIngreso,blank=True,null=True)
 
 
@@ -158,13 +158,13 @@ class EstadosEgresos(models.Model):
 
 class Egresos(models.Model):
     usuario = models.OneToOneField(User)
-    fecha = models.DateTimeField(auto_now_add=True)
+    fecha = models.DateField(auto_now_add=True)
     articulo = models.CharField(max_length=140)
     tipo = models.CharField(max_length=140)
     detalle = models.CharField(max_length=140)
     cantidad = models.IntegerField()
-    precio_unitario = models.FloatField()
-    precio_total = models.FloatField()
+    precio_unitario = models.DecimalField(max_digits=8,decimal_places=2)
+    precio_total = models.DecimalField(max_digits=8,decimal_places=2)
     estado = models.ForeignKey(EstadosEgresos, blank=True, null=True)
 
 
