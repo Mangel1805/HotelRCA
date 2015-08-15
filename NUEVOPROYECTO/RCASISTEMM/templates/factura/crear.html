@@ -6,15 +6,36 @@
 
 
 <div class="well">
+
   <div class="row">
   <div class="col-md-6">
-  <div class="alert alert-danger" role="alert">DATOS CLIENTES</div>
+
+
+  <div class="alert alert-danger" role="alert">DATOS RESERVACIÓN</div>
+
   		<div class="row">
+        <div>
         <div class="col-xs-6">
-                                <label for="cedula">Cedula:</label>
+                                <label for="cedula">N° Habitación:</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="search" name="cedula" id="txtcedula" required autocomplete="off" placeholder="Cedula"/ >
-                                    <span class="input-group-btn"><button class="btn btn-info" type="button" value="Buscar" onclick="javascript:buscarCliente()"><i class="glyphicon glyphicon-search"></i></button></span>
+                                    <input class="form-control" type="search" name="habitacion" id="txthabitacion" required autocomplete="off" placeholder="N° Habitación" onkeyup = "if(event.keyCode == 13) javascript:buscarHabitacion()"/ >
+                 <span class="input-group-btn"><button class="btn btn-info" type="button" value="Buscar" onclick="javascript:buscarHabitacion()"><i class="glyphicon glyphicon-search"></i></button></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row-fluid">
+                                    <label for="direccion">Descripción:</label>
+                                    <input type="text" class="form-control" name="descripcion" id="txtdescripcion" placeholder="Descipcion" readonly="readonly">
+                                    
+                                </div>
+                            </div>
+
+        </div>
+        <div class="col-xs-6">
+                                <label for="cedula">Cédula:</label>
+                                <div class="input-group">
+                                    <input class="form-control ty" type="search" name="cedula" id="txtcedula" required autocomplete="off" placeholder="Cedula" size="100" onkeyup = "if(event.keyCode == 13) javascript:buscarCliente()" / >
+                                    <span class="input-group-btn"><button class="btn btn-info" type="button" value="Buscar" onclick="javascript:buscarCliente()" ><i class="glyphicon glyphicon-search"></i></button></span>
                                 </div>
                                 <label for="nombre">Nombre:</label>
                                 <input type="text" class="form-control" name="nombre" id="txtnombre" placeholder="Nombre" readonly="readonly">
@@ -23,11 +44,11 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="row-fluid">
-                                    <label for="direccion">Direccion:</label>
+                                    <label for="direccion">Dirección:</label>
                                     <input type="text" class="form-control" name="direccion" id="txtdireccion" placeholder="Direccion" readonly="readonly">
                                     <label for="ciudad">Ciudad:</label>
                                     <input type="text" class="form-control" name="ciudad" id="txtciudad" placeholder="Ciudad" readonly="readonly">
-                                    <label for="tlfono">Telefono:</label>
+                                    <label for="tlfono">Teléfono:</label>
                                     <input type="text" class="form-control" name="tlfono" id="txttelefono" placeholder="Telefono" readonly="readonly">
                                 </div>
                             </div>
@@ -121,7 +142,7 @@
         document.getElementById('txtfecha').value=(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
         var fecha = (f.getFullYear() + "-" + (f.getMonth() +2) + "-" + f.getDate());
 		var nombre = []
-
+    var cedulass=[]
 
 
 		var contador  = 0;
@@ -135,6 +156,17 @@
                 local: nombre
             });
 
+
+    var cont  = 0;
+      {% for cliente in listarclientes %}
+      cedulass[cont]="{{cliente.cedula}}";
+      console.log(cedulass[cont]);
+      cont=cont+1;
+      {% endfor %}
+       $('input.ty').typeahead({
+                      local: cedulass
+        });
+ 
 		function buscarCliente(){
 			var cedulaBuscar=document.getElementById("txtcedula").value;
 			{% for cliente in listarclientes %}
@@ -153,6 +185,19 @@
 				}
 			{% endfor %}
 		}
+    function buscarHabitacion(){
+      var habitacionBuscar=document.getElementById("txthabitacion").value;
+      {% for habitacion in listarHabitacion %}
+
+          if("{{ habitacion.habitacion }}"==habitacionBuscar){
+         
+          var descripcion = "{{habitacion.tipo}}"
+          
+          document.getElementById("txtdescripcion").value=descripcion;
+          
+        }
+      {% endfor %}
+    }
 
 		function addfilastabla(){
 
@@ -183,7 +228,7 @@
 						cantidad.innerHTML =productoCant;
 						preciou.innerHTML= "{{producto.costo}}";
             console.log({{producto.costo}});
-						pt = parseFloat("{{ producto.costo }}") * parseInt(productoCant);
+						var pt = parseFloat("{{ producto.costo }}") * parseInt(productoCant);
             console.log(pt)
 						preciot.innerHTML=pt;
 
@@ -227,10 +272,7 @@
       descuento = parseFloat(document.getElementById("txtdescuento").value)
 
       total = document.getElementById("txttotal").value;
-      document.getElementById("txttotal").value=redondeo(sub+iva+descuento);
-
-			
-			
+      document.getElementById("txttotal").value=redondeo(sub+iva+descuento);			
 		}
 
     function redondeo(numero){
@@ -247,7 +289,7 @@
 		if (tabla.rows.length >1){
 			
 			for (var i = 1; tabla.rows[i];i++){
-				$.get('factura/crear/',{
+				$.get('/factura/guardar/',{
 					codigo:document.getElementById("tablafactura").rows[i].cells[0].innerHTML,
 					cantidad:document.getElementById("tablafactura").rows[i].cells[2].innerHTML,
 					precio:document.getElementById("tablafactura").rows[i].cells[3].innerHTML,
@@ -258,15 +300,15 @@
 					iva:document.getElementById("txtiva").value,
 					descuento:document.getElementById("txtdescuento").value,
 					total:document.getElementById("txttotal").value,
-					fecha:fecha
+					fecha:fecha,
+          Numerohabitacion:document.getElementById("txthabitacion").value,
 					});
-				
-				
+							
 				}
 
-        alert("Datos Guardados Correctamente... ")
+      alert("Datos Guardados Correctamente... ")
 
-        setTimeout("location.href='/generarFacturaVenta'",2000);
+        setTimeout("location.href='/factura/listar'",2000);
 			
 			}
 		

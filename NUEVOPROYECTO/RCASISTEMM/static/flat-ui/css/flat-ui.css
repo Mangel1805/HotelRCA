@@ -2819,10 +2819,24 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
 .twitter-typeahead .tt-query:-ms-input-placeholder,
 .twitter-typeahead .tt-hint:-ms-input-placeholder {
   color: #b2bcc5;
+  border: 2px solid #bdc3c7;
+  color: #34495e;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-size: 40px;
+  line-height: 1.467;
+  padding: 8px 12px;
+  height: 42px;
 }
 .twitter-typeahead .tt-query::-webkit-input-placeholder,
 .twitter-typeahead .tt-hint::-webkit-input-placeholder {
   color: #b2bcc5;
+  border: 2px solid #bdc3c7;
+  color: #34495e;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-size: 40px;
+  line-height: 1.467;
+  padding: 8px 12px;
+  height: 42px;
 }
 .twitter-typeahead .tt-query.placeholder,
 .twitter-typeahead .tt-hint.placeholder {

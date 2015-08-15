@@ -59,7 +59,9 @@ def generar_pdf(request):
                             )
     Lista = []
     estilo = getSampleStyleSheet()
+    cabeza = Paragraph("Listado de Productos", estilo['Heading3'])
     Encabezado = Paragraph("Listado de Productos", estilo['Heading1'])
+    Lista.append(cabeza)
     Lista.append(Encabezado)
     titulos = ('Nombre','Descripcion','Costo','Estado')
     consulta = [(aux.nombre,aux.descripcion,aux.costo,aux.estado) for aux in Productos.objects.all()]
@@ -70,7 +72,8 @@ def generar_pdf(request):
         [
             ('GRID', (0, 0), (8, -1), 1, colors.black),#cuadricula
             ('LINEBELOW', (0, 0), (-1, 0), 1, colors.black),#lineadebajo del titulos
-            ('BACKGROUND', (0, 0), (-1, 0), colors.brown)
+            ('BACKGROUND', (0, 0), (-1, 0), colors.silver),
+            ('FONTGROUND', (0, 0), (-1, 0), colors.silver)
             
         ]
     ))

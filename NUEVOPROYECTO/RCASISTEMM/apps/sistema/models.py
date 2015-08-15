@@ -38,7 +38,7 @@ class Cliente(models.Model):
     cedula = models.CharField(max_length=10)
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
-    telefono = models.CharField(max_length=10)
+    telefono = models.CharField(max_length=10, blank=True)
     direccion = models.CharField(max_length=80)
     email  = models.EmailField()
     ocupacion = models.CharField(max_length=20)
@@ -116,6 +116,7 @@ class Productos(models.Model):
         return self.nombre
 
 class ServicioCliente(models.Model):
+   # habitacion = models.ForeignKey(Habitacion, blank=True, null=True)
     producto = models.ForeignKey(Productos, blank=True, null=True)
     cliente = models.ForeignKey(Cliente, blank=True, null=True)
     cantidad = models.IntegerField()
@@ -125,7 +126,7 @@ class ServicioCliente(models.Model):
     
 
 class Factura(models.Model):
-    fecha = models.DateField(auto_now_add=True)
+    fecha = models.DateField()
     subtotal = models.DecimalField(max_digits=8,decimal_places=2)
     iva = models.DecimalField(max_digits=8,decimal_places=2)
     total = models.DecimalField(max_digits=8,decimal_places=2)
@@ -133,7 +134,7 @@ class Factura(models.Model):
     reservacion = models.ForeignKey(Reservacion, blank=True, null=True)
     #id_servicio = models.ForeignKey(ServicioCliente, blank=True, null=True)
     def __unicode__(self):
-        return str("Fact - ")+str(self.id)
+        return str("Fact-000")+str(self.id)
 
 class EstadosIngreso(models.Model):
     estado=models.CharField(max_length=8)
