@@ -3,7 +3,7 @@
 	<h1>Eliminar el Cliente</h1>
  
 	<Form  action = ""  method = "post" > {%  csrf_token  %} 
-    <p> <h3> {{  cliente.cli_nombre  }} {{cliente.cli_apellido}} </h3></p> 
+    <p> <h3> <del>{{  cliente.nombre  }} {{cliente.apellido}} </del></h3></p> 
      <input class="btn btn-danger" type="submit" value="Confirmar">
 	</form>
 

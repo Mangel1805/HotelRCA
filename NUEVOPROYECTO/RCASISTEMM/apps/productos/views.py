@@ -42,6 +42,7 @@ class listarProducto(ListView):
 	model=Productos
 	template_name='productos/listar.html'
 	context_object_name='productos'
+    
 
 def generar_pdf(request):
     print "Genero el PDF productos"

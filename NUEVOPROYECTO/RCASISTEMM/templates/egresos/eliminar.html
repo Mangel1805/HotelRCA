@@ -3,7 +3,7 @@
 	<h1>Eliminar Egreso</h1>
  
 	<Form  action = ""  method = "post" > {%  csrf_token  %} 
-    <p> ¿Seguro que quieres eliminar " {{  egresos  }} "? </p> 
+    <p> <h3><del>{{  egresos.articulo  }} </del></h3> </p> 
      <input class="btn btn-danger" type="submit" value="Confirmar">
 	</form>
 

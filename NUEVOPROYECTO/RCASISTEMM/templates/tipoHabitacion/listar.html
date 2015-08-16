@@ -1,5 +1,5 @@
 
-{% extends "base.html" %}
+{% extends "baserca.html" %}
 {% block content %}
 <h1>Todos los Tipos de Habitaciones</h1>
 <span class="label label-default">Tipos de Habitaciones</span>
@@ -7,22 +7,24 @@
  		<div class="btn-toolbar" role="toolbar">   
  		 	<div class="col-lg-6" >
                	<a href="{% url 'crearTipoHabitacion'  %}">
-				<button type="button" class="btn btn-danger" name='btnAgregar'onclick="">Agregar</button>
+				<button type="button" class="btn btn-danger" name='btnAgregar'onclick=""><span class=" glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</button>
                 </a>
-				<button type="button" class="btn btn-danger" name='btnActualizar' onclick="obtener('editar')">Actualizar</button>
-              	<button type="button" class="btn btn-danger" name='btnEliminar' onclick="obtener('eliminar')">Eliminar</button>
- 
+		
+                 
                 <a href="{% url 'pdf_tipoHabitacion'  %}">
-                <button name="btnReporte" type="button" class="btn btn-danger">Reporte</button>   </a>
+                <button name="btnReporte" type="button" class="btn btn-danger"><span class=" glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reporte</button>   </a>
              </div>   
             <div class="col-lg-6" > 
-     	 		 <form method="POST" action="/cliente/buscar/">{% csrf_token %}
+     	 		 <form method="POST" action="">{% csrf_token %}
 				
 		    		  <div class="input-group">
-		     			   <input type="text" class="form-control" placeholder="Ingrese el tipo de habitacion buscar" name="buscalo">
-		       				 <span class="input-group-btn">
-		        				  <button class="btn btn-default" type="submit" >Buscar</button>
-		       						 </span>
+		     			 <input type="text" class="form-control " placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"><span class=" glyphicon glyphicon-search" aria-hidden="true"></button>
+      </span>
+					      
+					    
+		       						
 		       			</div>
 		    
 		   		 </form>
@@ -31,7 +33,7 @@
      	  	
         </div>    	 
 
-</div> 
+<br> </br>
 	<div class="table-responsive">
 		<table class="table table-bordered table-hover">
 	        <thead>
@@ -48,53 +50,54 @@
 		          {% for tipo in tipoHabitacion %}
 			          <tr id="row{{tipo.id}}"class="active">
 			          	<td >{{tipo.id}}</td>
-		          		<td ><a href="javascript:cargarDatos({{tipo.id}})">{{tipo.nombre}}</a></td>
+		          		<td >{{tipo.nombre}}</td>
 			            <td >{{tipo.descripcion}}</td>
+			            <td ><button class='btn btn-danger' id="btnupdate{{tipo.id}}" value="{{tipo.id}}" onclick='actualizarDatos({{tipo.id}})'>
+			            	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+			            </button> </td>
+			            <td ><button class='btn btn-danger btn' id="btndelete{{tipo.id}}" value="{{tipo.id}}" onclick='eliminarDatos({{tipo.id}})'>
+			            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+			            </button></td>
 			          </tr>
 		          {% endfor %}
 	      	</tbody>
 		</table>
-		<input type="hidden" type="text" name="obtener_id" id="obtener_id" value=""/>
+		
 	</div>
-   <!--  <ul>
-		{% for cliente in  clientes %}
-  			<li><b>Cedula</b>{{cliente.cli_cedula}}</li>
-			<li><b>Nombre</b>{{cliente.cli_nombre}}</li>
-			<li><b>Apellido</b>{{cliente.cli_apellido}}</li>
-			<li><b>Direccion</b>{{cliente.cli_direccion}}</li>
-
-		{% endfor %}
-	</ul>-->
+  
 </div>
 </div>
-
+</div> 
 {% endblock content %}
 {%block js%}
   
-	<script type="text/javascript">
-		function cargarDatos(id) {
-			document.getElementById('obtener_id').value = document.getElementById('row'+id).cells[0].innerHTML;
-		}
+
+<script>
+	function actualizarDatos(r){
+		var s = document.getElementById('btnupdate'+r).value
+		setTimeout("location.href='/tipoHabitacion/modificar/"+r+"'"+"",10);
+
+	}
+	function eliminarDatos(r){
+		var s = document.getElementById('btnupdate'+r).value
+		setTimeout("location.href='/tipoHabitacion/eliminar/"+r+"'"+"",10);
+
+	}
 	</script>
 
 	<script type="text/javascript">
-		function obtener(tipo) {
-			if(tipo=='editar'){
-				if(document.getElementById("obtener_id").value==''){
-					
-				}
-				else{
-					window.open("/tipoHabitacion/modificar/"+document.getElementById("obtener_id").value,"_self");
-				}
-				
-			}
-			if(tipo=='eliminar'){
-				if(document.getElementById("obtener_id").value==''){
-					
-				}else{
-					window.open("/tipoHabitacion/eliminar/"+document.getElementById("obtener_id").value,"_self");
-				}
-			}
-		}
+		 var nombre = []
+		    
+
+		    var contador  = 0;
+		    {% for prod in productos %}
+		      nombre[contador]="{{prod.nombre}}";
+		      console.log(nombre[contador]);
+		      contador=contador+1;
+		    {% endfor %}
+
+		        $('input.typeahead').typeahead({
+		                local: nombre
+		            });
 </script>
 {%endblock js%}

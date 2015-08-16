@@ -3,7 +3,7 @@
 	<h1>Eliminar la reservacion de la Habitacion</h1>
  
 	<Form  action = ""  method = "post" > {%  csrf_token  %} 
-    <p> {{  reservaciones.id_hab_numero}} realizada por el cliente {{  reservaciones.cli_codigo}} el dia  {{  reservaciones.rec_fecha_inicio}} </p> 
+    <p><h3><del> {{  reservaciones.habitacion}} realizada por el cliente {{  reservaciones.cliente}} el dia  {{  reservaciones.fecha_inicio}} </del></h3></p> 
     <input class="btn btn-danger" type="submit" value="Confirmar"> 
 	</form>
 

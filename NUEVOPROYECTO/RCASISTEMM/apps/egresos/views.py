@@ -26,12 +26,12 @@ class index(TemplateView):
 class registrarEgreso(CreateView):
 	template_name='egresos/crear.html'
 	model=Egresos
-	success_url=reverse_lazy('listarServicio')
+	success_url=reverse_lazy('listarEgreso')
 
 class modificarEgreso(UpdateView):
 	model=Egresos
 	template_name='egresos/editar.html'
-	success_url=reverse_lazy('listarServicio')
+	success_url=reverse_lazy('listarEgreso')
 
 class eliminarEgreso(DeleteView):
 	model=Egresos

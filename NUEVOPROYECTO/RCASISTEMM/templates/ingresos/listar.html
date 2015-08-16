@@ -3,35 +3,37 @@
 {% block content %}
 <h1>Todos los Ingresos</h1>
 <span class="label label-default">Lista de productos</span>
+
 <div class="well">
  		<div class="btn-toolbar" role="toolbar">   
  		 	<div class="col-lg-6" >
                	<a href="{% url 'crearIngreso'  %}">
-				<button type="button" class="btn btn-danger" name='btnAgregar'onclick="">Agregar</button>
+					<button type="button" class="btn btn-danger" name='btnAgregar'onclick=""><span class=" glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</button>
                 </a>
-				<button type="button" class="btn btn-danger" name='btnActualizar' onclick="obtener('editar')">Actualizar</button>
-              	<button type="button" class="btn btn-danger" name='btnEliminar' onclick="obtener('eliminar')">Eliminar</button>
- 
+		
+                 
                 <a href="{% url 'pdf_Ingresos'  %}">
-                <button name="btnReporte" type="button" class="btn btn-danger">Reporte</button>   </a>
+              	  <button name="btnReporte" type="button" class="btn btn-danger"><span class=" glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reporte</button>  
+              	</a>
              </div>   
             <div class="col-lg-6" > 
-     	 		 <form method="POST" action="/cliente/buscar/">{% csrf_token %}
+     	 		 <form method="POST" action="">{% csrf_token %}
 				
 		    		  <div class="input-group">
-		     			   <input type="text" class="form-control" placeholder="Ingrese el producto a buscar" name="buscalo">
-		       				 <span class="input-group-btn">
-		        				  <button class="btn btn-default" type="submit" >Buscar</button>
-		       						 </span>
+		     			 <input type="text" class="form-control " placeholder="Search for...">
+				      <span class="input-group-btn">
+				        <button class="btn btn-default" type="button"><span class=" glyphicon glyphicon-search" aria-hidden="true"></button>
+				      </span>
+									      
+					    
+		       						
 		       			</div>
 		    
 		   		 </form>
 		    </div>
      	  
-     	  	
-        </div>    	 
-
-</div> 
+        </div> 
+        <br></br>
 	<div class="table-responsive">
 		<table class="table table-bordered table-hover">
 	        <thead>
@@ -52,57 +54,58 @@
 		          {% for ingreso in ingresos %}
 			          <tr id="row{{ingreso.id}}" class="active">
 			          	<td >{{ingreso.id}}</td>
-		          		<td ><a href="javascript:cargarDatos({{ingreso.id}})">{{ingreso.usuario}}</a></td>
+		          		<td >{{ingreso.usuario}}</a></td>
 			            <td >{{ingreso.fecha}}</td>
 			            <td >{{ingreso.detalle}}</td>
 			            <td >{{ingreso.tipo}}</td>
 			            <td >$ {{ingreso.valor}}</td>
 			            <td >{{ingreso.estado}}</td>
+		           		<td ><button class='btn btn-danger' id="btnupdate{{ingreso.id}}" value="{{ingreso.id}}" onclick='actualizarDatos({{ingreso.id}})'>
+			            	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+			            </button> </td>
+			            <td ><button class='btn btn-danger btn' id="btndelete{{ingreso.id}}" value="{{ingreso.id}}" onclick='eliminarDatos({{ingreso.id}})'>
+			            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+			            </button></td>
 			          </tr>
 		          {% endfor %}
 	      	</tbody>
 		</table>
-		<input type="hidden" type="text" name="obtener_id" id="obtener_id" value=""/>
+		
 	</div>
-   <!--  <ul>
-		{% for cliente in  clientes %}
-  			<li><b>Cedula</b>{{cliente.cli_cedula}}</li>
-			<li><b>Nombre</b>{{cliente.cli_nombre}}</li>
-			<li><b>Apellido</b>{{cliente.cli_apellido}}</li>
-			<li><b>Direccion</b>{{cliente.cli_direccion}}</li>
-
-		{% endfor %}
-	</ul>-->
+  
 </div>
 </div>
-
+</div> 
 {% endblock content %}
 {%block js%}
   
-	<script type="text/javascript">
-		function cargarDatos(id) {
-			document.getElementById('obtener_id').value = document.getElementById('row'+id).cells[0].innerHTML;
-		}
+
+<script>
+	function actualizarDatos(r){
+		var s = document.getElementById('btnupdate'+r).value
+		setTimeout("location.href='/ingreso/modificar/"+r+"'"+"",10);
+ingreso
+	}
+	function eliminarDatos(r){
+		var s = document.getElementById('btnupdate'+r).value
+		setTimeout("location.href='/ingreso/eliminar/"+r+"'"+"",10);
+
+	}
 	</script>
 
 	<script type="text/javascript">
-		function obtener(tipo) {
-			if(tipo=='editar'){
-				if(document.getElementById("obtener_id").value==''){
-					
-				}
-				else{
-					window.open("/ingreso/modificar/"+document.getElementById("obtener_id").value,"_self");
-				}
-				
-			}
-			if(tipo=='eliminar'){
-				if(document.getElementById("obtener_id").value==''){
-					
-				}else{
-					window.open("/ingreso/eliminar/"+document.getElementById("obtener_id").value,"_self");
-				}
-			}
-		}
+		 var nombre = []
+		    
+
+		    var contador  = 0;
+		    {% for prod in productos %}
+		      nombre[contador]="{{prod.nombre}}";
+		      console.log(nombre[contador]);
+		      contador=contador+1;
+		    {% endfor %}
+
+		        $('input.typeahead').typeahead({
+		                local: nombre
+		            });
 </script>
 {%endblock js%}

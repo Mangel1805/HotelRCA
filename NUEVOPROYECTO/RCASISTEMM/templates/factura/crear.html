@@ -340,8 +340,9 @@
                     codigo.innerHTML=obtenerHabitacionId();
                     producto.innerHTML=obtenerHabitacionTipo();
                     cantidad.innerHTML ="1";
-                    preciou.innerHTML= obtenerHabitacionCosto();
-                    preciot.innerHTML=redondeo(obtenerHabitacionCosto());
+                    preciou.innerHTML= redondeo(re("{{rese.precio}}"));
+                   
+                    preciot.innerHTML=redondeo(re("{{rese.precio}}"));
 
                     sumartotales();
                     eliminar.innerHTML="<button class='btn btn-danger' onclick='eliminarfilas(this)'><span class='glyphicon glyphicon-remove' aria-hidden='true'></button>";

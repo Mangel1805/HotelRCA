@@ -89,8 +89,11 @@ class Habitacion(models.Model):
 class Reservacion(models.Model):
     habitacion = models.ForeignKey(Habitacion, blank=True, null=True)
     cliente = models.ForeignKey(Cliente, blank=True, null=True)
-    fecha_inicio = models.DateField()
+    fecha_inicio  = models.DateField()
     fecha_fin = models.DateField()
+    adultos = models.IntegerField()
+    ninos = models.IntegerField()
+    precio = models.DecimalField(max_digits=8,decimal_places=2)
     estado = models.ForeignKey(EstadosReservacion, blank=True, null=True)
     def __unicode__(self):
         return str(self.cliente)+" habitacion "+str(self.habitacion)
