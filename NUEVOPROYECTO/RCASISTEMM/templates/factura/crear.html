@@ -1,5 +1,3 @@
-
-
 {% extends "base.html" %}
 {% block content %}
 <div class="alert alert-info" role="alert"><h1>FACTURACION</h1></div>
@@ -13,7 +11,7 @@
 
   <div class="alert alert-danger" role="alert">DATOS RESERVACIÓN</div>
 
-  		<div class="row">
+      <div class="row">
         <div>
         <div class="col-xs-6">
                                 <label for="cedula">N° Habitación:</label>
@@ -55,10 +53,10 @@
       </div>
 </div>
   <div class="col-md-6">
-  		<div class="alert alert-danger" role="alert">DATOS FACTURA</div>
+      <div class="alert alert-danger" role="alert">DATOS FACTURA</div>
         <div class="col-md-6">NUMERO FACTURA</div>
         <div class="col-md-6"><input type="text" id="txtnfactura" class="form-control" required value="{{ nFactura }}" readonly="readonly"></div>
-  		<div class="col-md-6">FECHA</div>
+      <div class="col-md-6">FECHA</div>
         <div class="col-md-6"><input type="text" id="txtfecha"  class="form-control" readonly="readonly" ></div>
   </div>
 </div>
@@ -68,14 +66,14 @@
 <div class="well">
 <div class="row">
     <div class="col-md-4">
-    	<div class="form-group">
+      <div class="form-group">
             <input class="form-control typeahead" type="text" id="txtbuscarproducto" placeholder="Buscar Producto" autocomplete="off" size="50" />
-        	
+          
         </div>
 
     </div>
     <div class="col-md-4">
-    	<div class="input-group"><span class="input-group-addon">CANTIDAD</span>
+      <div class="input-group"><span class="input-group-addon">CANTIDAD</span>
     <input type="text" id="txtcantidad" class="form-control" placeholder="Agrege la Cantidad">
     </div>
     </div>
@@ -88,8 +86,8 @@
    <div class="table-responsive">
    <table id="tablafactura"  class="table table-hover">
    <thead>
-   	<tr>
-    	<td class="success">CODIGO</td>
+    <tr>
+      <td class="success">CODIGO</td>
         <td class="success">DESCRIPCION</td>
         <td class="success">CANTIDAD</td>
         <td class="success">PRECIO U</td>
@@ -109,14 +107,12 @@
       </div>
       <div class="col-md-6">
       
-        		<div class="row">
+            <div class="row">
         <div class="col-md-6">SUBTOTAL</div>
         <div class="col-md-6"><input type="text"  id="txtsubotal" value="0" class="form-control" placeholder="normal sized input group" readonly="readonly"></div>
         <div class="col-md-6">IVA</div>
         <div class="col-md-6"><input type="text"  id="txtiva" value="0" class="form-control" placeholder="normal sized input group"readonly="readonly"></div>
-        <div class="col-md-6">DESCUENTO</div>
-        <div class="col-md-6"><input type="text" id="txtdescuento" value="0" class="form-control" placeholder="normal sized input group" readonly="readonly"></div>
-      	<div class="col-md-6">TOTAL</div>
+        <div class="col-md-6">TOTAL</div>
         <div class="col-md-6"><input type="text" id="txttotal" value="0" class="form-control" placeholder="normal sized input group" readonly="readonly"></div>
       </div>
 
@@ -138,19 +134,19 @@
 {% endblock content %}
 {% block js %} 
 <script >
-		 var f = new Date();
+     var f = new Date();
         document.getElementById('txtfecha').value=(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
         var fecha = (f.getFullYear() + "-" + (f.getMonth() +2) + "-" + f.getDate());
-		var nombre = []
+    var nombre = []
     var cedulass=[]
 
 
-		var contador  = 0;
-		{% for prod in listarproductos %}
-			nombre[contador]="{{prod.nombre}}";
-			console.log(nombre[contador]);
-			contador=contador+1;
-		{% endfor %}
+    var contador  = 0;
+    {% for prod in listarproductos %}
+      nombre[contador]="{{prod.nombre}}";
+      console.log(nombre[contador]);
+      contador=contador+1;
+    {% endfor %}
 
         $('input.typeahead').typeahead({
                 local: nombre
@@ -167,24 +163,26 @@
                       local: cedulass
         });
  
-		function buscarCliente(){
-			var cedulaBuscar=document.getElementById("txtcedula").value;
-			{% for cliente in listarclientes %}
+    function buscarCliente(){
+      var cedulaBuscar=document.getElementById("txtcedula").value;
+      {% for cliente in listarclientes %}
 
           if("{{ cliente.cedula }}"==cedulaBuscar){
-  				var nombre = "{{cliente.nombre}}"
-  				var apellido = "{{cliente.apellido}}"
-  				var direccion = "{{cliente.direccion}}"
-  				var telefono = "{{cliente.telefono}}"
-  				var ciudad = "{{cliente.ciudad}}"
-  				document.getElementById("txtnombre").value=nombre;
-  				document.getElementById("txtapellido").value=apellido;
-  				document.getElementById("txtdireccion").value=direccion;
+          var nombre = "{{cliente.nombre}}"
+          var apellido = "{{cliente.apellido}}"
+          var direccion = "{{cliente.direccion}}"
+          var telefono = "{{cliente.telefono}}"
+          var ciudad = "{{cliente.ciudad}}"
+          document.getElementById("txtnombre").value=nombre;
+          document.getElementById("txtapellido").value=apellido;
+          document.getElementById("txtdireccion").value=direccion;
           document.getElementById("txttelefono").value=telefono;
           document.getElementById("txtciudad").value=ciudad;
-				}
-			{% endfor %}
-		}
+          CargarDatosTabla();
+          ServicioID();
+        }
+      {% endfor %}
+    }
     function buscarHabitacion(){
       var habitacionBuscar=document.getElementById("txthabitacion").value;
       {% for habitacion in listarHabitacion %}
@@ -199,47 +197,200 @@
       {% endfor %}
     }
 
-		function addfilastabla(){
+    function addfilastabla(){
 
-			var productobuscar = document.getElementById("txtbuscarproducto").value;
+      var productobuscar = document.getElementById("txtbuscarproducto").value;
       console.log(productobuscar)
-			var productoCant = document.getElementById("txtcantidad").value;
+      var productoCant = document.getElementById("txtcantidad").value;
 
-			document.getElementById("txtbuscarproducto").value="";
-			document.getElementById("txtcantidad").value="";
+      document.getElementById("txtbuscarproducto").value="";
+      document.getElementById("txtcantidad").value="";
 
-			var tabla = document.getElementById('tablafactura');
-			var lastRow= tabla.rows.length;
-			var row = tabla.insertRow(lastRow);
+      var tabla = document.getElementById('tablafactura');
+      var lastRow= tabla.rows.length;
+      var row = tabla.insertRow(lastRow);
       var lp= 0
-			{% for producto in listarproductos  %}
+      {% for producto in listarproductos  %}
             console.log('aki')
-				if("{{producto.nombre}}"==productobuscar){
-						var codigo = row.insertCell(0);
-						console.log(codigo);
+        if("{{producto.nombre}}"==productobuscar){
+            var codigo = row.insertCell(0);
+            console.log(codigo);
             var producto=row.insertCell(1);
-						var cantidad =row.insertCell(2);
-						var preciou=row.insertCell(3);
-						var preciot=row.insertCell(4);
-						var eliminar=row.insertCell(5);
+            var cantidad =row.insertCell(2);
+            var preciou=row.insertCell(3);
+            var preciot=row.insertCell(4);
+            var eliminar=row.insertCell(5);
 
-						codigo.innerHTML="{{producto.id}}";
-						producto.innerHTML="{{producto.nombre}}";
-						cantidad.innerHTML =productoCant;
-						preciou.innerHTML= "{{producto.costo}}";
+            codigo.innerHTML="{{producto.id}}";
+            producto.innerHTML="{{producto.nombre}}";
+            cantidad.innerHTML =productoCant;
+            preciou.innerHTML= "{{producto.costo}}";
             console.log({{producto.costo}});
-						var pt = parseFloat("{{ producto.costo }}") * parseInt(productoCant);
+            var pt =redondeo( redondeo(re("{{ producto.costo }}")) * parseInt(productoCant));
             console.log(pt)
-						preciot.innerHTML=pt;
+            preciot.innerHTML=pt;
 
-						sumartotales();
+            sumartotales();
 
-						eliminar.innerHTML="<button class='btn btn-danger' onclick='eliminarfilas(this)'><span class='glyphicon glyphicon-remove' aria-hidden='true'></button>";
-						return false;
-					}
-				 
-			 {% endfor %}
-		}
+            eliminar.innerHTML="<button class='btn btn-danger' onclick='eliminarfilas(this)'><span class='glyphicon glyphicon-remove' aria-hidden='true'></button>";
+            return false;
+          }
+         
+       {% endfor %}
+    }
+    function obtenerCliente(){
+
+      var cedulaBuscar=document.getElementById("txtcedula").value;
+      
+      {% for cliente in listarclientes %}
+
+          if("{{ cliente.cedula }}"==cedulaBuscar){
+            return("{{cliente}}")
+        }
+      {% endfor %}
+     }
+
+     function obtenerProducto(numero){
+           {% for pro in listarproductos %}
+                if("{{ pro }}"==numero){
+                 return("{{pro}}")
+                }
+             
+          {% endfor %}
+        }
+        function obtenerProductoid(numero){
+           {% for pro in listarproductos %}
+                if("{{ pro }}"==numero){
+                 return("{{pro.id}}")
+                }
+             
+          {% endfor %}
+        }
+        function obtenerProductoNombre(numero){
+           {% for pro in listarproductos %}
+                if("{{ pro }}"==numero){
+                 return("{{pro.nombre}}")
+                }
+             
+          {% endfor %}
+        }
+         function obtenerProductoCosto(numero){
+           {% for pro in listarproductos %}
+                if("{{ pro }}"==numero){
+                 return("{{pro.costo}}")
+                }
+             
+          {% endfor %}
+        }
+      function obtenerHabitacion(){
+          var habitacionBuscar=document.getElementById("txthabitacion").value;
+          {% for habitacion in listarHabitacion %}
+
+              if("{{ habitacion.habitacion }}"==habitacionBuscar){
+                return("{{habitacion}}")
+              }
+          {% endfor %}
+      }
+       function obtenerHabitacionId(){
+          var habitacionBuscar=document.getElementById("txthabitacion").value;
+          {% for habitacion in listarHabitacion %}
+
+              if("{{ habitacion.habitacion }}"==habitacionBuscar){
+                return("{{habitacion.id}}")
+              }
+          {% endfor %}
+      }
+       function obtenerHabitacionTipo(){
+          var habitacionBuscar=document.getElementById("txthabitacion").value;
+          {% for habitacion in listarHabitacion %}
+
+              if("{{ habitacion.habitacion }}"==habitacionBuscar){
+                return("{{habitacion.tipo}}")
+              }
+          {% endfor %}
+      }
+       function obtenerHabitacionCosto(){
+          var habitacionBuscar=document.getElementById("txthabitacion").value;
+          {% for habitacion in listarHabitacion %}
+
+              if("{{ habitacion.habitacion }}"==habitacionBuscar){
+                return("{{habitacion.precio}}")
+              }
+          {% endfor %}
+      }
+
+      function CargarDatosTabla(){
+         $("#tablafactura").find("tr:gt(0)").remove();
+          var tablaA = document.getElementById('tablafactura');
+          {% for rese in listaReservacion %}
+          if("{{rese.cliente}}"==obtenerCliente()){
+            if("{{rese.habitacion}}"==obtenerHabitacion()){
+               var filaAnterior= tablaA.rows.length;
+                    var row = tablaA.insertRow(filaAnterior);
+                    var codigo = row.insertCell(0);
+                    console.log(codigo);
+
+                    var producto=row.insertCell(1);
+                    var cantidad =row.insertCell(2);
+                    var preciou=row.insertCell(3);
+                    var preciot=row.insertCell(4);
+                    var eliminar=row.insertCell(5);
+
+                    var habi=obtenerHabitacion();
+                    codigo.innerHTML=obtenerHabitacionId();
+                    producto.innerHTML=obtenerHabitacionTipo();
+                    cantidad.innerHTML ="1";
+                    preciou.innerHTML= obtenerHabitacionCosto();
+                    preciot.innerHTML=redondeo(obtenerHabitacionCosto());
+
+                    sumartotales();
+                    eliminar.innerHTML="<button class='btn btn-danger' onclick='eliminarfilas(this)'><span class='glyphicon glyphicon-remove' aria-hidden='true'></button>";
+            }
+          }
+          {%endfor%}
+
+           {% for serv in listaServicios %}
+             
+                  if("{{serv.cliente}}"==obtenerCliente()){
+                    if("{{serv.habitacion}}"==obtenerHabitacion()){
+                      if("{{serv.producto}}"==obtenerProducto("{{serv.producto}}")){
+                    var filaAnterior= tablaA.rows.length;
+                    var row = tablaA.insertRow(filaAnterior);
+                    var codigo = row.insertCell(0);
+                    console.log(codigo);
+                    var producto=row.insertCell(1);
+                    var cantidad =row.insertCell(2);
+                    var preciou=row.insertCell(3);
+                    var preciot=row.insertCell(4);
+                    var eliminar=row.insertCell(5);
+                    
+                    codigo.innerHTML=obtenerProductoid("{{serv.producto}}");
+                    producto.innerHTML=obtenerProductoNombre("{{serv.producto}}");
+                    cantidad.innerHTML ="{{serv.cantidad}}";
+                    preciou.innerHTML= obtenerProductoCosto("{{serv.producto}}");
+                          
+                    var pt =redondeo( redondeo(re(obtenerProductoCosto("{{serv.producto}}"))) * parseInt("{{serv.cantidad}}"));
+                    console.log(pt)
+                    preciot.innerHTML=pt;
+
+                    sumartotales();
+                    eliminar.innerHTML="<button class='btn btn-danger' onclick='eliminarfilas(this)'><span class='glyphicon glyphicon-remove' aria-hidden='true'></button>";
+                   }  
+                  }             
+                }
+            {% endfor %}
+
+          }
+
+          function ServicioID(nombre){
+             {% for serv in listaServicios %}
+                   if("{{serv.producto}}"==nombre){
+                          alert("{{serv.id}}")
+                        
+                }
+            {% endfor %}
+          }
+
 
     function eliminarfilas(t){
       var td = t.parentNode;
@@ -249,77 +400,96 @@
       sumartotales()
     }
 
-		function sumartotales(){
+    function sumartotales(){
 
-			var tabla = document.getElementById('tablafactura');
-			var total=0;
-			for(var i = 1;tabla.rows[i];i++){
-				total+= Number(tabla.rows[i].cells[4].innerHTML);
-			}
+      var tabla = document.getElementById('tablafactura');
+      var total=0;
+      for(var i = 1;tabla.rows[i];i++){
+        total+= Number(tabla.rows[i].cells[4].innerHTML);
+      }
       console.log(total)
-			llenarCamposTotales(total)
+      llenarCamposTotales(total)
 
-		}
+    }
+    function re(texto){
+      var cadena = texto;
+      var aux='';
+      for(i=0; i<cadena.length; i++) 
+        if (cadena.charAt(i)==','){
+           aux=aux+".";
+        }else{
+          aux=aux+cadena.charAt(i);
+        }
+        return aux;
+    }
+    function llenarCamposTotales(subtotal){
 
-		function llenarCamposTotales(subtotal){
-
-      document.getElementById("txtsubotal").value=redondeo(subtotal);
+      document.getElementById("txtsubotal").value=redondeo(subtotal/1.12);
       sub = parseFloat(document.getElementById("txtsubotal").value);
-      document.getElementById("txtiva").value=redondeo(sub*0.12);
-      iva = parseFloat(document.getElementById("txtiva").value)
-      document.getElementById("txtdescuento").value=redondeo(parseFloat(sub)*0.05);
 
-      descuento = parseFloat(document.getElementById("txtdescuento").value)
+      document.getElementById("txtiva").value=redondeo((subtotal/1.12)*0.12);
+      iva = parseFloat(document.getElementById("txtiva").value)
+
+
+      //document.getElementById("txtdescuento").value=redondeo(parseFloat(sub)*0.05);
+      //descuento = parseFloat(document.getElementById("txtdescuento").value)
 
       total = document.getElementById("txttotal").value;
-      document.getElementById("txttotal").value=redondeo(sub+iva+descuento);			
-		}
+      document.getElementById("txttotal").value=redondeo(subtotal); 
+
+
+    }
+
+
 
     function redondeo(numero){
 
       var flotante = parseFloat(numero);
       var resultado = Math.round(flotante*100)/100;
-      return resultado;
+      return +(Math.round(flotante + "e+2")  + "e-2");
+     
 
     }
-	
-	$("#btnGuardar").click(
-	function(){
-		var tabla = document.getElementById('tablafactura');
-		if (tabla.rows.length >1){
-			
-			for (var i = 1; tabla.rows[i];i++){
-				$.get('/factura/guardar/',{
-					codigo:document.getElementById("tablafactura").rows[i].cells[0].innerHTML,
-					cantidad:document.getElementById("tablafactura").rows[i].cells[2].innerHTML,
-					precio:document.getElementById("tablafactura").rows[i].cells[3].innerHTML,
-					cedula:document.getElementById("txtcedula").value,
-					nFactura:document.getElementById("txtnfactura").value,
-					i:i,
-					subtotal:document.getElementById("txtsubotal").value,
-					iva:document.getElementById("txtiva").value,
-					descuento:document.getElementById("txtdescuento").value,
-					total:document.getElementById("txttotal").value,
-					fecha:fecha,
+  
+$("#btnGuardar").click(
+  function(){
+    var tabla = document.getElementById('tablafactura');
+    if (tabla.rows.length >1){
+      
+      for (var i = 2; tabla.rows[i];i++){
+        $.get('/factura/guardar/',{
+
+          codigo:document.getElementById("tablafactura").rows[i].cells[0].innerHTML,
+          cantidad:document.getElementById("tablafactura").rows[i].cells[2].innerHTML,
+          precio:document.getElementById("tablafactura").rows[i].cells[3].innerHTML,
+          cedula:document.getElementById("txtcedula").value,
+          nFactura:document.getElementById("txtnfactura").value,
+          i:i,
+          subtotal:document.getElementById("txtsubotal").value,
+          iva:document.getElementById("txtiva").value,
+          total:document.getElementById("txttotal").value,
+          fecha:fecha,
           Numerohabitacion:document.getElementById("txthabitacion").value,
-					});
-							
-				}
+          servicioID:document.getElementById("tablafactura").rows[i].cells[1].innerHTML,
+          });
+              
+        }
 
       alert("Datos Guardados Correctamente... ")
 
         setTimeout("location.href='/factura/listar'",2000);
-			
-			}
-		
-		
-		}
-	
-	)
+      
+      }
+    
+    
+    }
+  
+  )
 
-	</script>
+  </script>
 
 
 
   
 {% endblock js %}
+

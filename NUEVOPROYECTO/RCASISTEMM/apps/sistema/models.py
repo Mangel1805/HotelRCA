@@ -116,7 +116,7 @@ class Productos(models.Model):
         return self.nombre
 
 class ServicioCliente(models.Model):
-   # habitacion = models.ForeignKey(Habitacion, blank=True, null=True)
+    habitacion = models.ForeignKey(Habitacion, blank=True, null=True)
     producto = models.ForeignKey(Productos, blank=True, null=True)
     cliente = models.ForeignKey(Cliente, blank=True, null=True)
     cantidad = models.IntegerField()

@@ -10,7 +10,7 @@ from reportlab.platypus import Table
 
 
 from django.shortcuts import render, redirect, render_to_response, RequestContext, HttpResponse, HttpResponseRedirect
-from apps.sistema.models import Factura,Cliente,Productos,EstadosFactura,Reservacion,EstadosHabitacion,EstadosProducto,EstadosCliente,Habitacion
+from apps.sistema.models import Factura,Cliente,Productos,EstadosFactura,Reservacion,EstadosReservacion,EstadosHabitacion,EstadosProducto,EstadosCliente,Habitacion,ServicioCliente,FacturaServicios
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,UpdateView,DeleteView
 from django.http import HttpResponse
@@ -24,9 +24,11 @@ def generarVentaFactura(request):
     estadoHabitacion = EstadosHabitacion.objects.get(estado='Activo')
     estadoProducto = EstadosProducto.objects.get(estado='Activo')
     estadoCliente=EstadosCliente.objects.get(estado='Activo')
+    estadoReservacion=EstadosCliente.objects.get(estado='Activo')
     print estadoHabitacion
     cntx={'listarHabitacion':Habitacion.objects.filter(estado=estadoHabitacion),'listarclientes':Cliente.objects.filter(estado=estadoCliente), 
-          'listarproductos':Productos.objects.filter(estado=estadoProducto), 'nFactura': 1+Factura.objects.count()}
+          'listarproductos':Productos.objects.filter(estado=estadoProducto), 'nFactura': 1+Factura.objects.count(),
+          'listaServicios':ServicioCliente.objects.all(),'listaReservacion':Reservacion.objects.filter(estado=estadoReservacion)}
     print cntx
     return render_to_response('factura/crear.html', cntx, context_instance=RequestContext(request))
 
@@ -44,7 +46,7 @@ def guardarFactura(request):
     elCliente = Cliente.objects.get(cedula=cedula)
     laHabitacion = Habitacion.objects.get(habitacion=request.GET['Numerohabitacion'])
 
-    listarProductos = Productos.objects.get(id=codigoProducto)
+   
     unCliente= Cliente.objects.get(cedula=cedula)
     cliReservacion=Reservacion.objects.get(cliente=elCliente,habitacion=laHabitacion)
     print " pasoooo id reservacion"
@@ -64,6 +66,22 @@ def guardarFactura(request):
             reservacion= cliReservacion
             )
         fact.save()
+
+    
+    idfac=Factura.objects.get(id=request.GET['nFactura'])
+    print (str('id de factura ')+str(idfac))
+    
+   
+    listarProductos = Productos.objects.get(id=codigoProducto)
+    print listarProductos
+    ser=ServicioCliente.objects.get(producto=listarProductos,cliente=unCliente)
+
+    facser=FacturaServicios(
+         servico=ser,
+         factura=idfac
+        )
+    facser.save()
+    print str("pasooooooooooooo")
     
     return render_to_response('factura/crear.html',context_instance=RequestContext(request))
 

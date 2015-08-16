@@ -1,0 +1,305 @@
+/****************************
+ * Elementos del formulario *
+ ****************************/
+ 
+div.form label {
+    color: #0069AA;
+}
+
+div.form input, div.form textarea, div.form select{
+    border:1px solid #0069AA;
+}
+
+/*************************
+ * Elementos del detalle *
+ *************************/
+.agregarHab, .siguientePaso, .anteriorPaso, .revisarReserva, .solicitarReserva, .editarReserva, .vistaImpresion, .agregarPaq{
+    width: 180px;
+    height: 45px;
+    cursor: pointer;
+}
+
+.agregarHab{
+    background: url("../images/btn_agregar_hab.png") no-repeat;
+}
+
+.siguientePaso{
+    background: url("../images/btn_siguiente.png") no-repeat;
+}
+
+.anteriorPaso{
+    background: url("../images/btn_anterior.png") no-repeat;
+}
+
+.revisarReserva{
+    background: url("../images/btn_revisar_reserva.png") no-repeat;
+}
+
+.solicitarReserva{
+    background: url("../images/btn_solicitar_reserva.png") no-repeat;
+}
+
+.editarReserva{
+    background: url("../images/btn_editar_reserva.png") no-repeat;
+}
+
+.vistaImpresion{
+    background: url("../images/btn_vista_impresion.png") no-repeat;
+}
+
+.hab{
+    margin-top:5px;
+    border:none;
+    border:1px solid #0069AA;
+}
+
+.habHeader{
+    position:relative;
+    background:url("../assets/4337e0ef/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll 50% 50% #0069AA;
+    border:1px solid #0069AA;
+    color:#FFFFFF;
+    font-weight:bold;
+    height:30px;
+}
+
+.habHeader:hover{
+    background:url("../assets/4337e0ef/jui/css/base/images/ui-bg_highlight-soft_75b_cccccc_1x100.png") repeat-x scroll 50% 50% #0069AA;
+}
+
+.habTitle{
+    cursor:pointer;
+    font-size:1.1em;
+    font-weight:bold;
+    margin:2px 15px;
+    padding:3px;
+}
+
+.habTitle .habFlecha{
+    position: absolute;
+    top: 6px;
+    left: 1px;
+}
+
+.habTitle .hab-active-icon{
+    background-image:url("../assets/4337e0ef/jui/css/base/images/ui-icons_454545_256x240.png");
+    height:16px;
+    width:16px;
+}
+
+.habTitle .hab-inactive-icon{
+    background-image:url("../assets/4337e0ef/jui/css/base/images/ui-icons_888888_256x240.png");
+    height:16px;
+    width:16px;
+}
+
+.habDelete{
+    margin:5px;
+    cursor:pointer;
+    position:absolute;
+    right:0px;
+    top:0px;
+    background:url("../images/btn_eliminar.png") no-repeat;
+    width:20px;
+    height:20px;
+}
+
+.habDelete:hover{
+    background-color:red;
+}
+
+.habContent{
+    padding:5px;
+    background:url("../assets/4337e0ef/jui/css/base/images/ui-bg_flat_75_ffffff_40x100.png") repeat-x scroll 50% 50% #FFFFFF;
+}
+
+/*******************
+ * Resumen Reserva *
+ *******************/
+
+h4{
+    margin-bottom:5px;
+} 
+
+div#resumenReserva{
+    font-size:0.8em;
+}
+
+.itemResumenReserva{
+    margin:10px 0px;
+}
+
+.itemResumenReserva .titleItemResumenReserva{
+    border-bottom:1px solid #F77F00;
+    font-weight:bold;
+    margin-bottom:3px;
+    padding-left:5px;
+}
+
+.itemResumenReserva .contentItemResumenReserva{
+   padding-left:5px;
+}
+
+.itemResumenReserva .totalesItemResumenReserva, .totalesResumenReserva{
+    text-align: right;
+    padding-right: 5px;
+    clear: both;
+}
+
+.totalesResumenReserva{
+    border-top:3px double #F77F00;    
+}
+
+.totalesItemResumenReserva span, .totalesResumenReserva span{
+    font-weight: bold;
+    float:right;
+    width:300px;
+}
+
+.totalesItemResumenReserva .valor, .totalesResumenReserva .valor{
+    width:100px;
+    float:right;
+}
+
+.totalesItemResumenReserva .valorTotal, .totalesResumenReserva .valorTotal{
+    width:100px;
+    float:right;
+    color:#F7921E;
+}
+
+#previewReserva{
+    font-size:0.8em;
+}
+
+#previewDatosReserva, #previewResumenReserva{
+    width:40%;
+    float:left;
+}
+
+#previewResumenReserva{
+    width:59%;
+    float:left;
+}
+
+input.ok{
+    background:none repeat scroll 0 0 #E6EFC2;
+    border-color:#C6D880;
+}
+
+/*******************************
+ * Previsualización de Reserva *
+ *******************************/
+
+#previewReserva h2{
+    color: #F77F00;
+}
+
+#previewDatosReserva .row label {
+    color: #0069AA;
+    /*font-size: 0.9em;*/
+    font-weight: bold;
+    display:block;
+}
+
+#previewDatosReserva .row div {
+    margin:5px 10px;
+}
+
+#previewDatosReserva .row {
+    margin:5px;
+}
+
+/*Paquetes*/
+.agregarPaq{
+    background: url("../images/btn-agregar-paquete.png") no-repeat;
+}
+
+/*MOD - resumen de precios por fecha*/
+#resumenFechas table{
+	font-size: 9px;
+	font-weight: normal;
+}
+#resumenFechas table th{
+	font-weight: normal;
+	/*background-color: #067bca;*/
+	background-color: #036db8;
+	color: #FFF;
+	text-align: center;
+	padding: 0px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+#resumenFechas table td{
+	font-size: 9px;
+	text-align: center;
+	padding: 0px;
+}
+.nom-hab{
+	text-align: right !important;
+}
+.dia-con-descuento{
+	color: #F7921E;
+}
+
+/*Dialogo de promociones*/
+.fc-grid .fc-day-number {
+	font-size: 10px;
+	float: left !important;
+}
+.fc-event{
+	font-size: 10px !important;
+	text-align: right !important;
+}
+.fc-event-skin {
+	border-color: #FFF !important;
+	background-color: #FFF !important;
+	color: orange !important;
+	font-weight: bold;
+}
+.strike-precio-cal{
+	text-decoration: line-through;
+	font-weight: normal !important;
+	color: black;
+}
+h2{
+    text-align: center;
+    color: #0069AA;
+}
+.texto-cal-descuento{
+	font-weight: bold;
+	color: #F7921E;
+	font-size: 17px;
+}/***LOGIN***/
+#login-form{
+	width:100%;
+	height:100%;
+	position:relative;
+}
+#registration-form{
+	width:100%;
+	height:380px;
+	position:relative;
+	border:red solid thin;
+}
+
+.btn-ingresar{
+	background-color: transparent;
+	background-image: url(../images/btn-ingresar.png);
+	width: 165px;
+	height: 38px;
+	border: none;
+	cursor: pointer;
+	
+}
+/* login modal */
+#login-cliente{
+	width:900px!important;
+	
+}
+#login-cliente h1{
+	color:#0069AA;	
+}
+#registro-cliente h1{
+	color:#0069AA;
+	display:none;
+}	
+

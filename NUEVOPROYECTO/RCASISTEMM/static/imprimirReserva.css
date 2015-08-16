@@ -1,0 +1,87 @@
+h2{
+    text-align: center;
+    color: #0069AA;
+}
+
+.row{
+    padding: 3px;
+    clear:both;
+}
+
+.imprimir{
+    display: none;
+}
+
+/*******************
+ * Resumen de Pago *
+ *******************/
+ 
+/*.resumenPago{
+    width:430px;
+}*/
+
+.resumenPago label{
+    color: #F7921E;
+    font-weight:bold;
+    float:left;
+    width:300px;
+}
+
+.resumenPago .texto{
+    float: left;
+    width: 200px;
+}
+
+/*****************
+ * Nueva Reserva *
+ *****************/
+ 
+h4{
+    margin-bottom:5px;
+} 
+
+div#resumenReserva{
+    font-size:0.8em;
+}
+
+.itemResumenReserva{
+    margin:10px 0px;
+}
+
+.itemResumenReserva .titleItemResumenReserva{
+    border-bottom:1px solid #F77F00;
+    font-weight:bold;
+    margin-bottom:3px;
+    padding-left:5px;
+}
+
+.itemResumenReserva .contentItemResumenReserva{
+   padding-left:5px;
+}
+
+.itemResumenReserva .totalesItemResumenReserva, .totalesResumenReserva{
+    text-align: right;
+    padding-right: 5px;
+    clear: both;
+}
+
+.totalesResumenReserva{
+    border-top:3px double #F77F00;
+}
+
+.totalesItemResumenReserva span, .totalesResumenReserva span{
+    font-weight: bold;
+    float:right;
+    width:300px;
+}
+
+.totalesItemResumenReserva .valor, .totalesResumenReserva .valor{
+    width:100px;
+    float:right;
+}
+
+.totalesItemResumenReserva .valorTotal, .totalesResumenReserva .valorTotal{
+    width:100px;
+    float:right;
+    color:#F7921E;
+}

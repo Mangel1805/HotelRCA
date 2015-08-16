@@ -1,9 +1,9 @@
-{% extends "base.html" %}
+{% extends "baserca.html" %}
 {% block content %}
 	<h1>Eliminar Producto</h1>
  
 	<Form  action = ""  method = "post" > {%  csrf_token  %} 
-    <p> ¿Seguro que quieres eliminar " {{  productos  }} "? </p> 
+    <p> <h3> ¿Seguro que quieres eliminar " <del> {{  productos  }}</del> "?  </h3></p> 
      <input class="btn btn-danger" type="submit" value="Confirmar">
 	</form>
 
