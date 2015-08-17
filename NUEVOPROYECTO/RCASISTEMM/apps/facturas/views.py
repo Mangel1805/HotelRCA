@@ -89,6 +89,47 @@ def guardarFactura(request):
 
 
 
+def guardarUnaFactura(request):
+    print "ENTROOOOO :V :v "
+    cedula = request.GET['cedula']
+
+
+    total =request.GET['total']
+    print "SIGEEEE"
+    print cedula
+  
+    laHabitacion = Habitacion.objects.get(habitacion=request.GET['Numerohabitacion'])
+
+   
+    unCliente= Cliente.objects.get(cedula=cedula)
+    cliReservacion=Reservacion.objects.get(cliente=unCliente,habitacion=laHabitacion)
+    print " pasoooo id reservacion"
+    print cliReservacion
+    print str(unCliente.id)+" "+str(unCliente.cedula)+" "+str(unCliente.nombre)
+    f = Factura.objects.filter(id=request.GET['nFactura']).count()
+    print request.GET['nFactura']
+    print f
+    print str('factura ')+str(EstadosFactura.objects.get(estado='Activo'))
+    if f ==0:
+        fact = Factura(
+            fecha=request.GET['fecha'],
+            subtotal=request.GET['subtotal'],
+            iva=request.GET['iva'],
+            total =request.GET['total'],
+            estado= EstadosFactura.objects.get(estado='Activo'),
+            reservacion= cliReservacion
+            )
+        fact.save()
+    print str("pasooooooooooooo")
+    
+    return render_to_response('factura/crear.html',context_instance=RequestContext(request))
+
+
+
+
+
+
+
 class editarFactura(UpdateView):
 	model=Factura
 	template_name='factura/editar.html'

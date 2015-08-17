@@ -341,8 +341,7 @@
                     producto.innerHTML=obtenerHabitacionTipo();
                     cantidad.innerHTML ="1";
                     preciou.innerHTML= redondeo(re("{{rese.precio}}"));
-                   
-                    preciot.innerHTML=redondeo(re("{{rese.precio}}"));
+                    preciot.innerHTML=redondeo(obtenerHabitacionCosto());
 
                     sumartotales();
                     eliminar.innerHTML="<button class='btn btn-danger' onclick='eliminarfilas(this)'><span class='glyphicon glyphicon-remove' aria-hidden='true'></button>";
@@ -455,8 +454,25 @@
 $("#btnGuardar").click(
   function(){
     var tabla = document.getElementById('tablafactura');
-    if (tabla.rows.length >1){
+    if (tabla.rows.length ==2){
+      $.get('/factura/guardarFact/',{
+
+          cedula:document.getElementById("txtcedula").value,
+          nFactura:document.getElementById("txtnfactura").value,
+          i:i,
+          subtotal:document.getElementById("txtsubotal").value,
+          iva:document.getElementById("txtiva").value,
+          total:document.getElementById("txttotal").value,
+          fecha:fecha,
+          Numerohabitacion:document.getElementById("txthabitacion").value,
+          
+          });
+      alert("Datos Guardados Correctamente... ")
+
+      setTimeout("location.href='/factura/listar'",100);
       
+    }else{
+
       for (var i = 2; tabla.rows[i];i++){
         $.get('/factura/guardar/',{
 
@@ -474,13 +490,12 @@ $("#btnGuardar").click(
           servicioID:document.getElementById("tablafactura").rows[i].cells[1].innerHTML,
           });
               
-        }
+      }
 
       alert("Datos Guardados Correctamente... ")
 
-        setTimeout("location.href='/factura/listar'",2000);
-      
-      }
+      setTimeout("location.href='/factura/listar'",100);
+    }
     
     
     }
