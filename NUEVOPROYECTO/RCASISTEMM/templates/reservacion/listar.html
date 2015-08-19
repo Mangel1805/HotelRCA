@@ -76,7 +76,49 @@
 		          {% endfor %}
 	      	</tbody>
 		</table>
-		
+<div class="text-center"><h1>Reservaciones Pendientes</h1></div>
+		<div class="table-responsive">
+		<table id="tablaficticia" class="table table-bordered table-hover">
+	        <thead>
+	          <tr>
+	            <td class="success">#</td>
+	            <td class="success">CÉDULA</td>
+	            <td class="success">RESERVADA POR</td>
+	            <td class="success">HABITACIÓN</td>
+	            <td class="success">N° ADULTOS</td>
+	            <td class="success">N° NIÑOS</td>
+	            <td class="success">FECHA INICIO</td>
+	            <td class="success">FECHA FIN</td>
+	            <td class="success">PRECIO</td>
+	            <td class="success">ACTIVAR</td>
+	            <td class="success">ELIMIAR</td>
+	          </tr>
+	        </thead>
+	        <tbody >
+	   
+	         
+	          <!-- Aplicadas en las celdas (<td> o <th>) -->
+		          {% for ficticia in ficticia %}
+			          <tr class="active">
+			          	<td >{{ficticia.id}}</td>
+		          		<td >{{ficticia.cedula}}</td>
+		          		<td >{{ficticia.nombre}} {{ficticia.apellido}}</td>
+		          		<td >{{ficticia.habitacion}}</td>
+		          		<td >{{ficticia.adultos}}</td>
+		          		<td >{{ficticia.ninos}}</td>
+			            <td >{{ficticia.fecha_inicio}}</td>
+						<td >{{ficticia.fecha_fin}}</td>
+						<td >{{ficticia.precio}}</td>
+		           		<td ><button class='btn btn-success' id="btn" value="{{ficticia.id}}" onclick='actualizar({{ficticia.id}})'>
+			            	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+			            </button> </td>
+			            <td ><button class='btn btn-danger btn' id="btndelete{{ficticia.id}}" value="{{ficticia.id}}" onclick='eliminarficticia({{ficticia.id}})'>
+			            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+			            </button></td>
+			          </tr>
+		          {% endfor %}
+	      	</tbody>
+		</table>
 	</div>
   
 </div>
@@ -88,30 +130,144 @@
 
 <script>
 	function actualizarDatos(r){
-		var s = document.getElementById('btnupdate'+r).value
+		var s = document.getElementById('btnupdate'+r).value;
 		setTimeout("location.href='/reservacion/modificar/"+r+"'"+"",10);
-ingreso
+
 	}
 	function eliminarDatos(r){
-		var s = document.getElementById('btnupdate'+r).value
+		var s = document.getElementById('btnupdate'+r).value;
 		setTimeout("location.href='/reservacion/eliminar/"+r+"'"+"",10);
 
 	}
 	</script>
 
-	<script type="text/javascript">
-		 var nombre = []
-		    
+<script>
+	function hola(r){
+		
+		alert(r)
+	}
+	function eliminarficticia(r){
+		var s = document.getElementById('btnupdate'+r).value;
+		setTimeout("location.href='/reservacion/eliminarFicticia/"+r+"'"+"",10);
+	}
+	function convertirfecha(texto){
+      var cadena =texto;
+      var dia="";
+      var mes="";
+      var ano="";
+     
+      for(i=0; i<cadena.length; i++) 
+        if ((i==1)||(i==0)){
+           dia=dia+cadena.charAt(i);
+        }else{
+          if ((i==6)||(i==4)){
+           dia=dia+cadena.charAt(i);
+          }else{
+            if((i==6)||(i==7)||(i==8)||(i==9)){
+                ano=ano+cadena.charAt(i)
+            }
+          }
+        }
+        var fecha=ano+"-"+mes+"-"+dia
+        return(fecha)
+    }
+	function numeromes(texto){
 
-		    var contador  = 0;
-		    {% for prod in productos %}
-		      nombre[contador]="{{prod.nombre}}";
-		      console.log(nombre[contador]);
-		      contador=contador+1;
-		    {% endfor %}
+		if(texto=='Enero'){
+			return "01";
+		}
+		if(texto=='Febrero'){
+			return "02";
+		}
+		if(texto=='Marzo'){
+			return "03";
+		}
+		if(texto=='Abril'){
+			return "04";
+		}
+		if(texto=='Mayo'){
+			return "05";
+		}
+		if(texto=='Junio'){
+			return "06";
+		}
+		if(texto=='Julio'){
+			return "07";
+		}
+		if(texto=='Agosto'){
+			return "08";
+		}
+		if(texto=='Septiembre'){
+			return "09";
+		}
+		if(texto=='Octubre'){
+			return "10";
+		}
+		if(texto=='Noviembre'){
+			return "11";
+		}
+		if(texto=='Diciembre'){
+			return "12";
+		}
+	}
 
-		        $('input.typeahead').typeahead({
-		                local: nombre
-		            });
-</script>
+    function fecha(texto){
+    	
+		var posicion = texto.indexOf(" ")
+		var dia  = texto.substring(0,posicion);
+		var mes = texto.substring(posicion+4,(texto.length)-8);
+		var ano = texto.substring((texto.length)-4,texto.length);
+		return(ano+"-"+numeromes(mes)+"-"+dia);
+    }
+ 	function re(texto){
+      var cadena = texto;
+      var aux='';
+      for(i=0; i<cadena.length; i++) 
+        if (cadena.charAt(i)==','){
+           aux=aux+".";
+        }else{
+          aux=aux+cadena.charAt(i);
+        }
+        return aux;
+    }
+     
+    function redondeo(numero){
+
+      var flotante = parseFloat(numero);
+      var resultado = Math.round(flotante*100)/100;
+      return +(Math.round(flotante + "e+2")  + "e-2");
+    }
+
+	function actualizar(id){
+
+		{% for ficticia in ficticia %}
+		
+			if('{{ficticia}}'==id){
+				$.get('/reservacion/guardarFicticia/',{
+					ficticia:"{{ficticia.id}}",
+					cedula:"{{ficticia.cedula}}",
+					nombre:"{{ficticia.nombre}}",
+					apellido:"{{ficticia.apellido}}",
+					telefono:"{{ficticia.telefono}}",
+					direccion:"{{ficticia.direccion}}",
+					habitacion:"{{ficticia.habitacion}}",
+					fecha_inicio:fecha("{{ficticia.fecha_inicio}}"),
+					fecha_fin:fecha("{{ficticia.fecha_fin}}"),
+					adultos:"{{ficticia.adultos}}",
+					ninos:"{{ficticia.adultos}}",
+					precio:redondeo(re("{{ficticia.precio}}"))
+			        });
+				alert("Datos Guardados Correctamente... ");
+				setTimeout("location.href='/reservacion/listar/'",100);
+		    }
+			   
+		{%endfor%}
+
+
+	}
+
+
+
+	</script>
+	
 {%endblock js%}

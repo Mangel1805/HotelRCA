@@ -9,8 +9,8 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import Table
 
 
-from django.shortcuts import render
-from apps.sistema.models import Ciudad
+from django.shortcuts import render,render_to_response
+from apps.sistema.models import *
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,UpdateView,DeleteView
 from django.http import HttpResponse
@@ -43,6 +43,11 @@ class listarCiudad(ListView):
 	model=Ciudad
 	template_name='ciudad/listar.html'
 	context_object_name='ciudad'
+    # def get_context_data(self, **kwargs):
+    #     ctx = super(listarCiudad, self).get_context_data(**kwargs)
+    #     ctx['clientes'] = Cliente.objects.all()
+    #     ctx['articulos'] = Habitacion.objects.all()
+    #     return ctx
 
 
 def generar_pdf(request):

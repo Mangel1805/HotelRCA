@@ -1,0 +1,356 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="well">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 col-lg-offset-2 col-lg-8">
+       <div class="alert alert-danger" role="alert"><H3> <div class="text-center">FORMULARIO DE RESERVACIÓN</div> </H3>   </div>
+  </div>
+  <hr>
+</div>
+<div class="container">
+  <div class="row text-center">
+   
+    <div class="col-md-6 col-lg-12">
+    <div class="col-md-6 col-lg-2
+     col-lg-3 col-lg-offset-1">
+           
+             <label for="cedula">N° Habitación:</label>
+             <div class="input-group">
+                                    <input class="form-control filtar" type="search" name="habitacion" id="txthabitacion" required="" autocomplete="off" placeholder="N° Habitación" onkeyup="if(event.keyCode == 13) javascript:buscarHabitacion()">
+               <span class="input-group-btn"><button class="btn btn-info" type="button" value="Buscar" onclick="javascript:buscarHabitacion()"><i class="glyphicon glyphicon-search"></i></button></span>
+                                </div>
+           
+    </div>
+     <div class="col-md-6 col-lg-4">
+     <label for="cedula">Tipo Habiación:</label>
+             <div class="input-group">
+         
+           <input type="text" class="form-control" id="txttipo" readonly placeholder="Tipo de habitación" autocomplete="off" size="150">
+                                </div>
+     
+    </div>
+     <div class="col-md-6 col-lg-4">
+     <label for="cedula">Tipo Habiación:</label>
+             <div class="input-group">
+          
+          <input type="text" class="form-control tyheader" id="txtcategoria" readonly placeholder="Categoría de Habitación" size="150">
+
+                                </div>
+    </div>
+    
+    </div>
+  </div>
+  </div>
+  <hr>
+  
+  </div>
+ 
+  <div class="row">
+    <div class="col-sm-4 text-center col-lg-offset-1 col-lg-5">
+     </br>  
+    <div class="alert alert-danger" role="alert">
+        <H3> <div class="text-center">DATOS DEL CLIENTE</div></H3>   
+      </div>
+      <div class="row">
+      <div class="col-xs-6 col-lg-6">
+
+                                <label for="cedula">Cédula:</label>
+                                <div class="input-group">
+                                    <input class="form-control ty" type="search" name="cedula" id="txtcedula" required autocomplete="off" placeholder="Cedula" size="100" onkeyup = "if(event.keyCode == 13) javascript:buscarCliente()" / >
+                                    <span class="input-group-btn"><button class="btn btn-info" type="button" value="Buscar" onclick="javascript:buscarCliente()" ><i class="glyphicon glyphicon-search"></i></button></span>
+                                </div>
+                                <label for="nombre">Nombre:</label>
+                                <input type="text" class="form-control" name="nombre" id="txtnombre" placeholder="Nombre" readonly>
+                                <label for="apellido">Apellido:</label>
+                                <input type="text" class="form-control" name="apellido" id="txtapellido" placeholder="Apellido" readonly>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row-fluid">
+                                    <label for="direccion">Dirección:</label>
+                                    <input type="text" class="form-control" name="direccion" id="txtdireccion" placeholder="Direccion" readonly>
+                                    <label for="ciudad">Ciudad:</label>
+                                    <input type="text" class="form-control" name="ciudad" id="txtciudad" placeholder="Ciudad" readonly>
+                                  <label for="tlfono">Teléfono:</label>
+<input type="text" class="form-control" name="tlfono" id="txttelefono" placeholder="Telefono" readonly>
+                                </div>
+                            </div>    </div>
+    
+    </div>
+    <div class="col-sm-4 text-center col-lg-5 col-lg-offset-0">
+     </br>  
+    <div class="alert alert-danger" role="alert">
+        <H3> <div class="text-center">TIEMPO A RESERVAR </div></H3>   
+      </div>
+      <div class="row">
+      <div class="col-xs-6 col-lg-6">
+      <div class="row">
+      </br>      
+      <label for="direccion">Fecha Inicio:</label>
+      </div>
+      <div class="row">
+            </br>     
+      <label for="direccion">Fecha Fin:</label>
+      </div>
+      <div class="row">
+      </br></br>
+      <label for="direccion">Adultos:</label>
+       </br></br>
+   		<select name="info" id="estadoAdulto" onChange="javascript:calcular()" class="mbn">
+                    <optgroup label="">
+                      <option value="1">1 personas</option>
+                      <option value="2">2 personas</option>
+                      <option value="3">3 personas</option>
+                      <option value="4">4 personas</option>
+                      <option value="5">5 personas</option>
+                    </optgroup>
+
+                  </select>
+      </div>
+      <div class="row">
+      </br></br>
+      <label for="direccion">total a Pagar:</label>
+      </div>
+      
+      </div>
+                            <div class="col-xs-6">
+                                <div class="row-fluid">
+                                    
+                                    <div class="row">
+                                          </br>
+                                    <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' id="txtfecha_inicio" class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+        </div>
+                                    </div>
+                                    <div class="row">
+                                    <div class='input-group date' id='datetimepicker2'>
+                    <input type='text' id="txtfecha_fin" class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+        </div>
+                                    <div>
+                                    <div class="row">
+                                    </br></br>
+                                    <label for="direccion">Niños:</label>
+                                    </div>
+                                     <div class="row">
+                                     </br>
+	   		<select name="info" id="estadoNino" onChange="javascript:calcular()" class="mbn mbn-lg">
+	                    <optgroup label="">
+	                      <option value="0">0 niños</option>
+	                      <option value="1">1 niños</option>
+	                      <option value="2">2 niños</option>
+	                      <option value="3">3 niños</option>
+	                      <option value="4">4 niños</option>
+	                      <option value="5">5 niños</option>
+	                    </optgroup>
+
+	                  </select>
+
+     							      </div>                                  
+                                       <div class="row">                           
+                                        </br>  
+                                         </br>    
+                                         <input type="text " id="txttotal" class="form-control" readonly placeholder="Pagar $">
+                                    
+                                </div>
+                            </div>    
+                            
+                            
+                         </div>
+    
+    </div>
+     
+       
+                  	 <div class="col-xs-6 col-lg-offset-0 col-lg-12">
+                      </br>  
+                       </br>  
+                     		 <button type="button" class="btn btn-danger" id="btnGuardar"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> GUARDAR
+          <i class="icon-save"></i></button></div>
+                  	 </div>
+                     
+                
+                </div>
+         </div>           
+                        
+  </div>
+</div>
+    
+
+
+{% endblock content %}
+
+{% block js %}
+<script >
+    $(function () {
+                  $('#datetimepicker1').datetimepicker();
+              });
+    $(function () {
+                  $('#datetimepicker2').datetimepicker();
+              });
+    
+
+    var cedulass=[]
+
+
+    var cont  = 0;
+      {% for cliente in listarclientes %}
+      cedulass[cont]="{{cliente.cedula}}";
+      console.log(cedulass[cont]);
+      cont=cont+1;
+      {% endfor %}
+       $('input.ty').typeahead({
+                      local: cedulass
+        });
+
+var habitaciones=[]
+
+
+    var con  = 0;
+      {% for habitacion in listarHabitacion %}
+      habitaciones[con]="{{habitacion.habitacion}}";
+      console.log(habitaciones[con]);
+      con=con+1;
+      {% endfor %}
+       $('input.filtar').typeahead({
+                      local: habitaciones
+        });
+
+ 
+    function buscarCliente(){
+      var cedulaBuscar=document.getElementById("txtcedula").value;
+      {% for cliente in listarclientes %}
+
+          if("{{ cliente.cedula }}"==cedulaBuscar){
+          var nombre = "{{cliente.nombre}}"
+          var apellido = "{{cliente.apellido}}"
+          var direccion = "{{cliente.direccion}}"
+          var telefono = "{{cliente.telefono}}"
+          var ciudad = "{{cliente.ciudad}}"
+          document.getElementById("txtnombre").value=nombre;
+          document.getElementById("txtapellido").value=apellido;
+          document.getElementById("txtdireccion").value=direccion;
+          document.getElementById("txttelefono").value=telefono;
+          document.getElementById("txtciudad").value=ciudad;
+          
+         
+        }
+      {% endfor %}
+    }
+    function buscarHabitacion(){
+      var habitacionBuscar=document.getElementById("txthabitacion").value;
+      {% for habitacion in listarHabitacion %}
+
+          if("{{ habitacion.habitacion }}"==habitacionBuscar){
+         
+          var tipo = "{{habitacion.tipo}}"
+          var categoria = "{{habitacion.categoria}}"
+          document.getElementById("txttipo").value=tipo;
+          document.getElementById("txtcategoria").value=categoria;
+          calcular();
+        }
+      {% endfor %}
+    }
+  function obtenerCosto(){
+      var habitacionBuscar=document.getElementById("txthabitacion").value;
+      {% for habitacion in listarHabitacion %}
+
+          if("{{ habitacion.habitacion }}"==habitacionBuscar){
+         
+          return ("{{habitacion.precio}}")
+        }
+      {% endfor %}
+    }
+
+     function convertirfecha(texto){
+      var cadena =texto;
+      var dia="";
+      var mes="";
+      var ano="";
+     
+      for(i=0; i<10; i++) 
+        if ((i==1)||(i==0)){
+           mes=mes+cadena.charAt(i);
+        }else{
+          if ((i==3)||(i==4)){
+           dia=dia+cadena.charAt(i);
+          }else{
+            if((i==6)||(i==7)||(i==8)||(i==9)){
+                ano=ano+cadena.charAt(i)
+            }
+          }
+        }
+        var fecha=ano+"-"+mes+"-"+dia
+        return(fecha)
+    }
+
+
+    function re(texto){
+      var cadena = texto;
+      var aux='';
+      for(i=0; i<cadena.length; i++) 
+        if (cadena.charAt(i)==','){
+           aux=aux+".";
+        }else{
+          aux=aux+cadena.charAt(i);
+        }
+        return aux;
+    }
+     
+     function redondeo(numero){
+
+      var flotante = parseFloat(numero);
+      var resultado = Math.round(flotante*100)/100;
+      return +(Math.round(flotante + "e+2")  + "e-2");
+     
+
+    }
+     function calcular(){
+      var adulto=document.getElementById('estadoAdulto').value;
+      var nino=document.getElementById('estadoNino').value;
+      if(adulto>1){
+      document.getElementById('txttotal').value= redondeo(re(obtenerCosto()))+ (parseInt(adulto-1)*10)+(parseInt(nino)*5);
+      }else{
+        document.getElementById('txttotal').value= redondeo(re(obtenerCosto()))+(parseInt(nino)*5);
+      }
+      
+    
+     }
+
+    function m(){
+    var ss=document.getElementById("txtfecha_inicio").value;
+      return( ss)
+    }
+
+
+
+  $('#btnGuardar').click(function guardar(){
+
+      $.get('/reservacion/guardar/',{
+          Numerohabitacion:document.getElementById("txthabitacion").value,
+          cedula:document.getElementById("txtcedula").value, 
+          fecha_inicio:convertirfecha(document.getElementById("txtfecha_inicio").value), 
+          fecha_fin:convertirfecha(document.getElementById("txtfecha_fin").value), 
+          Nadultos:document.getElementById('estadoAdulto').value,
+          Nninos:document.getElementById('estadoNino').value,
+          total:document.getElementById("txttotal").value,   
+
+        });
+        alert("Datos Guardados Correctamente... ")
+        setTimeout("location.href='/reservacion/listar/'",100);
+    })
+
+
+
+
+
+
+  </script>
+
+
+
+{% endblock js %}

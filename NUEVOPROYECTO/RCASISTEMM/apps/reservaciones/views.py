@@ -13,7 +13,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,UpdateView,DeleteView
 from django.http import HttpResponse
 from django.core import serializers	
-from .forms import reservacionForm
+
 # Create your views here.
 
 
@@ -21,13 +21,8 @@ from .forms import reservacionForm
 class index(TemplateView):
 	template_name='inicio/index.html'
 
-# class registrarReservacion(CreateView):
-# 	template_name='reservacion/crear.html'
-# 	model=Reservacion
-# 	success_url=reverse_lazy('listarReservacion')
-
 def registrarReservacion(request):
-    estadoHabitacion = EstadosHabitacion.objects.get(estado='Activo')
+    estadoHabitacion = EstadosHabitacion.objects.get(estado='Inactivo')
    
     estadoCliente=EstadosCliente.objects.get(estado='Activo')
    
@@ -35,23 +30,20 @@ def registrarReservacion(request):
     cntx={'listarHabitacion':Habitacion.objects.filter(estado=estadoHabitacion),'listarclientes':Cliente.objects.filter(estado=estadoCliente)}
     print cntx
     
-    return render_to_response('reservacion/regis.html', cntx,context_instance=RequestContext(request))
+    return render_to_response('reservacion/ven.html', cntx,context_instance=RequestContext(request))
     
+def registrarReservacionTempo(request):
+    estadoHabitacion = EstadosHabitacion.objects.get(estado='Inactivo')
+   
+    estadoCliente=EstadosCliente.objects.get(estado='Activo')
+   
+    print estadoHabitacion
+    cntx={'listarHabitacion':Habitacion.objects.filter(estado=estadoHabitacion),'listarclientes':Cliente.objects.filter(estado=estadoCliente)}
+    print cntx
+    
+    return render_to_response('reservacion/crearFicticia.html', cntx,context_instance=RequestContext(request))
 
 
-
-def registrarReservacionss(request):
-    estados=EstadosReservacion.objects.all()
-    if request.method=="POST":
-        form=reservacionForm(request.POST)
-        if form.is_valid():
-            enlace=form.save(commit=False)
-            enlace.save()
-            return HttpResponseRedirect("/reservacion/listar/")
-    else:
-        form=reservacionForm()
-    template="reservacion/crear.html"
-    return render_to_response(template,context_instance=RequestContext(request,locals()))
 
 
 def guardarReservacion(request):
@@ -99,11 +91,142 @@ def guardarReservacion(request):
     
     return render_to_response('reservacion/c.html',context_instance=RequestContext(request))
 
+
+
+
+def guardarFicticiaXCliente(request):
+    print "ENTROOOOO :V :v "
+    cedula = request.GET['cedula']
+    print cedula
+    nombre = request.GET['nombre']
+    print nombre
+    apellido = request.GET['apellido']
+    print apellido
+    direccion = request.GET['direccion']
+    print direccion
+    telefono = request.GET['telefono']
+    print telefono
+    habitacion=request.GET['Numerohabitacion']
+    ciudad = request.GET['ciudad']
+    print ciudad
+    laHabitacion = Habitacion.objects.get(habitacion=request.GET['Numerohabitacion'])
+    print laHabitacion
+    fecha_inicio= request.GET['fecha_inicio']
+    print fecha_inicio
+    fecha_fin = request.GET['fecha_fin']
+    print fecha_fin
+    adultos = request.GET['Nadultos']
+    print adultos
+    ninos = request.GET['Nninos']
+    print ninos
+    total =request.GET['total']
+    print total
+    es=EstadosReservacion.objects.get(estado='Activo')
+    print es
+    print "continua"
+    
+    fic=Ficticia(
+        cedula=cedula,
+        nombre=nombre,
+        apellido=apellido,
+        telefono=telefono,
+        direccion=direccion,
+        habitacion=habitacion,
+        fecha_inicio=fecha_inicio,
+        fecha_fin=fecha_fin,
+        adultos=adultos,
+        ninos=ninos,
+        precio=total
+
+        )
+    fic.save()
+    print str("Se Guardo")
+    
+    return render_to_response('reservacion/c.html',context_instance=RequestContext(request))
+
+
     
 
-
-
-
+def guardarReservacionTempo(request):
+    print "ENTROOOOO :V :v "
+   
+    ficticia=request.GET['ficticia']
+    print ficticia
+    cedula= request.GET['cedula']
+    print cedula
+    nombre= request.GET['nombre']
+    print nombre
+    apellido= request.GET['apellido']
+    print apellido
+    telefono= request.GET['telefono']
+    print telefono
+    direccion= request.GET['direccion']
+    print direccion
+    habitacion= request.GET['habitacion']
+    print habitacion
+    fecha_inicio= request.GET['fecha_inicio']
+    print fecha_inicio
+    fecha_fin= request.GET['fecha_fin']
+    print fecha_fin
+    adultos= request.GET['adultos']
+    print adultos
+    ninos= request.GET['ninos']
+    print ninos
+    precio= request.GET['precio']
+    print precio
+   
+    es=EstadosReservacion.objects.get(estado='Activo')
+    print es
+    cli=EstadosCliente.objects.get(estado='Activo')
+    print cli
+    fic=Ficticia.objects.get(id=ficticia)
+    print "el id de la ficticia"+str(fic)
+    laHabitacion = Habitacion.objects.get(habitacion=request.GET['habitacion'])
+    print laHabitacion
+    try:
+              
+        unCliente= Cliente.objects.get(cedula=cedula)
+        print "guarda solo la recepcion"
+        r=Reservacion(
+            habitacion=laHabitacion,
+            cliente=unCliente,
+            fecha_inicio=fecha_inicio,
+            fecha_fin=fecha_fin,
+            adultos=adultos,
+            ninos=ninos,
+            precio=precio,
+            estado=es,
+            )
+        r.save()
+        print str("Se Guardo")
+        
+        fic.delete()
+        print "se elimino la ficiticia"
+    
+    except Exception, e:
+        print "guarda todo"
+        cliente=Cliente(cedula=cedula,nombre=nombre,apellido=apellido,telefono=telefono,direccion=direccion,estado=EstadosCliente.objects.get(estado='Activo'))
+        cliente.save()
+        print "se guardo Cliente"
+        cli= Cliente.objects.get(cedula=cedula)
+        print (str(cli)+" actual guardado")
+        r=Reservacion(
+            habitacion=laHabitacion,
+            cliente=cli,
+            fecha_inicio=fecha_inicio,
+            fecha_fin=fecha_fin,
+            adultos=adultos,
+            ninos=ninos,
+            precio=precio,
+            estado=es,
+            )
+        r.save()
+        print str("Se Guardo")  
+        print str("Se Guardo reservacion")
+        
+        fic.delete()
+        print "se elimino la ficiticia"
+    return render_to_response('reservacion/listar.html',context_instance=RequestContext(request))
 
 class modificarReservacion(UpdateView):
 	model=Reservacion
@@ -116,10 +239,23 @@ class eliminarReservacion(DeleteView):
 	template_name='reservacion/eliminar.html'
 	success_url=reverse_lazy('listarReservacion')
 
+
+
+class eliminarReservacionFicticia(DeleteView):
+    model=Ficticia
+    context_object_name="ficticia"
+    template_name='reservacion/eliminarFicticia.html'
+    success_url=reverse_lazy('listarReservacion')
+
 class listarReservacion(ListView):
-	model=Reservacion
-	template_name='reservacion/listar.html'
-	context_object_name='reservaciones'
+    model=Reservacion
+    template_name='reservacion/listar.html'
+    context_object_name='reservaciones'
+    def get_context_data(self,**kwargs):
+        ctx = super(listarReservacion, self).get_context_data(**kwargs)
+        ctx['ficticia'] = Ficticia.objects.all()
+        return ctx
+           
 
 
 def generar_pdf(request):

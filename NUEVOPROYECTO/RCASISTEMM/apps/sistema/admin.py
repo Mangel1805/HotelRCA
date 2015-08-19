@@ -21,4 +21,5 @@ admin.site.register(Ingresos)
 admin.site.register(EstadosEgresos)
 admin.site.register(Egresos)
 admin.site.register(FacturaServicios)
+admin.site.register(Ficticia)
 

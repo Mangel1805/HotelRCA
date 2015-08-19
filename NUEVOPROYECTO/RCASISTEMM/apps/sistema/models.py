@@ -35,13 +35,13 @@ class EstadosCliente(models.Model):
         return self.estado
 
 class Cliente(models.Model):
-    cedula = models.CharField(max_length=10)
-    nombre = models.CharField(max_length=30)
-    apellido = models.CharField(max_length=30)
+    cedula = models.CharField(max_length=10, blank=True)
+    nombre = models.CharField(max_length=30, blank=True)
+    apellido = models.CharField(max_length=30, blank=True)
     telefono = models.CharField(max_length=10, blank=True)
-    direccion = models.CharField(max_length=80)
-    email  = models.EmailField()
-    ocupacion = models.CharField(max_length=20)
+    direccion = models.CharField(max_length=80, blank=True)
+    email  = models.EmailField( blank=True)
+    ocupacion = models.CharField(max_length=20, blank=True)
     estado = models.ForeignKey(EstadosCliente,blank=True, null=True)
     ciudad = models.ForeignKey(Ciudad,blank=True, null=True)
     def __unicode__(self):
@@ -122,7 +122,6 @@ class ServicioCliente(models.Model):
     habitacion = models.ForeignKey(Habitacion, blank=True, null=True)
     producto = models.ForeignKey(Productos, blank=True, null=True)
     cliente = models.ForeignKey(Cliente, blank=True, null=True)
-    cantidad = models.IntegerField()
     total = models.DecimalField(max_digits=8,decimal_places=2)
     def __unicode__(self):
         return str(self.producto)
@@ -181,4 +180,17 @@ class FacturaServicios(models.Model):
         return str("cod - ")+str(self.id)
 
 
-       
+class Ficticia(models.Model):
+    cedula = models.CharField(max_length=10)
+    nombre = models.CharField(max_length=30)
+    apellido = models.CharField(max_length=30)
+    telefono = models.CharField(max_length=10, blank=True)
+    direccion = models.CharField(max_length=80)
+    habitacion = models.IntegerField()
+    fecha_inicio  = models.DateField()
+    fecha_fin = models.DateField()
+    adultos = models.IntegerField()
+    ninos = models.IntegerField()
+    precio = models.DecimalField(max_digits=8,decimal_places=2)
+    def __unicode__(self):
+        return str(self.id)
