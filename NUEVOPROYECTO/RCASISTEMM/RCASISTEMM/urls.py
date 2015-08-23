@@ -11,6 +11,7 @@ urlpatterns = patterns('',
 
     #sistema
     #url(r'^$',include('apps.inicio.urls')),
+    url(r'^hotel/',include('apps.datosHotel.urls')),
     url(r'^cliente/',include('apps.sistema.urls')),
     url(r'^ingreso/',include('apps.ingresos.urls')),
     url(r'^egreso/',include('apps.egresos.urls')),

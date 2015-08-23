@@ -9,7 +9,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import Table
 
 from django.shortcuts import render
-from apps.sistema.models import ServicioCliente
+from apps.sistema.models import *
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,UpdateView,DeleteView
 from django.http import HttpResponse
@@ -40,10 +40,13 @@ class eliminarServicio(DeleteView):
 	success_url=reverse_lazy('listarServicio')
 
 class listarServicio(ListView):
-	model=ServicioCliente
-	template_name='servicio/listar.html'
-	context_object_name='servicios'
-
+    model=ServicioCliente
+    template_name='servicio/listar.html'
+    context_object_name='servicios'
+    def get_context_data(self,**kwargs):
+        ctx = super(listarServicio, self).get_context_data(**kwargs)
+        ctx['listarServicios'] = ServicioCliente.objects.filter(estado=EstadosServicio.objects.get(estado='Activo'))
+        return ctx
 
 
 def generar_pdf(request):
@@ -64,8 +67,8 @@ def generar_pdf(request):
     estilo = getSampleStyleSheet()
     Encabezado = Paragraph("Listado de Servicios", estilo['Heading1'])
     Lista.append(Encabezado)
-    titulos = ('Producto','Cliente','Cantidad','Total')
-    consulta = [(aux.producto,aux.cliente,aux.cantidad,aux.total) for aux in ServicioCliente.objects.all()]
+    titulos = ('Producto','Cliente','Cantidad','Estado')
+    consulta = [(aux.producto,aux.cliente,aux.cantidad,aux.estado) for aux in ServicioCliente.objects.all()]
     print consulta
 
     tabla = Table([titulos] + consulta)

@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'apps.servicios',
     'apps.reservaciones',
     'apps.facturas',
+    'apps.datosHotel',
     'bootstrap3',
 
 

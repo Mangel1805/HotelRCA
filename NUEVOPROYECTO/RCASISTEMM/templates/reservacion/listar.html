@@ -55,7 +55,7 @@
 	   
 	         
 	          <!-- Aplicadas en las celdas (<td> o <th>) -->
-		          {% for reservacion in reservaciones %}
+		          {% for reservacion in listarReservacion %}
 			          <tr id="row{{reservacion.id}}"class="active">
 			          	<td >{{reservacion.id}}</td>
 		          		<td >{{reservacion.habitacion}}</td>
@@ -85,6 +85,7 @@
 	            <td class="success">CÉDULA</td>
 	            <td class="success">RESERVADA POR</td>
 	            <td class="success">HABITACIÓN</td>
+	            <td class="success">TELÉFONO</td>
 	            <td class="success">N° ADULTOS</td>
 	            <td class="success">N° NIÑOS</td>
 	            <td class="success">FECHA INICIO</td>
@@ -104,6 +105,7 @@
 		          		<td >{{ficticia.cedula}}</td>
 		          		<td >{{ficticia.nombre}} {{ficticia.apellido}}</td>
 		          		<td >{{ficticia.habitacion}}</td>
+		          		<td >{{ficticia.telefono}}</td>
 		          		<td >{{ficticia.adultos}}</td>
 		          		<td >{{ficticia.ninos}}</td>
 			            <td >{{ficticia.fecha_inicio}}</td>
@@ -112,7 +114,7 @@
 		           		<td ><button class='btn btn-success' id="btn" value="{{ficticia.id}}" onclick='actualizar({{ficticia.id}})'>
 			            	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 			            </button> </td>
-			            <td ><button class='btn btn-danger btn' id="btndelete{{ficticia.id}}" value="{{ficticia.id}}" onclick='eliminarficticia({{ficticia.id}})'>
+			            <td ><button class='btn btn-danger btn' id="btndelete{{ficticia.id}}" value="{{ficticia.id}}"onclick='eliminarficticia({{ficticia.id}})'>
 			            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
 			            </button></td>
 			          </tr>
@@ -139,17 +141,18 @@
 		setTimeout("location.href='/reservacion/eliminar/"+r+"'"+"",10);
 
 	}
-	</script>
+	function eliminarficticia(r){
+		var s = document.getElementById('btndelete'+r).value;
+		setTimeout("location.href='/reservacion/eliminarFicticia/"+r+"'"+"",10);
+	}
+</script>
 
 <script>
 	function hola(r){
 		
 		alert(r)
 	}
-	function eliminarficticia(r){
-		var s = document.getElementById('btnupdate'+r).value;
-		setTimeout("location.href='/reservacion/eliminarFicticia/"+r+"'"+"",10);
-	}
+	
 	function convertirfecha(texto){
       var cadena =texto;
       var dia="";

@@ -136,7 +136,7 @@
 <script >
      var f = new Date();
         document.getElementById('txtfecha').value=(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
-        var fecha = (f.getFullYear() + "-" + (f.getMonth() +2) + "-" + f.getDate());
+        var fecha = (f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
     var nombre = []
     var cedulass=[]
 
@@ -341,7 +341,7 @@
                     producto.innerHTML=obtenerHabitacionTipo();
                     cantidad.innerHTML ="1";
                     preciou.innerHTML= redondeo(re("{{rese.precio}}"));
-                    preciot.innerHTML=redondeo(obtenerHabitacionCosto());
+                    preciot.innerHTML= redondeo(re("{{rese.precio}}"));
 
                     sumartotales();
                     eliminar.innerHTML="<button class='btn btn-danger' onclick='eliminarfilas(this)'><span class='glyphicon glyphicon-remove' aria-hidden='true'></button>";

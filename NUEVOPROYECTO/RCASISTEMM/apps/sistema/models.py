@@ -8,6 +8,7 @@
 #
 # Also note: You'll have to insert the output of 'django-admin.py sqlcustom [app_label]'
 # into your database.
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 from django.db import models
@@ -118,11 +119,18 @@ class Productos(models.Model):
     def __unicode__(self):
         return self.nombre
 
+class EstadosServicio(models.Model):
+    estado=models.CharField(max_length=8)
+  
+    def __unicode__(self):
+        return self.estado
+
 class ServicioCliente(models.Model):
     habitacion = models.ForeignKey(Habitacion, blank=True, null=True)
     producto = models.ForeignKey(Productos, blank=True, null=True)
     cliente = models.ForeignKey(Cliente, blank=True, null=True)
-    total = models.DecimalField(max_digits=8,decimal_places=2)
+    cantidad = models.IntegerField()
+    estado = models.ForeignKey(EstadosServicio,blank=True,null=True)
     def __unicode__(self):
         return str(self.producto)
     

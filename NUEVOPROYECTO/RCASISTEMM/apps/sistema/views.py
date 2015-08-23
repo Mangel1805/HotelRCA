@@ -36,10 +36,14 @@ class eliminarCliente(DeleteView):
 	success_url=reverse_lazy('listarCliente')
 
 class listarCliente(ListView):
-	model=Cliente
-	template_name='cliente/listar.html'
-	context_object_name='clientes'
-
+    model=Cliente
+    template_name='cliente/listar.html'
+    context_object_name='clientes'
+    def get_context_data(self,**kwargs):
+        ctx = super(listarCliente, self).get_context_data(**kwargs)
+        ctx['listarCliente'] = Cliente.objects.order_by("id")
+        return ctx
+           
 
 def generar_pdf(request):
     print "Genero el PDF"

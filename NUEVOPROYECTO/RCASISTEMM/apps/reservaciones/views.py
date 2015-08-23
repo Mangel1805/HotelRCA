@@ -88,6 +88,9 @@ def guardarReservacion(request):
         )
     reser.save()
     print str("Se Guardo")
+    laHabitacion.estado=EstadosHabitacion.objects.get(estado='Activo')
+    laHabitacion.save()
+    print (str(laHabitacion)+"paso a Activa")
     
     return render_to_response('reservacion/c.html',context_instance=RequestContext(request))
 
@@ -202,6 +205,10 @@ def guardarReservacionTempo(request):
         
         fic.delete()
         print "se elimino la ficiticia"
+        print str("Se Guardo")
+        laHabitacion.estado=EstadosHabitacion.objects.get(estado='Activo')
+        laHabitacion.save()
+        print (str(laHabitacion)+"paso a Activa")
     
     except Exception, e:
         print "guarda todo"
@@ -226,6 +233,10 @@ def guardarReservacionTempo(request):
         
         fic.delete()
         print "se elimino la ficiticia"
+        print str("Se Guardo")
+        laHabitacion.estado=EstadosHabitacion.objects.get(estado='Activo')
+        laHabitacion.save()
+        print (str(laHabitacion)+"paso a Activa")
     return render_to_response('reservacion/listar.html',context_instance=RequestContext(request))
 
 class modificarReservacion(UpdateView):
@@ -254,6 +265,7 @@ class listarReservacion(ListView):
     def get_context_data(self,**kwargs):
         ctx = super(listarReservacion, self).get_context_data(**kwargs)
         ctx['ficticia'] = Ficticia.objects.all()
+        ctx['listarReservacion'] = Reservacion.objects.filter(estado=EstadosReservacion.objects.get(estado='Activo'))
         return ctx
            
 

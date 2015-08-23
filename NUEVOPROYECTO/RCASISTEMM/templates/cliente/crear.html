@@ -1,25 +1,106 @@
 {% extends "base.html" %}
 {% block content %}
-
-    <form method="post">
+<div class="row">
+  <div class="col-lg-4"></div>
+</div>
+<div class="well">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="alert alert-danger" role="alert">
+      <div class="text-center">
+        <H3><strong>Datos del Cliente</strong> </H3>   </div>
+        </div>
+    </div>
+  </div>
+  <hr>
+</div>
+<div class="container">
+  <div class="row text-center">
+    
+  </div>
+  <form method="post">
     {% load bootstrap3 %}
     <div id="form">
         {% csrf_token %}
-	    {% bootstrap_form form %}
-	    <!--<ul   > 
-	        <li  Identificación = "sujeto"  clase = "contacto" > {{form.cli_cedula}} </li> 
-	        
-    	</ul> 
-	    -->
-	    <input class="btn btn-danger" type="submit" value="Agregar">
-	    
-			
+      
 
-				<a href="{% url 'crearCiudad'  %}">
-				<button type="button" class="btn btn-danger" name='btnAgregar'onclick="">Agregar Ciudad</button>
-                </a>
-                
-	<form>
-	
+  <div class="row"> </div>
+  <div class="row">
+          <div class="col-sm-4 text-center col-lg-12">
+            	<div class="row">
+              <div class="col-lg-offset-1 col-lg-10">
+              		<div class="col-lg-offset-1 col-lg-9">  
+                      <div class="row">      
+                        <div class="col-lg-2">
+                          
+                        </div>
+                        <div class="col-lg-7">
+                          {% bootstrap_field form.cedula %}
+                        </div>
+                             
+                      </div>
+
+                      <div class="row">
+                          <div class="col-lg-6">
+                          
+                          {% bootstrap_field form.nombre %}
+                          </div>
+                          <div class="col-lg-6">
+                          
+                            {% bootstrap_field form.apellido %}
+                         
+                          </div>
+                        </div>
+                      <div class="row">
+                          <div class="col-lg-6">
+                          {% bootstrap_field form.telefono %}
+
+                          </div>
+                          <div class="col-lg-6">
+                          {% bootstrap_field form.direccion %}
+                          </div>
+                      </div>
+                  
+
+                      <div class=" col-lg-offset-3 col-lg-6">
+          		
+                      {% bootstrap_field form.email %}
+                      {% bootstrap_field form.ocupacion %}
+                      <div class="col-lg-6">
+                       {% bootstrap_field form.estado %}
+                      </div>
+                      <div class="col-lg-6">
+                       {% bootstrap_field form.ciudad %}
+                      </div>
+                     
+                     
+          		    </div>
+              
+              
+              
+              </div>
+              </div>
+               </div>
+               <hr>
+                <input class="btn btn-danger" type="submit" value="Agregar">
+                <a href="{% url 'crearCiudad'  %}">
+                  <button type="button" class="btn btn-danger" name='btnAgregar'onclick="">Agregar Ciudad</button>
+                          </a>
+
+            </div>
+          </div>
+<form>
+  <div class="row">
+    <div class="col-lg-4"></div>
+</div>
+    <div class="col-lg-"></div>
+  </div>
+  </div>
+
+</div>
+
+
+  
 
 {% endblock content %}
