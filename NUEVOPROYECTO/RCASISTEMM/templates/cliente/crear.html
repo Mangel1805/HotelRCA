@@ -35,43 +35,54 @@
                         <div class="col-lg-2">
                           
                         </div>
-                        <div class="col-lg-7">
+                        <div class="col-lg-offset-1 col-lg-8 ">
+                        <div class="input-group">
                           {% bootstrap_field form.cedula %}
+                          </div>
                         </div>
                              
                       </div>
 
                       <div class="row">
                           <div class="col-lg-6">
-                          
+                          <div class="input-group">
                           {% bootstrap_field form.nombre %}
                           </div>
+                          </div>
                           <div class="col-lg-6">
-                          
+                          <div class="input-group">
                             {% bootstrap_field form.apellido %}
-                         
+                         </div>
                           </div>
                         </div>
                       <div class="row">
                           <div class="col-lg-6">
+                          <div class="input-group">
                           {% bootstrap_field form.telefono %}
-
+                          </div>
                           </div>
                           <div class="col-lg-6">
+                          <div class="input-group">
                           {% bootstrap_field form.direccion %}
+                          </div>
                           </div>
                       </div>
                   
 
                       <div class=" col-lg-offset-3 col-lg-6">
-          		
+          		        <div class="input-group">
                       {% bootstrap_field form.email %}
                       {% bootstrap_field form.ocupacion %}
-                      <div class="col-lg-6">
-                       {% bootstrap_field form.estado %}
                       </div>
                       <div class="col-lg-6">
+                      <div class="input-group">
+                       {% bootstrap_field form.estado %}
+                       </div>
+                      </div>
+                      <div class="col-lg-6">
+                      <div class="input-group">
                        {% bootstrap_field form.ciudad %}
+                      </div>
                       </div>
                      
                      
@@ -83,7 +94,7 @@
               </div>
                </div>
                <hr>
-                <input class="btn btn-danger" type="submit" value="Agregar">
+                <input class="btn btn-danger" type="submit" id="btnGuardar" value="Agregar">
                 <a href="{% url 'crearCiudad'  %}">
                   <button type="button" class="btn btn-danger" name='btnAgregar'onclick="">Agregar Ciudad</button>
                           </a>
@@ -104,3 +115,14 @@
   
 
 {% endblock content %}
+
+
+{%block js%}
+  
+
+<script>
+  $("#btnGuardar").click(function(){ 
+    alert("Datos Guardados Correctamente")
+  })
+</script>
+{%endblock js%}

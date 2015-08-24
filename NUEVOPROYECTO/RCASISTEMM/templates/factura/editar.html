@@ -1,17 +1,65 @@
 {% extends "base.html" %}
 {% block content %}
-	<h1>Modificar Factura</h1>
+	<h3>Modificar Factura</h3>
     <form method="post">
     {% load bootstrap3 %}
     <div id="form">
         {% csrf_token %}
-	    {% bootstrap_form form %}
-	    <!--<ul   > 
-	        <li  Identificación = "sujeto"  clase = "contacto" > {{form.cli_cedula}} </li> 
-	        
-    	</ul> 
-	    -->
-	    <input class="btn btn-danger" type="submit" value="Modificar">
+       <div class="row"> </div>
+  <div class="row">
+          <div class="col-sm-4 text-center col-lg-12">
+              <div class="row">
+              <div class="col-lg-offset-2 text-center col-lg-10">
+                  <div class="col-lg-offset-1 text-center col-lg-9">  
+                      <div class="row">      
+                        <div class="col-lg-2">
+                          
+                        </div>
+                        <div class="col-lg-offset-1 text-center col-lg-8 ">
+                        <div class="input-group">
+                          {% bootstrap_field form.fecha %}
+                          </div>
+                        </div>
+                             
+                      </div>
+
+                      <div class="row">
+                          <div class="col-lg-6">
+                          <div class="input-group">
+                          {% bootstrap_field form.estado %}
+                          </div>
+                          </div>
+                          <div class="col-lg-6">
+                          <div class="input-group">
+                            {% bootstrap_field form.reservacion %}
+                         </div>
+                          </div>
+                        </div>
+                                     
+
+                      <div class=" col-lg-offset-3 col-lg-6">
+                      <div class="input-group ">
+                      {% bootstrap_field form.subtotal %}
+                      {% bootstrap_field form.iva %}
+                      {% bootstrap_field form.total %}
+                      </div>
+                         
+                     
+                     
+                  </div>
+              
+              
+              
+              </div>
+              </div>
+               </div>
+               <hr>
+                <input class="btn btn-danger" type="submit" value="Modificar">
+                <br><br>
+                
+
+            </div>
+          </div>
 	<form>
 	
 

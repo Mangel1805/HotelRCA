@@ -26,16 +26,20 @@
   	<div class="row">
     <div class="col-lg-10 col-lg-offset-2">
     		<div class="col-lg-4 col-lg-offset-1">
+         <div class="input-group">
          {% bootstrap_field form.usuario %}
          {% bootstrap_field form.articulo %}
          {% bootstrap_field form.tipo %}
          {% bootstrap_field form.detalle %}
+         </div>
 		    </div>
             <div class="col-lg-4">
+             <div class="input-group">
 		        {% bootstrap_field form.cantidad %}
             	{% bootstrap_field form.precio_unitario %}
             	{% bootstrap_field form.precio_total %}
             	{% bootstrap_field form.estado %}
+              </div>
 		    </div>
     
     
@@ -43,7 +47,7 @@
     </div>
     </div>
      <hr>
-                <input class="btn btn-danger" type="submit" value="Agregar">
+                <input class="btn btn-danger" type="submit" value="Modificar">
   </div>
 </div>
 <form>

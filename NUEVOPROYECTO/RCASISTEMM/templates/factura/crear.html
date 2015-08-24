@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="alert alert-info" role="alert"><h1>FACTURACION</h1></div>
+<div class="alert alert-info" role="alert"><h3>Facturación</h3></div>
 
 
 <div class="well">
@@ -9,7 +9,7 @@
   <div class="col-md-6">
 
 
-  <div class="alert alert-danger" role="alert">DATOS RESERVACIÓN</div>
+  <div class="alert alert-danger" role="alert">Datos de Reservación</div>
 
       <div class="row">
         <div>
@@ -17,10 +17,11 @@
                                 <label for="cedula">N° Habitación:</label>
                                 <div class="input-group">
                                     <input class="form-control" type="search" name="habitacion" id="txthabitacion" required autocomplete="off" placeholder="N° Habitación" onkeyup = "if(event.keyCode == 13) javascript:buscarHabitacion()"/ >
-                 <span class="input-group-btn"><button class="btn btn-info" type="button" value="Buscar" onclick="javascript:buscarHabitacion()"><i class="glyphicon glyphicon-search"></i></button></span>
-                                </div>
+                                     <span class="input-group-btn"><button class="btn btn-info" type="button" value="Buscar" onclick="javascript:buscarHabitacion()"><i class="glyphicon glyphicon-search"></i></button></span>
+                                                    </div>
+                                                    <div id="mensaje1" class="errores"> Ingrese Habitación</div>
                             </div>
-                            <div class="col-xs-6">
+                            <div class="input-group">
                                 <div class="row-fluid">
                                     <label for="direccion">Descripción:</label>
                                     <input type="text" class="form-control" name="descripcion" id="txtdescripcion" placeholder="Descipcion" readonly="readonly">
@@ -35,53 +36,50 @@
                                     <input class="form-control ty" type="search" name="cedula" id="txtcedula" required autocomplete="off" placeholder="Cedula" size="100" onkeyup = "if(event.keyCode == 13) javascript:buscarCliente()" / >
                                     <span class="input-group-btn"><button class="btn btn-info" type="button" value="Buscar" onclick="javascript:buscarCliente()" ><i class="glyphicon glyphicon-search"></i></button></span>
                                 </div>
+                                <div id="mensaje2" class="errores"> Ingrese Cédula</div>
+                                 <div class="input-group">
                                 <label for="nombre">Nombre:</label>
-                                <input type="text" class="form-control" name="nombre" id="txtnombre" placeholder="Nombre" readonly="readonly">
+                                <input type="text" class="form-control" name="nombre" id="txtnombre"   placeholder="Nombre" readonly="readonly">
+                                </div>
+                                 <div class="input-group">
                                 <label for="apellido">Apellido:</label>
                                 <input type="text" class="form-control" name="apellido" id="txtapellido" placeholder="Apellido" readonly="readonly">
+                                </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="row-fluid">
+                                 <div class="input-group">
                                     <label for="direccion">Dirección:</label>
                                     <input type="text" class="form-control" name="direccion" id="txtdireccion" placeholder="Direccion" readonly="readonly">
+                                    </div>
+                                     <div class="input-group">
                                     <label for="ciudad">Ciudad:</label>
                                     <input type="text" class="form-control" name="ciudad" id="txtciudad" placeholder="Ciudad" readonly="readonly">
+                                    </div>
+                                     <div class="input-group">
                                     <label for="tlfono">Teléfono:</label>
                                     <input type="text" class="form-control" name="tlfono" id="txttelefono" placeholder="Telefono" readonly="readonly">
+                                    </div>
                                 </div>
                             </div>
       </div>
 </div>
   <div class="col-md-6">
-      <div class="alert alert-danger" role="alert">DATOS FACTURA</div>
+      <div class="alert alert-danger" role="alert">Datos de Factura</div>
+       <div class="input-group">
         <div class="col-md-6">NUMERO FACTURA</div>
         <div class="col-md-6"><input type="text" id="txtnfactura" class="form-control" required value="{{ nFactura }}" readonly="readonly"></div>
-      <div class="col-md-6">FECHA</div>
+     </div>
+
+      <div class="input-group">
+        <div class="col-md-6">FECHA</div>
         <div class="col-md-6"><input type="text" id="txtfecha"  class="form-control" readonly="readonly" ></div>
+      </div>
+
   </div>
 </div>
 </div>
 
-<div class="alert alert-danger" role="alert">PRODUCTOS</div>
-<div class="well">
-<div class="row">
-    <div class="col-md-4">
-      <div class="form-group">
-            <input class="form-control typeahead" type="text" id="txtbuscarproducto" placeholder="Buscar Producto" autocomplete="off" size="50" />
-          
-        </div>
-
-    </div>
-    <div class="col-md-4">
-      <div class="input-group"><span class="input-group-addon">CANTIDAD</span>
-    <input type="text" id="txtcantidad" class="form-control" placeholder="Agrege la Cantidad">
-    </div>
-    </div>
-    <div class="col-md-4">
-      <button type="button" onclick="addfilastabla()" class="btn btn-danger"><span class="glyphicon glyphicon-plus" > Añadir</button>
-    </div>
-  </div>
-<div>
     <br/>
    <div class="table-responsive">
    <table id="tablafactura"  class="table table-hover">
@@ -108,12 +106,14 @@
       <div class="col-md-6">
       
             <div class="row">
+             <div class="input-group">
         <div class="col-md-6">SUBTOTAL</div>
         <div class="col-md-6"><input type="text"  id="txtsubotal" value="0" class="form-control" placeholder="normal sized input group" readonly="readonly"></div>
         <div class="col-md-6">IVA</div>
         <div class="col-md-6"><input type="text"  id="txtiva" value="0" class="form-control" placeholder="normal sized input group"readonly="readonly"></div>
         <div class="col-md-6">TOTAL</div>
         <div class="col-md-6"><input type="text" id="txttotal" value="0" class="form-control" placeholder="normal sized input group" readonly="readonly"></div>
+      </div>
       </div>
 
       </div>
@@ -454,50 +454,55 @@
 $("#btnGuardar").click(
   function(){
     var tabla = document.getElementById('tablafactura');
-    if (tabla.rows.length ==2){
-      $.get('/factura/guardarFact/',{
+      if(($("#txthabitacion").val() == "")){
+          $("#mensaje1").fadeIn("slow");
+          $("#mensaje2").fadeIn("slow");
+              return false;
+      }else{
+        if (tabla.rows.length ==2){
+          $.get('/factura/guardarFact/',{
 
-          cedula:document.getElementById("txtcedula").value,
-          nFactura:document.getElementById("txtnfactura").value,
-          i:i,
-          subtotal:document.getElementById("txtsubotal").value,
-          iva:document.getElementById("txtiva").value,
-          total:document.getElementById("txttotal").value,
-          fecha:fecha,
-          Numerohabitacion:document.getElementById("txthabitacion").value,
-          
-          });
-      alert("Datos Guardados Correctamente... ")
-
-      setTimeout("location.href='/factura/listar'",100);
-      
-    }else{
-
-      for (var i = 2; tabla.rows[i];i++){
-        $.get('/factura/guardar/',{
-
-          codigo:document.getElementById("tablafactura").rows[i].cells[0].innerHTML,
-          cantidad:document.getElementById("tablafactura").rows[i].cells[2].innerHTML,
-          precio:document.getElementById("tablafactura").rows[i].cells[3].innerHTML,
-          cedula:document.getElementById("txtcedula").value,
-          nFactura:document.getElementById("txtnfactura").value,
-          i:i,
-          subtotal:document.getElementById("txtsubotal").value,
-          iva:document.getElementById("txtiva").value,
-          total:document.getElementById("txttotal").value,
-          fecha:fecha,
-          Numerohabitacion:document.getElementById("txthabitacion").value,
-          servicioID:document.getElementById("tablafactura").rows[i].cells[1].innerHTML,
-          });
+              cedula:document.getElementById("txtcedula").value,
+              nFactura:document.getElementById("txtnfactura").value,
+              i:i,
+              subtotal:document.getElementById("txtsubotal").value,
+              iva:document.getElementById("txtiva").value,
+              total:document.getElementById("txttotal").value,
+              fecha:fecha,
+              Numerohabitacion:document.getElementById("txthabitacion").value,
               
+              });
+          alert("Datos Guardados Correctamente... ")
+
+          setTimeout("location.href='/factura/listar'",100);
+          
+        }else{
+
+          for (var i = 2; tabla.rows[i];i++){
+            $.get('/factura/guardar/',{
+
+              codigo:document.getElementById("tablafactura").rows[i].cells[0].innerHTML,
+              cantidad:document.getElementById("tablafactura").rows[i].cells[2].innerHTML,
+              precio:document.getElementById("tablafactura").rows[i].cells[3].innerHTML,
+              cedula:document.getElementById("txtcedula").value,
+              nFactura:document.getElementById("txtnfactura").value,
+              i:i,
+              subtotal:document.getElementById("txtsubotal").value,
+              iva:document.getElementById("txtiva").value,
+              total:document.getElementById("txttotal").value,
+              fecha:fecha,
+              Numerohabitacion:document.getElementById("txthabitacion").value,
+              servicioID:document.getElementById("tablafactura").rows[i].cells[1].innerHTML,
+              });
+                  
+          }
+
+          alert("Datos Guardados Correctamente... ")
+
+          setTimeout("location.href='/factura/listar'",100);
+        }
+        
       }
-
-      alert("Datos Guardados Correctamente... ")
-
-      setTimeout("location.href='/factura/listar'",100);
-    }
-    
-    
     }
   
   )

@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^modificar/(?P<pk>[\d]+)$', editarCliente.as_view(),name='editarCliente'),
     url(r'^eliminar/(?P<pk>[\d]+)$', eliminarCliente.as_view(),name='eliminarCliente'),
     url(r'^listar/$', listarCliente.as_view(),name='listarCliente'),
+    url(r'^buscar/$', buscarCliente.as_view(),name='buscarCliente'),
     url(r'^generar_pdf/$','apps.sistema.views.generar_pdf', name='pdf_Clientes'),
     #*********************PROVEEDOR***************************************
     

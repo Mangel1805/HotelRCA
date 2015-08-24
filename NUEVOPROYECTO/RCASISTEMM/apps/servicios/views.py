@@ -67,8 +67,8 @@ def generar_pdf(request):
     estilo = getSampleStyleSheet()
     Encabezado = Paragraph("Listado de Servicios", estilo['Heading1'])
     Lista.append(Encabezado)
-    titulos = ('Producto','Cliente','Cantidad','Estado')
-    consulta = [(aux.producto,aux.cliente,aux.cantidad,aux.estado) for aux in ServicioCliente.objects.all()]
+    titulos = ('Producto','Habitación','Cliente','Cantidad','Estado')
+    consulta = [(aux.producto,aux.habitacion,aux.cliente,aux.cantidad,aux.estado) for aux in ServicioCliente.objects.all()]
     print consulta
 
     tabla = Table([titulos] + consulta)

@@ -4,7 +4,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-6 col-md-offset-3 col-lg-offset-2 col-lg-8">
-       <div class="alert alert-danger" role="alert"><H3> <div class="text-center">FORMULARIO DE RESERVACIÓN</div> </H3>   </div>
+       <div class="alert alert-danger" role="alert"><H3> <div class="text-center">Formulario de Reservación</div> </H3>   </div>
   </div>
   <hr>
 </div>
@@ -13,7 +13,7 @@
    
     <div class="col-md-6 col-lg-12">
     <div class="col-md-6 col-lg-2
-     col-lg-3 col-lg-offset-1">
+     col-lg-4 col-lg-offset-1">
            
              <label for="cedula">N° Habitación:</label>
              <div class="input-group">
@@ -50,7 +50,7 @@
     <div class="col-sm-4 text-center col-lg-offset-1 col-lg-5">
      </br>  
     <div class="alert alert-danger" role="alert">
-        <H3> <div class="text-center">DATOS DEL CLIENTE</div></H3>   
+        <H3> <div class="text-center">Datos de Cliente</div></H3>   
       </div>
       <div class="row">
       <div class="col-xs-6 col-lg-6">
@@ -60,19 +60,28 @@
                                     <input class="form-control ty" type="search" name="cedula" id="txtcedula" required autocomplete="off" placeholder="Cedula" size="100" onkeyup = "if(event.keyCode == 13) javascript:buscarCliente()" / >
                                     <span class="input-group-btn"><button class="btn btn-info" type="button" value="Buscar" onclick="javascript:buscarCliente()" ><i class="glyphicon glyphicon-search"></i></button></span>
                                 </div>
+                                <div class="input-group">
                                 <label for="nombre">Nombre:</label>
                                 <input type="text" class="form-control" name="nombre" id="txtnombre" placeholder="Nombre" >
+                                </div>
+                                <div class="input-group">
                                 <label for="apellido">Apellido:</label>
                                 <input type="text" class="form-control" name="apellido" id="txtapellido" placeholder="Apellido" >
+                                </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="row-fluid">
+                                  <div class="input-group">
                                     <label for="direccion">Dirección:</label>
                                     <input type="text" class="form-control" name="direccion" id="txtdireccion" placeholder="Direccion" >
+                                    </div>
+                                    <div class="input-group">
                                     <label for="ciudad">Ciudad:</label>
                                     <input type="text" class="form-control" name="ciudad" id="txtciudad" placeholder="Ciudad" >
+                                    </div>
+                                    <div class="input-group">
                                   <label for="tlfono">Teléfono:</label>
-<input type="text" class="form-control" name="tlfono" id="txttelefono" placeholder="Telefono" >
+<input type="text" class="form-control" name="tlfono" id="txttelefono" placeholder="Telefono" ></div>
                                 </div>
                             </div>    </div>
     
@@ -80,7 +89,7 @@
     <div class="col-sm-4 text-center col-lg-5 col-lg-offset-0">
      </br>  
     <div class="alert alert-danger" role="alert">
-        <H3> <div class="text-center">TIEMPO A RESERVAR </div></H3>   
+        <H3> <div class="text-center">Tiempo a Reservar </div></H3>   
       </div>
       <div class="row">
       <div class="col-xs-6 col-lg-6">
@@ -154,9 +163,10 @@
      							      </div>                                  
                                        <div class="row">                           
                                         </br>  
-                                         </br>    
+                                         </br> 
+                                         <div class="input-group">   
                                          <input type="text " id="txttotal" class="form-control" readonly placeholder="Pagar $">
-                                    
+                                    </div>
                                 </div>
                             </div>    
                             

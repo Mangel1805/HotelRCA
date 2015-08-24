@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-	<h1>Eliminar Ingreso</h1>
+	<h3>Eliminar Ingreso</h3>
  
-	<Form  action = ""  method = "post" > {%  csrf_token  %} 
-    <p> <h3><del>{{  ingresos.detalle  }} </del></h3></p> 
+	<Form  action = ""  method = "post" >
+	 {%  csrf_token  %} 
+	 	<hr>	
+    <p> <h3>"{{  ingresos.detalle  }}"....!!! </h3></p> 
+		<hr>
      <input class="btn btn-danger" type="submit" value="Confirmar">
 	</form>
 

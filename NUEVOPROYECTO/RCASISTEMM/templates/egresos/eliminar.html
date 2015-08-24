@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-	<h1>Eliminar Egreso</h1>
+	<h3>Eliminar Egreso</h3>
+
  
-	<Form  action = ""  method = "post" > {%  csrf_token  %} 
-    <p> <h3><del>{{  egresos.articulo  }} </del></h3> </p> 
+	<Form  action = ""  method = "post" > 
+	<hr>
+	{%  csrf_token  %} 
+    <p> <h3>"{{  egresos.articulo  }}"....!!!! </h3> </p> 
+    <hr>
      <input class="btn btn-danger" type="submit" value="Confirmar">
 	</form>
 

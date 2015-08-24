@@ -36,30 +36,24 @@ class Registrarse(FormView):
  #   return render_to_response('inicio/login.html')
 #registro de cliente
 
+class nosotros(TemplateView):
+    template_name='inicio/nosotros.html'
 
-def nosotros(request):
-    return render_to_response('inicio/nosotros.html')
+class galeria(TemplateView):
+    template_name='inicio/galeria.html'
 
-def galeria(request):
-    return render_to_response('inicio/galeria.html')
+class servicios(TemplateView):
+    template_name='inicio/servicios.html'
 
-def servicios(request):
-    return render_to_response('inicio/servicios.html')
+class contactenos(TemplateView):
+    template_name='inicio/contactenos.html'
 
-def contactenos(request):
-    return render_to_response('inicio/contactenos.html')
+class sistema(TemplateView):
+    template_name='inicio/sistema.html'
 
-def sistema(request):
-    return render_to_response('inicio/sistema.html')
+class galeria(TemplateView):
+    template_name='inicio/galeria.html'
 
-def login(request):
-    return render_to_response('inicio/login_solo.html')
 
-def registrarse(request):
-    return render_to_response('inicio/registro.html')
-
-def reservacion(request):
-    return render_to_response('inicio/reservaciones.html')
-
-def imprimir(request):
-    return render_to_response('inicio/imprimir.html')
+class detalles(TemplateView):
+    template_name='inicio/detalles.html'

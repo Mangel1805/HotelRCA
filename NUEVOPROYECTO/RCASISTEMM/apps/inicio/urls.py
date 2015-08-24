@@ -13,15 +13,13 @@ urlpatterns = patterns('',
     
 
  #  url(r'^$', 'apps.inicio.views.inicio'),
-    url(r'^nosotros/$', 'apps.inicio.views.nosotros'),
-    url(r'^galeria/$', 'apps.inicio.views.galeria'),
-    url(r'^servicios/$', 'apps.inicio.views.servicios'),
-    url(r'^contactenos/$', 'apps.inicio.views.contactenos'),
-    url(r'^sistema/$', 'apps.inicio.views.sistema'),
-   # url(r'^login/$', 'apps.inicio.views.login'),
-    #url(r'^registrarse/$', 'apps.inicio.views.registrarse'),
-    url(r'^reservacion/$', 'apps.inicio.views.reservacion'),
-    url(r'^imprimir/$', 'apps.inicio.views.imprimir'),
+    url(r'^nosotros/$',  nosotros.as_view(),name='nosotros'),
+    url(r'^detalles/$',  detalles.as_view(),name='detalles'),
+    url(r'^galeria/$',   galeria.as_view(),name='galeria'),
+    url(r'^servicios/$',servicios.as_view(),name='servicios'),
+    url(r'^contactenos/$',  contactenos.as_view(),name='contactenos'),
+    url(r'^sistema/$', sistema.as_view(),name='sistema'),
+
    
     
 )

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Todos los Servicios</h1>
+<h3>Todos los Servicios</h3>
 <span class="label label-default">Lista de Servicios</span>
 
 <div class="well">
@@ -43,7 +43,7 @@
 	            <td class="success">PRODUCTO</td>
 	            <td class="success">ClIENTE</td>
 	            <td class="success">Cantidad</td>
-	            <td class="success">TOTAL</td>
+	            
 	            
 	          </tr>
 	        </thead>
@@ -58,7 +58,7 @@
 		          		<td >{{servicio.producto}}</td>
 		          		<td >{{servicio.cliente}}</td>
 		          		<td >{{servicio.cantidad}}</td>
-			            <td >{{servicio.total}}</td>
+			            
 		           		<td ><button class='btn btn-danger' id="btnupdate{{servicio.id}}" value="{{servicio.id}}" onclick='actualizarDatos({{servicio.id}})'>
 			            	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 			            </button> </td>

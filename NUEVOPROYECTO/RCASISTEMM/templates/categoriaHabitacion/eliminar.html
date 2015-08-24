@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-	<h1>Eliminar Categoria de Habitacion</h1>
- 
+	<h3>Eliminar Categoria de Habitación</h3>
+	<br><br>
+ <hr>
 	<Form  action = ""  method = "post" > {%  csrf_token  %} 
-    <h3><p><del>  {{  categoriaHabitacion  }} " ...!!!!"</del>  </p> </h3>
+    <h3><p>" {{  categoriaHabitacion  }} " ...!!!! </p> </h3>
+    <hr>
     <input class="btn btn-danger" type="submit" value="Confirmar">
 	</form>
 

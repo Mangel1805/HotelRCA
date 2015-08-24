@@ -25,21 +25,28 @@
 <div class="col-sm-4 text-center col-lg-12">
   	<div class="row">
     <div class="col-lg-10 col-lg-offset-2">
-    		<div class="col-lg-4 col-lg-offset-0">
+    		<div class="col-lg-5 col-lg-offset-0">
     		{% for hotel in  Hotel %}
 			        
 
             <label><strong>Ruc</strong></label>
-            <strong><input class="form-control text-center" id="txtruc" type="text" readonly placeholder="{{hotel.ruc}}"></strong>
+             <div class="input-group">
+            <strong><input class="form-control text-center" size="170" id="txtruc" type="text" readonly placeholder="{{hotel.ruc}}"></strong>
+            </div>
             <label><strong>Dirección</strong></label>
-            <strong><input class="form-control text-center" id="txtdirecion" type="text" readonly placeholder="{{hotel.direccion}}"></strong>
-            
+             <div class="input-group">
+            <strong><input class="form-control text-center" size="170" id="txtdirecion" type="text" readonly placeholder="{{hotel.direccion}}"></strong>
+            </div>
 		    </div>
             <div class="col-lg-5">
 			<label><strong>Teléfono</strong></label>
-            <strong> <input class="form-control text-center" id="txttelefono" type="text" readonly placeholder="{{hotel.telefono}}"></strong>
+       <div class="input-group">
+            <strong> <input class="form-control text-center" size="170" id="txttelefono" type="text" readonly placeholder="{{hotel.telefono}}"></strong>
+            </div>
             <label><strong>Organigrama</strong></label>
-             <strong><input class="form-control text-center" id="txtorganigrama" type="text" readonly placeholder="{{hotel.organigrama}}"></strong>
+             <div class="input-group">
+             <strong><input class="form-control text-center"  size="170" id="txtorganigrama" type="text" readonly placeholder="{{hotel.organigrama}}"></strong>
+             </div>
 		    </div>
     
     {% endfor %}

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
-from apps.sistema.models import Cliente
+from apps.sistema.models import *
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,UpdateView,DeleteView
 from django.http import HttpResponse
 from django.core import serializers	
-
+from django.db.models import Q
 
 from io import BytesIO
 from django.views.generic import ListView
@@ -42,8 +42,18 @@ class listarCliente(ListView):
     def get_context_data(self,**kwargs):
         ctx = super(listarCliente, self).get_context_data(**kwargs)
         ctx['listarCliente'] = Cliente.objects.order_by("id")
+        ctx['listarCiudad'] = Ciudad.objects.all()
         return ctx
            
+class buscarCliente(TemplateView):
+    def get(self,request,*args,**kwargs):
+        buscar = request.GET.get('nombre')
+        print buscar
+        cliente = Cliente.objects.filter(Q(cedula__contains =buscar)|Q(nombre__contains=buscar)|Q(apellido__contains=buscar)).order_by("id")
+        print cliente
+        data = serializers.serialize('json',cliente,fields=('id','cedula','nombre','apellido','telefono','direccion','email','ocupacion','estado','ciudad'))
+        return HttpResponse(data,content_type='application/json')
+
 
 def generar_pdf(request):
     print "Genero el PDF"

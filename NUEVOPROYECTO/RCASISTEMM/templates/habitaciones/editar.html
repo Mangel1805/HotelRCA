@@ -7,7 +7,7 @@
     <div class="col-md-7 col-md-offset-3">
       <div class="alert alert-danger" role="alert">
       <div class="text-center">
-        <H3><strong>Registrar Habitación</strong> </H3>   </div>
+        <H3>Modificar Habitación</H3>   </div>
         </div>
     </div>
   </div>
@@ -27,15 +27,17 @@
   	<div class="row">
     <div class="col-lg-10 col-lg-offset-2">
     		<div class="col-lg-4 col-lg-offset-1">
+        <div class="input-group">
          {% bootstrap_field form.habitacion %}
          {% bootstrap_field form.tipo %}
          {% bootstrap_field form.categoria %}
-         
+         </div>
 		    </div>
             <div class="col-lg-4">
+            <div class="input-group">
 		        {% bootstrap_field form.precio %}
             	{% bootstrap_field form.estado %}
-            	
+            	</div>
 		    </div>
     
     

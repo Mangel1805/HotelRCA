@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-#from apps.inicio.views import inicio
+from apps.inicio.views import *
 urlpatterns = patterns('',
      
     #Fachada 
@@ -23,4 +23,5 @@ urlpatterns = patterns('',
     url(r'^servicio/',include('apps.servicios.urls')),
     url(r'^reservacion/',include('apps.reservaciones.urls')),
     url(r'^factura/',include('apps.facturas.urls')),
+    url(r'^usuario/',include('apps.usuario.urls')),
 )

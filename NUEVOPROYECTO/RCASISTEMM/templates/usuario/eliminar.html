@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+	<h3>Eliminar la Usuario</h3>
+ 
+	<Form  action = ""  method = "post" > {%  csrf_token  %} 
+    <p>  
+
+    <h3>{{  usuario  }}</h3>  
+
+
+    </p> 
+
+   <input class="btn btn-danger" type="submit" value="Confirmar">
+    
+    
+	</form>
+
+{% endblock content %}

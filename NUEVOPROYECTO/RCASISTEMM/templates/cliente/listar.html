@@ -1,7 +1,7 @@
 
 {% extends "base.html" %}
 {% block content %}
-<h1>Todos los Clientes</h1>
+<h3>Todos los Clientes</h3>
 <span class="label label-default">Lista de Clientes</span>
 
 <div class="well">
@@ -17,25 +17,23 @@
               	</a>
              </div>   
             <div class="col-lg-6" > 
-     	 		 <form method="POST" action="">{% csrf_token %}
+     	 		
 				
 		    		  <div class="input-group">
-		     			 <input type="text" class="form-control " placeholder="Search for...">
-				      <span class="input-group-btn">
-				        <button class="btn btn-default" type="button"><span class=" glyphicon glyphicon-search" aria-hidden="true"></button>
-				      </span>
+		     			 <input type="search" id="txtBuscar" class=" pull-right form-control" autofocus placeholder="Buscar...">
+				      
 									      
 					    
 		       						
 		       			</div>
 		    
-		   		 </form>
+		   		
 		    </div>
      	  
         </div> 
         <br></br>  	
-	<div class="table-responsive">
-		<table class="table table-bordered table-hover">
+	<div id="divTabla" class="table-responsive">
+		<table id = "tblTabla" class="table table-bordered table-hover">
 	        <thead>
 	          <tr>
 	            <td class="success">#</td>
@@ -80,13 +78,59 @@
 	</div>
   
 </div>
-</div>
-</div> 
+<div id="datos">
+        
+    </div>
 {% endblock content %}
 {%block js%}
   
 
 <script>
+
+		$('#txtBuscar').on('keypress',filtrado);
+		function filtrado(){
+			var nombre = $(this).val();
+			console.log(nombre);
+			$.ajax({
+				data:{'nombre':nombre},
+				url:'/cliente/buscar/',
+				type: 'get',
+
+				success: function(data){
+					document.getElementById('tblTabla').style.display = 'none'
+					var html = '<div id="divTabla" class="table-responsive"><table id = "tblTabla" class="table table-hover"><thead><tr><td class="success">#</td><td class="success">CÉDULA</td><td class="success">NOMBRE</td><td class="success">APELLIDO</td><td class="success">TELÉFONO</td><td class="success">DIRECCIÓN </td><td class="success">EMAIL</td><td class="success">OCUPACIÓN</td><td class="success">CIUDAD</td><td class="success">ESTADO</td><td class="success">------</td><td class="success">------</td></tr></thead><tbody >'
+					for(var i = 0; i<data.length ; i++){
+
+						var ident = ''
+						var ciudad = ''
+						var estas=''
+
+						{% for cli in listarCliente  %}
+							if ('{{cli.cedula}}'==data[i].fields.cedula) {
+								ident = '{{cli.id}}';
+								ciudad = '{{cli.ciudad}}';
+								estado='{{cli.estado}}'
+							};
+
+
+						{% endfor %}
+
+						html += '<tr><td>'+ident+'</td><td >'+data[i].fields.cedula+'</td><td >'+data[i].fields.nombre+'</td><td >'+data[i].fields.apellido+'</td><td >'+data[i].fields.telefono+'</td><td >'+data[i].fields.direccion+'</td><td >'+data[i].fields.email+'</td><td >'+data[i].fields.ocupacion+'</td><td >'+ciudad+'</td><td >'+estado+'</td>';
+						var botones = "<td ><button class='btn btn-danger' id='btnupdate"+ident+"' value="+ident+" onclick='actualizarDatos("+ident+")'><span class='glyphicon glyphicon-edit'></i></button> </td><td ><button class='btn btn-danger' id='btndelete' value="+ident+" onclick='eliminarDatos("+ident+")'><span class='glyphicon glyphicon-remove-sign'></i></button></td></tr>";
+						html +=botones;
+					}
+					
+					var uni='</tbody></table></div>'
+					$('#datos').html(html+uni);
+				}
+	
+	
+	
+			});
+	
+		}
+
+
 	function actualizarDatos(r){
 		var s = document.getElementById('btnupdate'+r).value
 		setTimeout("location.href='/cliente/modificar/"+r+"'"+"",10);
@@ -97,21 +141,11 @@
 		setTimeout("location.href='/cliente/eliminar/"+r+"'"+"",10);
 
 	}
+
+	    
+
+
 	</script>
 
-	<script type="text/javascript">
-		 var nombre = []
-		    
-
-		    var contador  = 0;
-		    {% for prod in productos %}
-		      nombre[contador]="{{prod.nombre}}";
-		      console.log(nombre[contador]);
-		      contador=contador+1;
-		    {% endfor %}
-
-		        $('input.typeahead').typeahead({
-		                local: nombre
-		            });
-</script>
+	
 {%endblock js%}

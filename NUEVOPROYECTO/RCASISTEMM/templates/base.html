@@ -1,165 +1,166 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bootstrap Product Page Template</title>
+<title>RCA HOTEL | Sistema</title>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
+<style type="text/css">
+	.errores{
+            -webkit-boxshadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            background: red;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            display: none;
+            font-size: 14px;
+            margin-top: -40px;
+            margin-left: -150px;
+            padding: 10px;
+            position: absolute;
+        }
+</style>
 
-<!-- Bootstrap -->
 <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css">
 <link rel="stylesheet" href="{{STATIC_URL}}css/stilo.css">
+<link href="{{STATIC_URL}}css/style.css" rel="stylesheet" type="text/css" media="all"/>
+
 <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-datetimepicker.css">
 <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-datetimepicker.min.css">
     
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="{{STATIC_URL}}js/jquery.min.js"></script>
+
+
+
+
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topFixedNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-      <a class="navbar-brand" href="#">SIGASOFT</a></div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="topFixedNavbar1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">INVENTARIOS</a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="Historia.html">PRODUCTOS</a></li>
-            <li><a href="Mision.html">ARTICULOS</a></li>
-            <li><a href="Vision.html">PROVEEDORES</a></li>
-            <li><a href="Vision.html">ORDEN COMPRA</a></li>
-            
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">VENTAS</a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="Historia.html">FACTURA</a></li>
-            <li><a href="Mision.html">DETALLES FACTURA</a></li>
-            <li><a href="/cliente/filtrar">CLIENTES</a></li>
-            
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">MANTENIMIENTO</a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="Historia.html">SOLICITUD</a></li>
-            <li><a href="Mision.html">REPORTE TECNICO</a></li>
-            <li><a href="Vision.html">FACTURACION</a></li>
-            
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-              
-            
-          </ul>
-        </li>
-      </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        BUSCAR
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Iniciar Sesión</a></li>
-        <li><a href="#">Registrarse</a></li>
-        <li class="dropdown">
-<ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <!-- /.navbar-collapse -->
-  </div>
-  <!-- /.container-fluid -->
-</nav>
-</br>
-</br>
-</br>
-</br>
-<div class="container">
+<!--header starts-->
+<div class="header">
+	 <div class="top-header">
+		 <div class="container">
+			 <div class="logo">
+				 <a href="/inicio"><img src="{{STATIC_URL}}images/logo.png"/></a>
+			 <div class="clearfix"></div>
+			 </div>
+			 <span class="menu"> </span>
+			 <div class="m-clear"></div>
+			 <div class="top-menu">
+				<ul>
+					 <li><a class="scroll" href="/inicio">INICIO</a></li>
+					 <li><a class="scroll" href="/nosotros">NOSOTROS</a></li>
+					 <li><a class="scroll" href="/galeria">GALERIA</a></li>
+					 <li><a class="scroll" href="/servicios">SERVICIOS</a></li>
+					 <li><a class="scroll" href="/contactenos">CONTACTENOS</a></li>
+					 <li class="active"><a href="/sistema">SISTEMA</a></li> 
+                     <div class="clearfix"></div>
+                 </ul>                  
+				 <script>
+					$("span.menu").click(function(){
+						$(".top-menu ul").slideToggle(200);
+					});
+				</script>
+			 </div>
+		  </div>
+	  </div>
+</div>
+
+<!---->
+ <div class="rooms text-center">
+	 <div class="container">
+		<h3><strong>Sistema Integral Rca Hotel</strong></h3>
+		<div class="container"> 
+		{% block content %}
+
+        {% endblock %}
 <div class="">
         <section class="content">
-            {% block content %}
-
-            {% endblock %}
+           
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
   <div class="row"> </div>
+</div> 
+	 </div>
 </div>
+<!---->
+<div class="fotter">
+	  <div class="container">
+		 <h3>Mejor Confort, Mejor Hospitalidad</h3>
+		 <h4>"Hospitalidad, Calidad & Buena Localizacion. Nuestro Hotel Calidad a su Dispocicion" - RCA HOTEL</h4>
+		 <i class="man"></i>
+	 </div>
+</div>
+<!---->
+<div class="fotter-info">
+	  <div class="container">
+	      <div class="col-md-5 details">
+			 <div class="hotel-info">
+				 <h4>ACERCA DEL HOTEL</h4>
+				 <p>EL RCA Hotel es ideal para las personas que buscan hospedarse en un lugar elegante, bien ubicado y seguro, a tan solo 50 minutos del aeropuerto, exclusivo y familiar a la vez, donde puedan resolver todos sus negocios o hacer su transición de la manera más agradable y eficiente posible.</p>
+				 <p>El Hotel está ubicado en un sector comercial a cuatro cuadras del Parque Central "Juan Montalvo". Estamos listos para atenderlos a las 24 horas.</p>
+			 </div>
+			 <div class="news">
+				 <h4>ULTIMAS NOTICIAS </h4>
+				 <h5>RCA Hotel APERTURA DE PROMOCION</h5>
+				 <a href="#">1 SEPT</a>
+				 <h5>FIESTAS DE MACHALA</h5>
+				 <a href="#">5 SEPT</a>
+				 <h5>REINA MUNDIAL DEL BANANO</h5>
+				 <a href="#">10 SEPT</a>
+				 <h5>PREGON POR LA CIUDAD</h5>
+				 <a href="#">15 SEPT</a>		
+			 </div>
+				<div class="clearfix"></div>
+		 </div>
+		 <div class="col-md-7 details">
+			 <div class="join">
+				 <h4>FERIA DE LA CIUDAD</h4>
+				 <p>Machala ya organiza su fiesta por los 191 años de cantonización
+Desde ayer se aceleran los trabajos para dejar listos los 30 carros alegóricos con los que la capital orense empezará los festejos para recordar los 191 años de cantonización. Diez artesanos locales desde el mes anterior trabajan en los diseños de estas alegorías. </p>
+				 <p>Uno de los carros principales y considerado especial es el que estará destinado para Paulina Vega, la actual Miss Universo, quien presidirá este evento. Los organizadores decidieron colocar varios elementos que identifican a la colombiana.</p>
+				 <a href="#">LEA MAS..</a>
+			 </div>
 
-<hr>
-<div class="container">
-  <div class="row">
-<div class="col-lg-4 col-md-6 col-sm-6">
-      <h2>Contact Us</h2>
-      <address>
-      <strong>MyCompany, Inc.</strong><br>
-      Sunny Autumn Plaza, Grand Coulee,<br>
-      CA, 91308-4075, US<br>
-      <abbr title="Phone">P:</abbr> (123) 456-7890
-      </address>
-      <h4>Social</h4>
-      <div class="row">
-        <div class="col-xs-2"><img class="img-circle" src="{{STATIC_URL}}img/32X32.gif" alt=""></div>
-        <div class="col-xs-2"><img class="img-circle" src="{{STATIC_URL}}img/32X32.gif" alt=""></div>
-        <div class="col-xs-2"><img class="img-circle" src="{{STATIC_URL}}img/32X32.gif" alt=""></div>
-        <div class="col-xs-2"><img class="img-circle" src="{{STATIC_URL}}img/32X32.gif" alt=""></div>        
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-6">
-      <h2>Testimonials</h2>
-      <div class="media">
-        <div class="media-left"> <a href="#"> <img class="media-object" src="{{STATIC_URL}}img/35X35.gif" alt="..."> </a> </div>
-        <div class="media-body">
-          <h4 class="media-heading">Media heading</h4>
-          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. </div>
-      </div>
-      <div class="media">
-        <div class="media-left"> <a href="#"> <img class="media-object" src="{{STATIC_URL}}img/35X35.gif" alt="..."> </a> </div>
-        <div class="media-body">
-          <h4 class="media-heading">Media heading</h4>
-          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-12">
-      <h2>About Us</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, voluptates, soluta velit nostrum ut iste exercitationem vitae ipsum repellendus laudantium ab possimus nemo odio cumque illum nulla laborum blanditiis unde.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, voluptates, soluta velit nostrum ut iste exercitationem vitae ipsum repellendus laudantium ab possimus nemo odio cumque illum nulla laborum blanditiis unde.</p>
-    </div>
-  </div>
+
+			 <div class="member">
+
+			<h4>AREA DE MEMBRESIA</h4>
+			 {% if user.is_authenticated %}
+                     <font color="white"> Bienvenidooo {{user.username|capfirst}}</font>
+                      <a href="/cerrar/"> <font color="silver"> >>Salir<<</font></a>
+             {% else %}
+             <form method="POST">
+             {% csrf_token %}
+			 <p>Username</p>
+			 <input name="username" type="text" id="inputEmail" placeholder="Usuario">
+			 <p>Password</p>
+			 <input name="password" type="password" id="inputPassword" placeholder="Contraseña">	
+			 <hr>
+			 <input type="submit" value="INGRESAR"/>
+             <a href="/registrarse/" class="reg"><font color="silver">Registrarse</font></a>
+			 </form>
+			 {% endif %} 
+
+
 </div>
-  <hr>
-<footer class="text-center">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <p>Copyright © MyWebsite. All rights reserved.</p>
-      </div>
-    </div>
-  </div>
-</footer>
+			 <div class="clearfix"></div>
+		 </div>
+		 <div class="clearfix"></div>
+	  </div>
+      <h6>Direccion:Boyaca entre 9 de Mayo Juan Montalvo. 
+      <br>
+      Telefonos:(07)-292-3494 -- (07)-296-8052
+      <br> 
+      Localidad:Machala - El Oro - Ecuador
+      <br>
+	 Copyright &copy; 2015 <a href="/inicio">Hotel RCA</a>. Todos Los Derechos Reservados</h6>	  
+</div>
+<!---->
 {% block modales %}
 
 {% endblock %}
@@ -168,7 +169,6 @@
 <script src="{{STATIC_URL}}js/bootstrap-datetimepicker.js"></script>
 <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
 <script src="{{STATIC_URL}}js/moment.js"></script>
-
 <script src="{{STATIC_URL}}js/bootstrap-datetimepicker.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed --> 
 <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
@@ -185,5 +185,4 @@
 {%block js%}
 {%endblock%}
 </body>
-
 </html>

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Todos los Servicios</h3>
+<span class="label label-default">Lista de Servicios</span>
+
+<div class="well">
+ 		<div class="btn-toolbar" role="toolbar">   
+ 		 	<div class="col-lg-6" >
+               	<a href="{% url 'registrarse'  %}">
+				<button type="button" class="btn btn-danger" name='btnAgregar'onclick=""><span class=" glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</button>
+                </a>
+		
+                 
+                <a href="{% url 'pdf_Usuario'  %}">
+                <button name="btnReporte" type="button" class="btn btn-danger"><span class=" glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reporte</button>   </a>
+             </div>   
+            <div class="col-lg-6" > 
+     	 		 <form method="POST" action="">{% csrf_token %}
+				
+		    		  <div class="input-group">
+		     			 <input type="text" class="form-control " placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"><span class=" glyphicon glyphicon-search" aria-hidden="true"></button>
+      </span>
+					      
+					    
+		       						
+		       			</div>
+		    
+		   		 </form>
+		    </div>
+     	  
+     	  	
+        </div>    	 
+
+<br> </br>
+	<div class="table-responsive">
+		<table class="table table-bordered table-hover">
+	        <thead>
+	          <tr>
+	            <td class="success">#</td>
+	            <td class="success">NOMBRE</td>
+	            <td class="success">TELEFONO</td>
+	            <td class="success">CORREO</td>
+	            <td class="success">DIRECCION</td>
+	            <td class="success">CARGO</td>
+	            
+	          </tr>
+	        </thead>
+	        <tbody >
+	   
+	         
+	          <!-- Aplicadas en las celdas (<td> o <th>) -->
+		          {% for usu in usuario %}
+			          <tr id="row{{usu.id}}" class="active">
+			          	<td >{{usu.id}}</td>
+			          	<td >{{usu.usuario}}</td>
+		          		<td >0{{usu.telefono}}</td>
+		          		<td >{{usu.correo}}</td>
+		          		<td >{{usu.direccion}}</td>
+		          		<td >{{usu.cargo}}</td>
+			          </tr>
+		          {% endfor %}
+	      	</tbody>
+		</table>
+		
+	</div>
+  
+</div>
+</div>
+</div> 
+{% endblock content %}
+{%block js%}
+  
+
+<script>
+	function actualizarDatos(r){
+		var s = document.getElementById('btnupdate'+r).value
+		setTimeout("location.href='/servicio/modificar/"+r+"'"+"",10);
+ingreso
+	}
+	function eliminarDatos(r){
+		var s = document.getElementById('btnupdate'+r).value
+		setTimeout("location.href='/servicio/eliminar/"+r+"'"+"",10);
+
+	}
+	</script>
+
+	
+{%endblock js%}

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>RCA HOTEL | Contactenos</title>
+
+<link href="{{STATIC_URL}}css/bootstrap.css" rel='stylesheet' type='text/css'/>
+<link href="{{STATIC_URL}}css/style.css" rel="stylesheet" type="text/css" media="all"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="{{STATIC_URL}}js/jquery.min.js"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=false" 
+          type="text/javascript"></script>
+</head>
+<body>
+<!--header starts-->
+<div class="header">
+	 <div class="top-header">
+		 <div class="container">
+			 <div class="logo">
+				<a href="/"><img src="{{STATIC_URL}}images/logo.png"/></a>
+			 <div class="clearfix"></div>
+			 </div>
+			 <span class="menu"> </span>
+			 <div class="m-clear"></div>
+			 <div class="top-menu">
+				<ul>
+					 <li><a class="scroll" href="/">INICIO</a></li>
+					 <li><a class="scroll" href="/nosotros">NOSOTROS</a></li>
+					 <li><a class="scroll" href="/galeria">GALERIA</a></li>
+					 <li><a class="scroll" href="/servicios">SERVICIOS</a></li>
+					 <li class="active"><a href="/contactenos">CONTACTENOS</a></li>
+					 <li><a class="scroll" href="/sistema">SISTEMA</a></li> 
+                     <div class="clearfix"></div>
+                 </ul>   
+				 <script>
+					$("span.menu").click(function(){
+						$(".top-menu ul").slideToggle(200);
+					});
+				</script>
+			 </div>
+		  </div>
+	  </div>
+</div>
+<!---->
+<div class="contact-bg">
+	 <div class="container">
+	      <div class="contact-us">				
+				<div class="contact-us_left">
+					<div class="contact-us_info">
+			    	 	<h3 class="style">Nuestra Ubicación</h3>            
+            <div id="map" style="width: 100%; height: 175px;">
+
+  <script type="text/javascript">
+    var locations = [
+      ['RCA HOTEL', -3.257058, -79.956598,17]
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 17,
+      center: new google.maps.LatLng(-3.257058, -79.956598),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+  </script>
+                      
+          </div>	
+      				</div>
+      			 <div class="company_address">
+				     	<h3 class="style">Informacion Hotel:</h3>
+						<p>Boyacá entre 9 de Mayo y Juan Montalvo</p>
+						<p>Ubicado en un sector comercial a tres cuadras del Parque Central, estamos listos para atenderlos las 24 horas.</p>
+						<p>Costab/bEl Oro / Machala </p>
+				   		<p>Phone:(07)-292-3494(00)/ (07)-296-8052</p>				   		
+				 	 	<p>Email: <a href="mailto:hotelrca@gmail.com">hotelrca@gmail.com</a></p>
+				   		<p>Siguenos en : <a href="#">Facebook</a>, <a href="#">Twitter</a>, <a href="#">Google</a></p>
+				   </div>
+				</div>				
+				<div class="contact_right">
+				  <div class="contact-form">
+				  	<h3 class="style">Contactanos</h3>
+					    <form method="post" action="/">
+					    {% csrf_token %}
+					    	<div>
+						    	<span><label>NOMBRE</label></span>
+						    	<span><input name="userName" type="text" class="textbox"></span>
+						    </div>
+						    <div>
+						    	<span><label>E-MAIL</label></span>
+						    	<span><input name="userEmail" type="text" class="textbox"></span>
+						    </div>
+						    <div>
+						     	<span><label>TELEFONO MOVIL</label></span>
+						    	<span><input name="userPhone" type="text" class="textbox"></span>
+						    </div>
+						    <div>
+						    	<span><label>DETALLE</label></span>
+						    	<span><textarea name="userMsg"> </textarea></span>
+						    </div>
+						   <div>
+						   		<input type="submit" value="Enviar">
+						  </div>
+					    </form>
+				    </div>
+  				</div>		
+  				<div class="clear"></div>		
+		  </div>
+	 </div>	
+</div>	 
+<!---->
+<div class="fotter">
+	  <div class="container">
+		 <h3>Mejor Confort, Mejor Hospitalidad</h3>
+		 <h4>"Hospitalidad, Calidad & Buena Localizacion. Nuestro Hotel Calidad a su Dispocicion" - RCA HOTEL</h4>
+		 <i class="man"></i>
+	 </div>
+</div>
+<!---->
+<div class="fotter-info">
+	  <div class="container">
+	      <div class="col-md-5 details">
+			 <div class="hotel-info">
+				 <h4>ACERCA DEL HOTEL</h4>
+				 <p>EL RCA Hotel es ideal para las personas que buscan hospedarse en un lugar elegante, bien ubicado y seguro, a tan solo 50 minutos del aeropuerto, exclusivo y familiar a la vez, donde puedan resolver todos sus negocios o hacer su transición de la manera más agradable y eficiente posible.</p>
+				 <p>El Hotel está ubicado en un sector comercial a cuatro cuadras del Parque Central "Juan Montalvo". Estamos listos para atenderlos a las 24 horas.</p>
+			 </div>
+			 <div class="news">
+				 <h4>ULTIMAS NOTICIAS </h4>
+				 <h5>RCA Hotel APERTURA DE PROMOCION</h5>
+				 <a href="#">1 SEPT</a>
+				 <h5>FIESTAS DE MACHALA</h5>
+				 <a href="#">5 SEPT</a>
+				 <h5>REINA MUNDIAL DEL BANANO</h5>
+				 <a href="#">10 SEPT</a>
+				 <h5>PREGON POR LA CIUDAD</h5>
+				 <a href="#">15 SEPT</a>		
+			 </div>
+				<div class="clearfix"></div>
+		 </div>
+		 <div class="col-md-7 details">
+			 <div class="join">
+				 <h4>FERIA DE LA CIUDAD</h4>
+				 <p>Machala ya organiza su fiesta por los 191 años de cantonización
+Desde ayer se aceleran los trabajos para dejar listos los 30 carros alegóricos con los que la capital orense empezará los festejos para recordar los 191 años de cantonización. Diez artesanos locales desde el mes anterior trabajan en los diseños de estas alegorías. </p>
+				 <p>Uno de los carros principales y considerado especial es el que estará destinado para Paulina Vega, la actual Miss Universo, quien presidirá este evento. Los organizadores decidieron colocar varios elementos que identifican a la colombiana.</p>
+				 <a href="#">LEA MAS..</a>
+			 </div>
+			 <div class="member">
+			<h4>AREA DE MEMBRESIA</h4>
+			 {% if user.is_authenticated %}
+                     <font color="white"> Bienvenidooo {{user.username|capfirst}}</font>
+                      <a href="/cerrar/"> <font color="silver"> >>Salir<<</font></a>
+             {% else %}
+             <form method="POST">
+             {% csrf_token %}
+			 <p>Username</p>
+			 <input name="username" type="text" id="inputEmail" placeholder="Usuario">
+			 <p>Password</p>
+			 <input name="password" type="password" id="inputPassword" placeholder="Contraseña">	
+			 <hr>
+			 <input type="submit" value="INGRESAR"/>
+             <a href="/registrarse/" class="reg"><font color="silver">Registrarse</font></a>
+			 </form>
+			 {% endif %} 
+</div>
+			 <div class="clearfix"></div>
+		 </div>
+		 <div class="clearfix"></div>
+	  </div>
+      <h6>Direccion:Boyaca entre 9 de Mayo Juan Montalvo. 
+      <br>
+      Telefonos:(07)-292-3494 -- (07)-296-8052
+      <br> 
+      Localidad:Machala - El Oro - Ecuador
+      <br>
+	 Copyright &copy; 2015 <a href="/inicio">Hotel RCA</a>. Todos Los Derechos Reservados</h6>	  
+</div>
+<!---->
+
+</body>
+</html>
