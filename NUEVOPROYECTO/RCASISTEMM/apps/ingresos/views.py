@@ -9,12 +9,13 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import Table
 
 from django.shortcuts import render
-from apps.sistema.models import Ingresos
+from apps.sistema.models import *
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,UpdateView,DeleteView
 from django.http import HttpResponse
 from django.core import serializers	
-
+from django.db.models import Q
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -39,12 +40,27 @@ class eliminarIngreso(DeleteView):
 	template_name='ingresos/eliminar.html'
 	success_url=reverse_lazy('listarIngreso')
 
+
 class listarIngreso(ListView):
-	model=Ingresos
-	template_name='ingresos/listar.html'
-	context_object_name='ingresos'
+    model=Ingresos
+    template_name='ingresos/listar.html'
+    context_object_name='ingresos'
+    def get_context_data(self,**kwargs):
+        ctx = super(listarIngreso, self).get_context_data(**kwargs)
+        ctx['listarUsuarios'] = User.objects.all()
+        return ctx
 
-
+class buscarIngreso(TemplateView):
+    def get(self,request,*args,**kwargs):
+        print "entro"
+        inicio = request.GET.get('inicio')
+        fin = request.GET.get('fin')
+        print inicio
+        print fin
+        ingreso = Ingresos.objects.filter(Q(fecha__range=(inicio,fin))).order_by("id")
+        print ingreso
+        data = serializers.serialize('json',ingreso,fields=('usuario','fecha','detalle','tipo','valor','estado'))
+        return HttpResponse(data,content_type='application/json')
 
 def generar_pdf(request):
     print "Genero el PDF"

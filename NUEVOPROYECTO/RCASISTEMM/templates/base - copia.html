@@ -2,14 +2,41 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>RCA HOTEL | Servicios</title>
+<title>RCA HOTEL | Sistema</title>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
-<link href="{{STATIC_URL}}css/bootstrap.css" rel='stylesheet' type='text/css'/>
+<style type="text/css">
+	.errores{
+            -webkit-boxshadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            background: red;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            display: none;
+            font-size: 14px;
+            margin-top: -40px;
+            margin-left: -150px;
+            padding: 10px;
+            position: absolute;
+        }
+</style>
+
+<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css">
+<link rel="stylesheet" href="{{STATIC_URL}}css/stilo.css">
 <link href="{{STATIC_URL}}css/style.css" rel="stylesheet" type="text/css" media="all"/>
+
+<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-datetimepicker.css">
+<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-datetimepicker.min.css">
+    
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="{{STATIC_URL}}js/jquery.min.js"></script>
+
+
+
+
 </head>
 <body>
 <!--header starts-->
@@ -17,21 +44,21 @@
 	 <div class="top-header">
 		 <div class="container">
 			 <div class="logo">
-				 <a href="/"><img src="{{STATIC_URL}}images/logo.png"/></a>
+				 <a href="/inicio"><img src="{{STATIC_URL}}images/logo.png"/></a>
 			 <div class="clearfix"></div>
 			 </div>
 			 <span class="menu"> </span>
 			 <div class="m-clear"></div>
 			 <div class="top-menu">
 				<ul>
-					 <li><a class="scroll" href="/">INICIO</a></li>
+					 <li><a class="scroll" href="/inicio">INICIO</a></li>
 					 <li><a class="scroll" href="/nosotros">NOSOTROS</a></li>
 					 <li><a class="scroll" href="/galeria">GALERIA</a></li>
-					 <li class="active"><a href="/servicios">SERVICIOS</a></li>
+					 <li><a class="scroll" href="/servicios">SERVICIOS</a></li>
 					 <li><a class="scroll" href="/contactenos">CONTACTENOS</a></li>
-					<!--<li><a class="scroll" href="/sistema">SISTEMA</a></li> -->
+					 <li class="active"><a href="/sistema">SISTEMA</a></li> 
                      <div class="clearfix"></div>
-                 </ul>
+                 </ul>                  
 				 <script>
 					$("span.menu").click(function(){
 						$(".top-menu ul").slideToggle(200);
@@ -41,113 +68,28 @@
 		  </div>
 	  </div>
 </div>
+
 <!---->
-<div class="main_bg">
+ <div class="rooms text-center">
 	 <div class="container">
-		 <div class="main">	          
-			   <ul class="service_list">
-				 <li>
-					 <div class="ser_img">
-						    <a href="/detalles"><span class="next"> </span>
-							<img src="{{STATIC_URL}}images/ser_pic1.jpg" alt="" />
-							
-							</a>
-				      </div>	
-						<a href="/detalles"><h3>Wifi-Internet</h3></a>
-						<p class="para">Acceso gratuito al Wifi.</p>
-						<h4><a  href="/detalles">Servicio de Internet</a></h4>
-				 </li>
-				 <li>
-					 <div class="ser_img">
-							<a href="/detalles"><span class="next"> </span>
-							<img src="{{STATIC_URL}}images/garaje1.jpg" alt="" />
-							
-							</a>
-					 </div>	
-					 <a href="/detailles"><h3>Garaje</h3></a>
-					 <p class="para">Contamos con garaje confiable y seguridad a las 24 horas del dia.</p>
-					 <h4><a href="/detalles">Servicio de Garaje</a></h4>
-				 </li>
-                 <li>
-					 <div class="ser_img">
-					     <a href="/detalles"><span class="next"> </span>
-						 <img src="{{STATIC_URL}}images/transporte.jpeg" alt="" />
-						 
-						 </a>
-				     </div>						
-					    <a href="/detalles"><h3>Transporte al Aeropuerto</h3></a>
-						<p class="para">Contamos con servicio de  Transporte  nuestros clientes hacia el aeropuerto.</p>
-						<h4><a href="/detalles">Servicio de Transporte</a></h4>
-				 </li>
-				 <li>
-					 <div class="ser_img">
-							<a href="/detalles"><span class="next"> </span>
-							<img src="{{STATIC_URL}}images/ser_pic3.jpg" alt="" />
-							
-							</a>
-					 </div>						
-						<a href="/detalles"><h3>Lavanderia</h3></a>
-						<p class="para">Contamos con servicio de lavanderia, secado y planchado en todo momento.</p>
-						<h4><a href="/detalles">Servicio de Lavanderia</a></h4>
-				 </li>
-				 
-					<div class="clear"></div>
-			  </ul>
-			  
-			  <ul class="service_list top">
-              <li>
-					 <div class="ser_img">
-							<a href="/detalles"><span class="next"> </span>
-							<img src="{{STATIC_URL}}images/limpieza.jpg" alt="" />
-							
-							</a>
-					 </div>						
-						<a href="/detalles"><h3>Limpieza</h3></a>
-						<p class="para">Contamos con la limpieza a las habitaciones en todo momento a 24 horas del dia.</p>
-						<h4><a href="/detalles">Servicio de limpieza</a></h4>
-				 </li>
-				 <li>
-					 <div class="ser_img">
-						 <a href="/detalles"><span class="next"> </span>
-						 <img src="{{STATIC_URL}}images/ser_pic5.jpg" alt="" />
-						 
-						 </a>
-					 </div>						
-						<a href="/detalles"><h3>Mejor Cocina</h3></a>
-						<p class="para">Contamos con una pequeño Restaurant para nuestros clientes exclusivamente.</p>
-						<h4><a  href="/detalles">Servicio de Restaurante</a></h4>
-				 </li>
-				 <li>
-				     <div class="ser_img">
-							<a href="/detalles"><span class="next"> </span>
-							<img src="{{STATIC_URL}}images/servico a cuartos.jpg" alt="" />
-							
-							</a>
-					 </div>	
-						<a href="/detalles"><h3>Servico a Cuartos</h3></a>
-						<p class="para">Contamos con servicio a las ahbitaciones a las 24 Horas del dia.</p>
-						<h4><a href="/detalles">Servicio a Habitacion</a></h4>											
-			     </li>
-				 <li>
-					 <div class="ser_img">
-						 <a href="/detalles"><span class="next"> </span>
-						 <img src="{{STATIC_URL}}images/ser_pic8.jpg" alt="" />
-						 
-						 </a>
-					 </div>		
-						<a href="/detalles"><h3>Desayunos</h3></a>
-						<p class="para">Le ofrecemos desayunos de acorde al gusto del cliente.</p>
-						<h4><a  href="/detalles">Desayunos</a></h4>
-				 </li>
-					<div class="clear"></div>
-			  </ul>
-			 <div class="clear"></div>
-		   </div>
-	  </div>
-</div>		
+		<h3><strong>Sistema Integral Rca Hotel</strong></h3>
+		<div class="container"> 
+		{% block content %}
+
+        {% endblock %}
+<div class="">
+        <section class="content">
+           
+
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+  <div class="row"> </div>
+</div> 
+	 </div>
+</div>
 <!---->
 <div class="fotter">
-	 <div class="container">
+	  <div class="container">
 		 <h3>Mejor Confort, Mejor Hospitalidad</h3>
 		 <h4>"Hospitalidad, Calidad & Buena Localizacion. Nuestro Hotel Calidad a su Dispocicion" - RCA HOTEL</h4>
 		 <i class="man"></i>
@@ -183,7 +125,10 @@ Desde ayer se aceleran los trabajos para dejar listos los 30 carros alegóricos 
 				 <p>Uno de los carros principales y considerado especial es el que estará destinado para Paulina Vega, la actual Miss Universo, quien presidirá este evento. Los organizadores decidieron colocar varios elementos que identifican a la colombiana.</p>
 				 <a href="#">LEA MAS..</a>
 			 </div>
+
+
 			 <div class="member">
+
 			<h4>AREA DE MEMBRESIA</h4>
 			 {% if user.is_authenticated %}
                      <font color="white"> Bienvenidooo {{user.username|capfirst}}</font>
@@ -200,6 +145,8 @@ Desde ayer se aceleran los trabajos para dejar listos los 30 carros alegóricos 
              <a href="/registrarse/" class="reg"><font color="silver">Registrarse</font></a>
 			 </form>
 			 {% endif %} 
+
+
 </div>
 			 <div class="clearfix"></div>
 		 </div>
@@ -211,9 +158,31 @@ Desde ayer se aceleran los trabajos para dejar listos los 30 carros alegóricos 
       <br> 
       Localidad:Machala - El Oro - Ecuador
       <br>
-	 Copyright &copy; 2015 <a href="/">Hotel RCA</a>. Todos Los Derechos Reservados</h6>	  
+	 Copyright &copy; 2015 <a href="/inicio">Hotel RCA</a>. Todos Los Derechos Reservados</h6>	  
 </div>
 <!---->
+{% block modales %}
 
+{% endblock %}
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+<script src="{{STATIC_URL}}js/jquery-1.11.2.min.js"></script> 
+<script src="{{STATIC_URL}}js/bootstrap-datetimepicker.js"></script>
+<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+<script src="{{STATIC_URL}}js/moment.js"></script>
+<script src="{{STATIC_URL}}js/bootstrap-datetimepicker.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/jquery.ui.touch-punch.min.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/bootstrap.min.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/bootstrap-select.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/bootstrap-switch.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/flatui-checkbox.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/flatui-radio.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/jquery.placeholder.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/typeahead.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/application.js"></script>
+
+{%block js%}
+{%endblock%}
 </body>
 </html>

@@ -49,7 +49,7 @@ class buscarCliente(TemplateView):
     def get(self,request,*args,**kwargs):
         buscar = request.GET.get('nombre')
         print buscar
-        cliente = Cliente.objects.filter(Q(cedula__contains =buscar)|Q(nombre__contains=buscar)|Q(apellido__contains=buscar)).order_by("id")
+        cliente = Cliente.objects.filter(Q(cedula__icontains =buscar)|Q(nombre__icontains=buscar)|Q(apellido__icontains=buscar)).order_by("id")
         print cliente
         data = serializers.serialize('json',cliente,fields=('id','cedula','nombre','apellido','telefono','direccion','email','ocupacion','estado','ciudad'))
         return HttpResponse(data,content_type='application/json')

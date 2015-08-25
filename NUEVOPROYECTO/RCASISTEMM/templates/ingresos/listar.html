@@ -6,36 +6,56 @@
 
 <div class="well">
  		<div class="btn-toolbar" role="toolbar">   
- 		 	<div class="col-lg-6" >
+ 		 	<div class="col-lg-4" >
                	<a href="{% url 'crearIngreso'  %}">
 					<button type="button" class="btn btn-danger" name='btnAgregar'onclick=""><span class=" glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</button>
                 </a>
 		
                  
-                <a href="{% url 'pdf_Ingresos'  %}">
-              	  <button name="btnReporte" type="button" class="btn btn-danger"><span class=" glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reporte</button>  
-              	</a>
+            <a href="{% url 'pdf_Ingresos'  %}">
+              	  <button name="btnReporte" id="btnGuardar" type="button" class="btn btn-danger"><span class=" glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reporte</button>  
+            </a>
              </div>   
-            <div class="col-lg-6" > 
-     	 		 <form method="POST" action="">{% csrf_token %}
+            <div class="col-lg-8" > 
+     	 		<div class="row" >
+	     	 		<div class="col-lg-1" >
+	     	 			<label>Inicio</label>
+	     	 		</div>
+	     	 		<div class="col-lg-4" >
+		     	 		 <div class='input-group date' id='datetimepicker1'>
+		                    <input type='text' id="txtfecha_inicio" class="form-control" />
+		                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                 </div>
+	     	 		</div>
+	     	 		<div class="col-lg-1" >
+	     	 		<label>Hasta</label>
+	     	 		</div>
+	     	 		<div class="col-lg-4" >
+	     	 		 <div class='input-group date' id='datetimepicker2'>
+	                                        <input type='text' id="txtfecha_fin" class="form-control" />
+	                                        <span class="input-group-addon">
+	                                            <span class="glyphicon glyphicon-calendar"></span>
+	                                        </span>
+	                                     </div>
+
+			   
+			   		 
+			    </div>
+			    <div class="col-lg-2" >
+			    <button type="button" class="btn btn-danger" id="btnBuscar">Buscar|<span class=" glyphicon glyphicon-search" aria-hidden="true"></span> </button>
+			    </div>
+     	 		</div>
+     	 		</div>
 				
-		    		  <div class="input-group">
-		     			 <input type="text" class="form-control " placeholder="Search for...">
-				      <span class="input-group-btn">
-				        <button class="btn btn-default" type="button"><span class=" glyphicon glyphicon-search" aria-hidden="true"></button>
-				      </span>
-									      
-					    
+		    		 
 		       						
-		       			</div>
-		    
-		   		 </form>
-		    </div>
+		       			
+		       			
      	  
         </div> 
         <br></br>
-	<div class="table-responsive">
-		<table class="table table-bordered table-hover">
+	<div id="divTabla" class="table-responsive">
+		<table id = "tblTabla" class="table table-bordered table-hover">
 	        <thead>
 	          <tr>
 	            <td class="success">#</td>
@@ -72,40 +92,110 @@
 		</table>
 		
 	</div>
-  
-</div>
-</div>
+   <div id="datos">
 </div> 
+</div>
+
 {% endblock content %}
 {%block js%}
   
 
 <script>
+		
+		$('#btnBuscar').on('click',filtrado);
+		function filtrado(){
+			
+			var inicio = convertirfecha(document.getElementById("txtfecha_inicio").value)
+			var fin = convertirfecha(document.getElementById("txtfecha_fin").value)
+			console.log(inicio);
+			console.log(fin);
+			$.ajax({
+				data:{'inicio':inicio,'fin':fin},
+				url:'/ingreso/buscar/',
+				type: 'get',
+
+				success: function(data){
+					document.getElementById('tblTabla').style.display = 'none'
+					var html = '<div id="divTabla" class="table-responsive"><table id = "tblTabla" class="table table-hover"><thead><tr><td class="success">#</td><td class="success">USUARIO</td><td class="success">FECHA</td><td class="success">DETALLE</td><td class="success">TIPO</td><td class="success">VALOR</td><td class="success">ESTADO</td><td class="success">------</td><td class="success">------</td></tr></thead><tbody >'
+					for(var i = 0; i<data.length ; i++){
+
+						var usuario = '';
+
+
+						{% for usu in listarUsuarios  %}
+							if ('{{usu.id}}'==data[i].fields.usuario) {
+								usuarioo='{{usu.username}}';
+								usuario='{{usu}}';
+							};
+
+
+						{% endfor %}
+
+						{% for ingre in ingresos  %}
+							if ('{{ingre.usuario}}'==usuario) {
+								ID='{{ingre.id}}';
+								estado='{{ingre.estado}}'
+							}
+						{% endfor %}
+
+
+						html += '<tr><td>'+ID+'</td><td >'+usuarioo+'</td><td >'+data[i].fields.fecha+'</td><td >'+data[i].fields.detalle+'</td><td >'+data[i].fields.tipo+'</td><td >'+data[i].fields.valor+'</td><td >'+estado+'</td>';
+						var botones = "<td ><button class='btn btn-danger' id='btnupdate"+ID+"' value="+ID+" onclick='actualizarDatos("+ID+")'><span class='glyphicon glyphicon-edit'></i></button> </td><td ><button class='btn btn-danger' id='btndelete' value="+ID+" onclick='eliminarDatos("+ID+")'><span class='glyphicon glyphicon-remove-sign'></i></button></td></tr>";
+						html +=botones;
+					}
+					
+					var uni='</tbody></table></div>'
+					$('#datos').html(html+uni);
+				}
+	
+	
+	
+			});
+	
+		}
+
+		
+
+
+
+   $(function () {
+                  $('#datetimepicker1').datetimepicker();
+              });
+    $(function () {
+                  $('#datetimepicker2').datetimepicker();
+              });
 	function actualizarDatos(r){
 		var s = document.getElementById('btnupdate'+r).value
 		setTimeout("location.href='/ingreso/modificar/"+r+"'"+"",10);
-ingreso
+
 	}
 	function eliminarDatos(r){
 		var s = document.getElementById('btnupdate'+r).value
 		setTimeout("location.href='/ingreso/eliminar/"+r+"'"+"",10);
 
 	}
+	function convertirfecha(texto){
+      var cadena =texto;
+      var dia="";
+      var mes="";
+      var ano="";
+     
+      for(i=0; i<10; i++) 
+        if ((i==1)||(i==0)){
+           mes=mes+cadena.charAt(i);
+        }else{
+          if ((i==3)||(i==4)){
+           dia=dia+cadena.charAt(i);
+          }else{
+            if((i==6)||(i==7)||(i==8)||(i==9)){
+                ano=ano+cadena.charAt(i)
+            }
+          }
+        }
+        var fecha=ano+"-"+mes+"-"+dia
+        return(fecha)
+    }
 	</script>
 
-	<script type="text/javascript">
-		 var nombre = []
-		    
 
-		    var contador  = 0;
-		    {% for prod in productos %}
-		      nombre[contador]="{{prod.nombre}}";
-		      console.log(nombre[contador]);
-		      contador=contador+1;
-		    {% endfor %}
-
-		        $('input.typeahead').typeahead({
-		                local: nombre
-		            });
-</script>
 {%endblock js%}

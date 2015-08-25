@@ -1,117 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RCA HOTEL | Sistema</title>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css">
+<link rel="stylesheet" href="{{STATIC_URL}}css/stilo.css">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
-<style type="text/css">
-	.errores{
-            -webkit-boxshadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            background: red;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            color: #fff;
-            display: none;
-            font-size: 14px;
-            margin-top: -40px;
-            margin-left: -150px;
-            padding: 10px;
-            position: absolute;
-        }
-</style>
-
-<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css">
+<link href="{{STATIC_URL}}css/bootstrap.css" rel='stylesheet' type='text/css'/>
 <link rel="stylesheet" href="{{STATIC_URL}}css/stilo.css">
 <link href="{{STATIC_URL}}css/style.css" rel="stylesheet" type="text/css" media="all"/>
-
-<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-datetimepicker.css">
-<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-datetimepicker.min.css">
-    
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="{{STATIC_URL}}js/jquery.min.js"></script>
 
-
-
-
 </head>
 <body>
-<!--header starts-->
-<div class="header">
-	 <div class="top-header">
-		 <div class="container">
-			 <div class="logo">
-				 <a href="/"><img src="{{STATIC_URL}}images/logo.png"/></a>
-			 <div class="clearfix"></div>
-			 </div>
-			 <span class="menu"> </span>
-			 <div class="m-clear"></div>
-			 <div class="top-menu">
-				<ul class="nav navbar-nav">
-                <li class="dropdown"><a href="/sistema">SISTEMA</a></li>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topFixedNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+      <a class="navbar-brand" href="/inicio"><img src="{{STATIC_URL}}images/logo.png"/></a></div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="topFixedNavbar1">
+      <ul class="nav navbar-nav">
         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">GESTION OPERATIVA</a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/cliente/listar">ADM. CLIENTE</a></li>
-            <li><a href="/habitacion/listar">ADM. HABITACIONES</a></li>
-            <li><a href="/reservacion/listar">ADM. RESERVACIONES</a></li>
-            <li><a href="/tipoHabitacion/listar">ADM. TIPO HABITACIONES</a></li>
-            <li><a href="/categoriaHabitacion/listar">ADM. CATEGORIA HABITACIONES</a></li>
+            <li><a href="Historia.html">ADM. CLIENTE</a></li>
+            <li><a href="Mision.html">ADM. HABITACIONES</a></li>
+            <li><a href="Vision.html">ADM. RESERVACIONES</a></li>
+            <li><a href="Vision.html">ADM. TIPO HABITACIONES</a></li>
+            
             <li class="divider"></li>
             
           </ul>
          </li>
           <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">GESTION CONTABLE</a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/producto/listar">ADM. PRODUCTOS</a></li>
-            <li><a href="/factura/listar">ADM. FACTURAS</a></li>
-            <li><a href="/egreso/listar">ADM. EGRESOS</a></li>
-            <li><a href="/ingreso/listar">ADM. INGRESOS</a></li>
+            <li><a href="Historia.html">ADM. PRODUCTOS</a></li>
+            <li><a href="Mision.html">ADM. FACTURAS</a></li>
+            <li><a href="/cliente/filtrar">ADM. EGRESOS</a></li>
+            <li><a href="/cliente/filtrar">ADM. INGRESOS</a></li>
             
             <li class="divider"></li>            
            </ul>
           </li>
         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">GESTION SEGURIDAD</a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/usuario/listar">ADM. EMPLEADOS</a></li>
-            <li><a href="/hotel/listar/">ADM. DATOS DEL HOTEL</a></li>
-            
+            <li><a href="Historia.html">ADM. EMPLEADOS</a></li>
+            <li><a href="Mision.html">ADM. DATOS DEL HOTEL</a></li>
+            <li><a href="Vision.html">RCA HOTEL</a></li>
             
             <li class="divider"></li>
            </ul>         
         </li>
-      </ul>                   
-				 <script>
-					$("span.menu").click(function(){
-						$(".top-menu ul").slideToggle(200);
-					});
-				</script>
-			 </div>
-		  </div>
-	  </div>
-</div>
-
-<!---->
- <div class="rooms text-center">
-	 <div class="container">
-		<h3><strong>Sistema Integral Rca Hotel</strong></h3>
-		<div class="container"> 
-		{% block content %}
-
-        {% endblock %}
+      </ul> 
+      
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
 <div class="">
         <section class="content">
-           
+            {% block content %}
+
+            {% endblock %}
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
   <div class="row"> </div>
-</div> 
-	 </div>
 </div>
-<!---->
+
+<hr>
 <div class="fotter">
 	  <div class="container">
 		 <h3>Mejor Confort, Mejor Hospitalidad</h3>
@@ -119,7 +90,6 @@
 		 <i class="man"></i>
 	 </div>
 </div>
-<!---->
 <div class="fotter-info">
 	  <div class="container">
 	      <div class="col-md-5 details">
@@ -149,28 +119,15 @@ Desde ayer se aceleran los trabajos para dejar listos los 30 carros alegóricos 
 				 <p>Uno de los carros principales y considerado especial es el que estará destinado para Paulina Vega, la actual Miss Universo, quien presidirá este evento. Los organizadores decidieron colocar varios elementos que identifican a la colombiana.</p>
 				 <a href="#">LEA MAS..</a>
 			 </div>
-
-
 			 <div class="member">
-
-			<h4>AREA DE MEMBRESIA</h4>
-			 {% if user.is_authenticated %}
-                     <font color="white"> Bienvenidooo {{user.username|capfirst}}</font>
-                      <a href="/cerrar/"> <font color="silver"> >>Salir<<</font></a>
-             {% else %}
-             <form method="POST">
-             {% csrf_token %}
+			 <h4>AREA DE MEMBRESIA</h4>
+             <form>
 			 <p>Username</p>
-			 <input name="username" type="text" id="inputEmail" placeholder="Usuario">
+			 <input type="text" placeholder="" required/>
 			 <p>Password</p>
-			 <input name="password" type="password" id="inputPassword" placeholder="Contraseña">	
-			 <hr>
-			 <input type="submit" value="INGRESAR"/>
-             <a href="/registrarse/" class="reg"><font color="silver">Registrarse</font></a>
+			 <input type="password" placeholder="" required/>		
+			 <input type="submit" value="LOGIN"/>
 			 </form>
-			 {% endif %} 
-
-
 </div>
 			 <div class="clearfix"></div>
 		 </div>
@@ -182,18 +139,13 @@ Desde ayer se aceleran los trabajos para dejar listos los 30 carros alegóricos 
       <br> 
       Localidad:Machala - El Oro - Ecuador
       <br>
-	 Copyright &copy; 2015 <a href="/">Hotel RCA</a>. Todos Los Derechos Reservados</h6>	  
+	 Copyright &copy; 2015 <a href="/inicio">Hotel RCA</a>. Todos Los Derechos Reservados</h6>	  
 </div>
-<!---->
 {% block modales %}
 
 {% endblock %}
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 <script src="{{STATIC_URL}}js/jquery-1.11.2.min.js"></script> 
-<script src="{{STATIC_URL}}js/bootstrap-datetimepicker.js"></script>
-<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
-<script src="{{STATIC_URL}}js/moment.js"></script>
-<script src="{{STATIC_URL}}js/bootstrap-datetimepicker.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed --> 
 <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
 <script src="{{ STATIC_URL }}Flat-UI/js/jquery.ui.touch-punch.min.js"></script>
@@ -209,4 +161,5 @@ Desde ayer se aceleran los trabajos para dejar listos los 30 carros alegóricos 
 {%block js%}
 {%endblock%}
 </body>
+
 </html>

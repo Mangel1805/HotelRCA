@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^modificar/(?P<pk>[\d]+)$', modificarProducto.as_view(),name='editarProducto'),
     url(r'^eliminar/(?P<pk>[\d]+)$', eliminarProducto.as_view(),name='eliminarProducto'),
     url(r'^listar/$', listarProducto.as_view(),name='listarProducto'),
+    url(r'^buscar/$', buscarProducto.as_view(),name='buscarProducto'),
     url(r'^generar_pdf/$','apps.productos.views.generar_pdf', name='pdf_Productos'),
    
     

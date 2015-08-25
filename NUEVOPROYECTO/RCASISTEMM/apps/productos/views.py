@@ -7,6 +7,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import Table
+from django.db.models import Q
 
 from django.shortcuts import render
 from apps.sistema.models import Productos
@@ -43,6 +44,14 @@ class listarProducto(ListView):
 	template_name='productos/listar.html'
 	context_object_name='productos'
     
+class buscarProducto(TemplateView):
+    def get(self,request,*args,**kwargs):
+        buscar = request.GET.get('nombre')
+        print buscar
+        produc = Productos.objects.filter(Q(nombre__icontains=buscar)|Q(descripcion__icontains=buscar)).order_by("id")
+        print produc
+        data = serializers.serialize('json',produc,fields=('nombre','descripcion','costo','estado'))
+        return HttpResponse(data,content_type='application/json')
 
 def generar_pdf(request):
     print "Genero el PDF productos"

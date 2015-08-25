@@ -15,6 +15,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,UpdateView,DeleteView
 from django.http import HttpResponse
 from django.core import serializers	
+from django.db.models import Q
 #from django.template import Context, Template,RequestContext
 
 class index(TemplateView):
@@ -160,11 +161,34 @@ class eliminarFactura(DeleteView):
 	template_name='factura/eliminar.html'
 	success_url=reverse_lazy('listarFactura')
 
-class listarFactura(ListView):
-	model=Factura
-	template_name='factura/listar.html'
-	context_object_name='facturas'
 
+class listarFactura(ListView):
+    model=Factura
+    template_name='factura/listar.html'
+    context_object_name='facturas'
+    def get_context_data(self,**kwargs):
+        ctx = super(listarFactura, self).get_context_data(**kwargs)
+        ctx['listarClientes'] = Cliente.objects.all()
+        ctx['listarFacturas'] = Factura.objects.order_by("id")
+        ctx['listarReservacion'] = Reservacion.objects.all()
+        return ctx
+
+class buscarFactura(TemplateView):
+    def get(self,request,*args,**kwargs):
+        buscar = request.GET.get('nombre')
+        print buscar
+
+        clie=Cliente.objects.filter(cedula__icontains=buscar)
+        print clie
+
+        reser=Reservacion.objects.filter(cliente__icontains=clie)
+        print reser
+
+
+        factu = Factura.objects.filter(Q(reservacion__icontains=reser)).order_by("id")
+        print factu
+        data = serializers.serialize('json',factu,fields=('fecha','subtotal','iva','total','estado','reservacion'))
+        return HttpResponse(data,content_type='application/json')
 
 
 def generar_pdf(request):

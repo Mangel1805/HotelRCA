@@ -14,7 +14,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,UpdateView,DeleteView
 from django.http import HttpResponse
 from django.core import serializers	
-
+from django.db.models import Q
 # Create your views here.
 
 
@@ -43,7 +43,14 @@ class listarHabitacion(ListView):
 	template_name='habitaciones/listar.html'
 	context_object_name='habitacion'
 
-
+class buscarHabitacion(TemplateView):
+    def get(self,request,*args,**kwargs):
+        buscar = request.GET.get('nombre')
+        print buscar
+        produc = Habitacion.objects.filter(Q(habitacion__icontains=buscar)).order_by("id")
+        print produc
+        data = serializers.serialize('json',produc,fields=('habitacion','tipo','categoria','precio','estado'))
+        return HttpResponse(data,content_type='application/json')
 
 def generar_pdf(request):
     print "Genero el PDF"

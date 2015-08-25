@@ -16,24 +16,21 @@
               	</a>
              </div>   
             <div class="col-lg-6" > 
-     	 		 <form method="POST" action="">{% csrf_token %}
-				
-		    		  <div class="input-group">
-		     			 <input type="text" class="form-control " placeholder="Search for...">
-				      <span class="input-group-btn">
-				        <button class="btn btn-default" type="button"><span class=" glyphicon glyphicon-search" aria-hidden="true"></button>
-				      </span>
-		       						
+     	 		<div class="input-group">
+		     			 <input type="text"    id="txtBuscar" class=" pull-right form-control" autofocus placeholder="Buscar..."   >
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button"><span class=" glyphicon glyphicon-search" aria-hidden="true"></button>
+						      </span>
+					      	
 		       			</div>
 		    
-		   		 </form>
 		    </div>
      	  
         </div> 
         <br></br>
 </div> 
-	<div class="table-responsive">
-		<table class="table table-bordered table-hover">
+	<div id="divTabla" class="table-responsive">
+		<table id = "tblTabla" class="table table-bordered table-hover">
 	        <thead>
 	          <tr>
 	            <td class="success">#</td>
@@ -49,7 +46,7 @@
 	        <tbody >
 	         
 	          <!-- Aplicadas en las celdas (<td> o <th>) -->
-		          {% for factura in facturas %}
+		          {% for factura in listarFacturas %}
 			          <tr id="row{{factura.id}}"class="active">
 			          	<td >{{factura.id}}</td>
 		          		<td >{{factura.fecha}}</td>
@@ -66,17 +63,65 @@
 		          {% endfor %}
 	      	</tbody>
 		</table>
-		
+	
 	</div>
-  
-</div>
-</div>
+  <div id="datos">
 </div> 
+</div>
+
 {% endblock content %}
 {%block js%}
   
 
 <script>
+		$('#txtBuscar').on('keypress',filtrado);
+		function filtrado(){
+			var nombre = $(this).val();
+			console.log(nombre);
+			$.ajax({
+				data:{'nombre':nombre},
+				url:'/factura/buscar/',
+				type: 'get',
+
+				success: function(data){
+					document.getElementById('tblTabla').style.display = 'none'
+					var html = '<div id="divTabla" class="table-responsive"><table id = "tblTabla" class="table table-hover"><thead><tr><td class="success">#</td><td class="success">FECHA</td><td class="success">SUBTOTAL</td><td class="success">IVA</td><td class="success">TOTAL</td><td class="success">ESTADO</td><td class="success">RESERVACION</td><td class="success">------</td></tr></thead><tbody >'
+					for(var i = 0; i<data.length ; i++){
+
+						var ident = ''
+						var rese=''
+						
+
+						{%for reser in listarReservacion  %}
+							if ('{{reser.id}}'==data[i].fields.reservacion) {
+								cliente = '{{reser.cliente}}'+" "+'{{reser.habitacion}}';
+								rese='{{reser}}'
+							};
+
+
+						{% endfor %}
+						{% for factura in facturas %}
+							if ('{{factura.reservacion}}'==rese) {
+								ident='{{factura.id}}'
+								estado='{{factura.estado}}'
+							}
+						{% endfor %}
+
+
+						html += '<tr><td>'+ident+'</td><td >'+data[i].fields.fecha+'</td><td >'+data[i].fields.subtotal+'</td><td >'+data[i].fields.iva+'</td><td >'+data[i].fields.total+'</td><td >'+estado+'</td><td >'+cliente+'</td>';
+						var botones = "<td ><button class='btn btn-danger' id='btnupdate"+ident+"' value="+ident+" onclick='actualizarDatos("+ident+")'><span class='glyphicon glyphicon-edit'></i></button> </td></tr>";
+						html +=botones;
+					}
+					
+					var uni='</tbody></table></div>'
+					$('#datos').html(html+uni);
+				}
+	
+	
+	
+			});
+	
+		}
 	function actualizarDatos(r){
 		var s = document.getElementById('btnupdate'+r).value
 		setTimeout("location.href='/factura/modificar/"+r+"'"+"",10);
@@ -87,21 +132,15 @@
 		setTimeout("location.href='/factura/eliminar/"+r+"'"+"",10);
 
 	}
+	  function fecha(texto){
+    	
+		var posicion = texto.indexOf(" ")
+		var dia  = texto.substring(0,posicion);
+		var mes = texto.substring(posicion+4,(texto.length)-8);
+		var ano = texto.substring((texto.length)-4,texto.length);
+		return(ano+"-"+numeromes(mes)+"-"+dia);
+    }
 	</script>
 
-	<script type="text/javascript">
-		 var nombre = []
-		    
-
-		    var contador  = 0;
-		    {% for prod in productos %}
-		      nombre[contador]="{{prod.nombre}}";
-		      console.log(nombre[contador]);
-		      contador=contador+1;
-		    {% endfor %}
-
-		        $('input.typeahead').typeahead({
-		                local: nombre
-		            });
-</script>
+	
 {%endblock js%}

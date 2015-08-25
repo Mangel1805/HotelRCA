@@ -19,13 +19,14 @@
             <div class="col-lg-6" > 
      	 		
 				
-		    		  <div class="input-group">
-		     			 <input type="search" id="txtBuscar" class=" pull-right form-control" autofocus placeholder="Buscar...">
-				      
-									      
-					    
-		       						
+		    		   <div class="input-group">
+		     			 <input type="text"    id="txtBuscar" class=" pull-right form-control" autofocus placeholder="Buscar..."   >
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button"><span class=" glyphicon glyphicon-search" aria-hidden="true"></button>
+						      </span>
+					     	
 		       			</div>
+		    
 		    
 		   		
 		    </div>
@@ -46,6 +47,8 @@
 	            <td class="success">Ocupacion</td>
 	            <td class="success">ESTADO</td>
 	            <td class="success">CIUDAD</td>
+	            <td class="success">------</td>
+	            <td class="success">------</td>
 	          </tr>
 	        </thead>
 	        <tbody >
@@ -76,11 +79,11 @@
 		</table>
 		
 	</div>
-  
-</div>
-<div id="datos">
+  <div id="datos">
         
     </div>
+</div>
+
 {% endblock content %}
 {%block js%}
   

@@ -15,27 +15,25 @@
                 <button name="btnReporte" type="button" class="btn btn-danger"><span class=" glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reporte</button>   </a>
              </div>   
             <div class="col-lg-6" > 
-     	 		 <form method="POST" action="">{% csrf_token %}
+     	 		
 				
 		    		  <div class="input-group">
-		     			 <input type="text" class="form-control " placeholder="Search for...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button"><span class=" glyphicon glyphicon-search" aria-hidden="true"></button>
-      </span>
-					      
-					    
-		       						
+		     			 <input type="text"    id="txtBuscar" class=" pull-right form-control" autofocus placeholder="Buscar..."   >
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button"><span class=" glyphicon glyphicon-search" aria-hidden="true"></button>
+						      </span>
+					      	
 		       			</div>
 		    
-		   		 </form>
+		   	
 		    </div>
      	  
      	  	
         </div>    	 
 
 <br> </br>
-	<div class="table-responsive">
-		<table class="table table-bordered table-hover">
+	<div id="divTabla" class="table-responsive">
+		<table  id = "tblTabla" class="table table-bordered table-hover">
 	        <thead>
 	          <tr>
 	            <td class="success">#</td>
@@ -43,6 +41,8 @@
 	            <td class="success">DESCRIPCION</td>
 	            <td class="success">COSTO</td>
 	            <td class="success">ESTADO</td>
+	            <td class="success">------</td>
+	            <td class="success">------</td>
 	          </tr>
 	        </thead>
 	        <tbody >
@@ -68,15 +68,57 @@
 		</table>
 		
 	</div>
-  
-</div>
-</div>
+  <div id="datos">
 </div> 
+</div>
+
 {% endblock content %}
 {%block js%}
   
 
 <script>
+		$('#txtBuscar').on('keypress',filtrado);
+		function filtrado(){
+			var nombre = $(this).val();
+			console.log(nombre);
+			$.ajax({
+				data:{'nombre':nombre},
+				url:'/producto/buscar/',
+				type: 'get',
+
+				success: function(data){
+					document.getElementById('tblTabla').style.display = 'none'
+					var html = '<div id="divTabla" class="table-responsive"><table id = "tblTabla" class="table table-hover"><thead><tr><td class="success">#</td><td class="success">NOMBRE</td><td class="success">DESCRIPCIÓN</td><td class="success">COSTO</td><td class="success">ESTADO</td><td class="success">------</td><td class="success">------</td></tr></thead><tbody >'
+					for(var i = 0; i<data.length ; i++){
+
+						var ident = ''
+
+
+						{% for prod in productos  %}
+							if ('{{prod.nombre}}'==data[i].fields.nombre) {
+								ident = '{{prod.id}}';
+								ciudad = '{{prod.ciudad}}';
+								estado='{{prod.estado}}'
+							};
+
+
+						{% endfor %}
+
+						html += '<tr><td>'+ident+'</td><td >'+data[i].fields.nombre+'</td><td >'+data[i].fields.descripcion+'</td><td >'+data[i].fields.costo+'</td><td >'+estado+'</td>';
+						var botones = "<td ><button class='btn btn-danger' id='btnupdate"+ident+"' value="+ident+" onclick='actualizarDatos("+ident+")'><span class='glyphicon glyphicon-edit'></i></button> </td><td ><button class='btn btn-danger' id='btndelete' value="+ident+" onclick='eliminarDatos("+ident+")'><span class='glyphicon glyphicon-remove-sign'></i></button></td></tr>";
+						html +=botones;
+					}
+					
+					var uni='</tbody></table></div>'
+					$('#datos').html(html+uni);
+				}
+	
+	
+	
+			});
+	
+		}
+
 	function actualizarDatos(r){
 		var s = document.getElementById('btnupdate'+r).value
 		setTimeout("location.href='/producto/modificar/"+r+"'"+"",10);

@@ -77,14 +77,15 @@
 					 <li><a class="scroll" href="/galeria">GALERIA</a></li>
 					 <li><a class="scroll" href="/servicios">SERVICIOS</a></li>
 					 <li><a class="scroll" href="/contactenos">CONTACTENOS</a></li>
-					 <li class="menu-item dropdown">
+                     <li class="active"><a href="/sistema">SISTEMA</a></li>
+					<!-- <li class="menu-item dropdown">
 	                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">SISTEMA<b class="caret"></b></a>
 	                    <ul class="dropdown-menu">
 	                        <li class="menu-item dropdown dropdown-submenu">
-	                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">CLIENTE</a>
+	                            <a href="/nosotros" class="dropdown-toggle" data-toggle="dropdown">CLIENTE</a>
 	                            <ul class="dropdown-menu">
 	                                <li class="menu-item ">
-	                                    <a href="#">Link 1</a>
+	                                    <a href="/nosotros">noso</a>
 	                                </li>
 	                                <li class="menu-item dropdown dropdown-submenu">
 	                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Level 2</a>
@@ -127,39 +128,146 @@
 	                                    </ul>
 	                                </li>
 	                            </ul>
-
-
-
 	                        </li>
 	                    </ul>
-	                </li>
-
-			
-                
-         
-					    
+	                </li>-->
+                    </ul>				    
 				 <script>
 					$("span.menu").click(function(){
 						$(".top-menu ul").slideToggle(200);
 					});
-				</script>
+				</script>                
 			 </div>
 		  </div>
 	  </div>
 </div>
 <!---->
- <div class="rooms text-center">
+ <div class="main_bg">
 	 <div class="container">
-		 <h3>Sistema Integral RCA HOTEL</h3>
-		<div class="">
-        <section class="content">
-            {% block content %}
-
-            {% endblock %}
-
-        </section><!-- /.content -->
-      </div> 
-	 </div>
+		 <div class="main">	          
+			   <ul class="service_list">
+				 <li>
+					 <div class="ser_img">
+						    <a href="/cliente/listar"><span class="next"> </span>
+							<img src="{{STATIC_URL}}images/admcliente.jpg" alt="" />
+							
+							</a>
+				      </div>	
+						<h4><a  href="/cliente/listar">Adm. Cliente</a></h4>
+				 </li>
+				 <li>
+					 <div class="ser_img">
+							<a href="/habitacion/listar"><span class="next"> </span>
+							<img src="{{STATIC_URL}}images/admhabit.jpg" alt="" />
+							
+							</a>
+					 </div>					 
+					 <h4><a href="/habitacion/listar">Adm. Habitaciones</a></h4>
+				 </li>
+                 <li>
+					 <div class="ser_img">
+					     <a href="/reservacion/listar"><span class="next"> </span>
+						 <img src="{{STATIC_URL}}images/admreserva.jpg" alt="" />
+						 
+						 </a>
+				     </div>						
+					    <h4><a href="/reservacion/listar">Adm. Reservaciones</a></h4>
+				 </li>
+				 <li>
+					 <div class="ser_img">
+							<a href="/tipoHabitacion/listar"><span class="next"> </span>
+							<img src="{{STATIC_URL}}images/admtipoh.png" alt="" />
+							
+							</a>
+					 </div>						
+						<h4><a href="/tipoHabitacion/listar">Adm. Tipo Habitaciones</a></h4>
+				 </li>
+				 
+					<div class="clear"></div>
+			  </ul>
+			  
+			  <ul class="service_list top">
+              <li>
+					 <div class="ser_img">
+							<a href="/categoriaHabitacion/listar"><span class="next"> </span>
+							<img src="{{STATIC_URL}}images/admcath.jpg" alt="" />
+							
+							</a>
+					 </div>						
+						<h4><a href="/categoriaHabitacion/listar">Adm. Categoria Habitaciones</a></h4>
+				 </li>
+              <li>
+					 <div class="ser_img">
+							<a href="/producto/listar"><span class="next"> </span>
+							<img src="{{STATIC_URL}}images/admprod.jpg" alt="" />
+							
+							</a>
+					 </div>						
+						<h4><a href="/producto/listar">Adm. Productos</a></h4>
+				 </li>
+				 <li>
+					 <div class="ser_img">
+						 <a href="/factura/listar"><span class="next"> </span>
+						 <img src="{{STATIC_URL}}images/admfactu.gif" alt="" />
+						 
+						 </a>
+					 </div>						
+						<h4><a  href="/factura/listar">Adm. Facturas</a></h4>
+				 </li>
+				 <li>
+				     <div class="ser_img">
+							<a href="/egreso/listar"><span class="next"> </span>
+							<img src="{{STATIC_URL}}images/admegresos.png" alt="" />
+							
+							</a>
+					 </div>	
+						<h4><a href="/egreso/listar">Adm. Egresos</a></h4>											
+			     </li>
+				
+					<div class="clear"></div>
+			  </ul>
+              <ul class="service_list top">
+               <li>
+					 <div class="ser_img">
+						 <a href="/ingreso/listar"><span class="next"> </span>
+						 <img src="{{STATIC_URL}}images/admingresos.jpg" alt="" />
+						 
+						 </a>
+					 </div>		
+						<h4><a  href="/ingreso/listar">Adm. Ingresos</a></h4>
+				 </li>
+              <li>
+					 <div class="ser_img">
+							<a href="/usuario/listar"><span class="next"> </span>
+							<img src="{{STATIC_URL}}images/admempleados.jpg" alt="" />
+							
+							</a>
+					 </div>						
+						<h4><a href="/usuario/listar">Adm. Empleados</a></h4>
+				 </li>
+				 <li>
+					 <div class="ser_img">
+						 <a href="/listarHotel"><span class="next"> </span>
+						 <img src="{{STATIC_URL}}images/admdatos.jpg" alt="" />
+						 
+						 </a>
+					 </div>						
+						<h4><a  href="/listarHotel">Datos del Hotel</a></h4>
+				 </li>
+				 <li>
+				     <div class="ser_img">
+							<a href="/base"><span class="next"> </span>
+							<img src="{{STATIC_URL}}images/admhotelrca.jpg" alt="" />
+							
+							</a>
+					 </div>	
+						<h4><a href="/base">RCA HOTEL</a></h4>											
+			     </li>
+				 	<div class="clear"></div>
+			  </ul>
+			 <div class="clear"></div>
+		   </div>
+	  </div>
 </div>
 <!---->
 <div class="fotter">
@@ -203,7 +311,7 @@ Desde ayer se aceleran los trabajos para dejar listos los 30 carros alegóricos 
 			<h4>AREA DE MEMBRESIA</h4>
 			 {% if user.is_authenticated %}
                      <font color="white"> Bienvenidooo {{user.username|capfirst}}</font>
-                      <a href="/cerrar/"> <font color="silver"> >>Salir<<</font></a>
+                      <a href="/cerrar/"> <font color="silver"> >>Salir<< </font></a>
              {% else %}
              <form method="POST">
              {% csrf_token %}
@@ -227,7 +335,7 @@ Desde ayer se aceleran los trabajos para dejar listos los 30 carros alegóricos 
       <br> 
       Localidad:Machala - El Oro - Ecuador
       <br>
-	 Copyright &copy; 2015 <a href="/inicio">Hotel RCA</a>. Todos Los Derechos Reservados</h6>	  
+	 Copyright &copy; 2015 <a href="/">Hotel RCA</a>. Todos Los Derechos Reservados</h6>	  
 </div>
 <!---->
 <script src="{{STATIC_URL}}js/jquery-1.11.2.min.js"></script> 

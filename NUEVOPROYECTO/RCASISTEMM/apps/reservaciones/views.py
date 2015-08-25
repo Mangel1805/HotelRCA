@@ -41,7 +41,7 @@ def registrarReservacionTempo(request):
     cntx={'listarHabitacion':Habitacion.objects.filter(estado=estadoHabitacion),'listarclientes':Cliente.objects.filter(estado=estadoCliente)}
     print cntx
     
-    return render_to_response('reservacion/crearFicticia.html', cntx,context_instance=RequestContext(request))
+    return render_to_response('reservacion/ver.html', cntx,context_instance=RequestContext(request))
 
 
 
