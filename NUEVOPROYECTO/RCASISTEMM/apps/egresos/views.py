@@ -14,7 +14,8 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,UpdateView,DeleteView
 from django.http import HttpResponse
 from django.core import serializers	
-
+from django.db.models import Q
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -39,12 +40,27 @@ class eliminarEgreso(DeleteView):
 	template_name='egresos/eliminar.html'
 	success_url=reverse_lazy('listarIngresos')
 
+
 class listarEgreso(ListView):
-	model=Egresos
-	template_name='egresos/listar.html'
-	context_object_name='egresos'
+    model=Egresos
+    template_name='egresos/listar.html'
+    context_object_name='egresos'
+    def get_context_data(self,**kwargs):
+        ctx = super(listarEgreso, self).get_context_data(**kwargs)
+        ctx['listarUsuarios'] = User.objects.all()
+        return ctx
 
-
+class buscarEgreso(TemplateView):
+    def get(self,request,*args,**kwargs):
+        print "entro"
+        inicio = request.GET.get('inicio')
+        fin = request.GET.get('fin')
+        print inicio
+        print fin
+        egreso = Egresos.objects.filter(Q(fecha__range=(inicio,fin))).order_by("id")
+        print egreso
+        data = serializers.serialize('json',egreso,fields=('usuario','fecha','articulo','tipo','detalle','cantidad','precio_unitario','precio_total','estado'))
+        return HttpResponse(data,content_type='application/json')
 
 def generar_pdf(request):
     print "Genero el PDF"

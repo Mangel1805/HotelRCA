@@ -247,21 +247,21 @@
 				 </li>
 				 <li>
 					 <div class="ser_img">
-						 <a href="/listarHotel"><span class="next"> </span>
+						 <a href="/hotel/listar"><span class="next"> </span>
 						 <img src="{{STATIC_URL}}images/admdatos.jpg" alt="" />
 						 
 						 </a>
 					 </div>						
-						<h4><a  href="/listarHotel">Datos del Hotel</a></h4>
+						<h4><a  href="/hotel/listar">Datos del Hotel</a></h4>
 				 </li>
 				 <li>
 				     <div class="ser_img">
-							<a href="/base"><span class="next"> </span>
+							<a href=""><span class="next"> </span>
 							<img src="{{STATIC_URL}}images/admhotelrca.jpg" alt="" />
 							
 							</a>
 					 </div>	
-						<h4><a href="/base">RCA HOTEL</a></h4>											
+						<h4><a href="">RCA HOTEL</a></h4>											
 			     </li>
 				 	<div class="clear"></div>
 			  </ul>
@@ -310,7 +310,7 @@ Desde ayer se aceleran los trabajos para dejar listos los 30 carros alegóricos 
 			 <div class="member">
 			<h4>AREA DE MEMBRESIA</h4>
 			 {% if user.is_authenticated %}
-                     <font color="white"> Bienvenidooo {{user.username|capfirst}}</font>
+                     <font color="white"> Bienvenido {{user.username|capfirst}}</font>
                       <a href="/cerrar/"> <font color="silver"> >>Salir<< </font></a>
              {% else %}
              <form method="POST">

@@ -76,7 +76,7 @@
         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">GESTION SEGURIDAD</a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/usuario/listar">ADM. EMPLEADOS</a></li>
-            <li><a href="/hotel/listar/">ADM. DATOS DEL HOTEL</a></li>
+            <li><a href="/hotel/modificar/1">ADM. DATOS DEL HOTEL</a></li>
             
             
             <li class="divider"></li>
@@ -155,7 +155,7 @@ Desde ayer se aceleran los trabajos para dejar listos los 30 carros alegóricos 
 
 			<h4>AREA DE MEMBRESIA</h4>
 			 {% if user.is_authenticated %}
-                     <font color="white"> Bienvenidooo {{user.username|capfirst}}</font>
+                     <font color="white"> Bienvenido {{user.username|capfirst}}</font>
                       <a href="/cerrar/"> <font color="silver"> >>Salir<<</font></a>
              {% else %}
              <form method="POST">

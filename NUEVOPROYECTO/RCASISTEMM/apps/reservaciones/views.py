@@ -13,6 +13,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,UpdateView,DeleteView
 from django.http import HttpResponse
 from django.core import serializers	
+from django.db.models import Q
 
 # Create your views here.
 
@@ -30,7 +31,7 @@ def registrarReservacion(request):
     cntx={'listarHabitacion':Habitacion.objects.filter(estado=estadoHabitacion),'listarclientes':Cliente.objects.filter(estado=estadoCliente)}
     print cntx
     
-    return render_to_response('reservacion/ven.html', cntx,context_instance=RequestContext(request))
+    return render_to_response('reservacion/crear.html', cntx,context_instance=RequestContext(request))
     
 def registrarReservacionTempo(request):
     estadoHabitacion = EstadosHabitacion.objects.get(estado='Inactivo')
@@ -41,7 +42,7 @@ def registrarReservacionTempo(request):
     cntx={'listarHabitacion':Habitacion.objects.filter(estado=estadoHabitacion),'listarclientes':Cliente.objects.filter(estado=estadoCliente)}
     print cntx
     
-    return render_to_response('reservacion/ver.html', cntx,context_instance=RequestContext(request))
+    return render_to_response('reservacion/crearFicticia.html', cntx,context_instance=RequestContext(request))
 
 
 
@@ -265,8 +266,25 @@ class listarReservacion(ListView):
     def get_context_data(self,**kwargs):
         ctx = super(listarReservacion, self).get_context_data(**kwargs)
         ctx['ficticia'] = Ficticia.objects.all()
+        ctx['listarclientes'] = Cliente.objects.all()
         ctx['listarReservacion'] = Reservacion.objects.filter(estado=EstadosReservacion.objects.get(estado='Activo'))
         return ctx
+
+class buscarReservacion(TemplateView):
+    def get(self,request,*args,**kwargs):
+        buscar = request.GET.get('nombre')
+        print buscar
+
+        clie=Cliente.objects.filter(cedula__icontains=buscar)
+        print clie
+        habi=Habitacion.objects.filter(Q(habitacion__icontains=buscar))
+        print habi
+        est=EstadosReservacion.objects.get(estado='Activo')
+        print est
+        reservacion = Reservacion.objects.filter((Q(cliente__icontains=clie)|Q(habitacion__icontains=habi))&Q(estado=est)).order_by("id")
+        print reservacion
+        data = serializers.serialize('json',reservacion,fields=('habitacion','cliente','fecha_inicio','fecha_fin','adultos','ninos','precio','estado'))
+        return HttpResponse(data,content_type='application/json')
            
 
 

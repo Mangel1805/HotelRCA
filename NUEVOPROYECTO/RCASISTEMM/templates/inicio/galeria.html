@@ -197,8 +197,10 @@ Desde ayer se aceleran los trabajos para dejar listos los 30 carros alegóricos 
 			 <div class="member">
 			<h4>AREA DE MEMBRESIA</h4>
 			 {% if user.is_authenticated %}
-                     <font color="white"> Bienvenidooo {{user.username|capfirst}}</font>
+                     <font color="white"> Bienvenido {{user.username|capfirst}}</font>
                       <a href="/cerrar/"> <font color="silver"> >>Salir<<</font></a>
+                      <hr>
+                      <a href="/sistema/"> <font color="silver"> >>Ir al Sistema<<</font></a>
              {% else %}
              <form method="POST">
              {% csrf_token %}

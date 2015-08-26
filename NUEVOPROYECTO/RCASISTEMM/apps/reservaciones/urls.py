@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^eliminar/(?P<pk>[\d]+)$', eliminarReservacion.as_view(),name='eliminarReservacion'),
     url(r'^eliminarFicticia/(?P<pk>[\d]+)$', eliminarReservacionFicticia.as_view(),name='eliminarReservacionFicticia'),
     url(r'^listar/$', listarReservacion.as_view(),name='listarReservacion'),
+    url(r'^buscar/$', buscarReservacion.as_view(),name='buscarReservacion'),
     url(r'^generar_pdf/$','apps.reservaciones.views.generar_pdf', name='pdf_Reservaciones'),
   #  url(r'^registrar/$',registrarReservacion,name='crearReservacion'),
     
