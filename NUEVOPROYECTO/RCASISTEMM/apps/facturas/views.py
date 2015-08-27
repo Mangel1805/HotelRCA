@@ -43,27 +43,20 @@ def guardarFactura(request):
     cantidad = request.GET['cantidad']
     precio = (request.GET['precio'])
     total =request.GET['total']
-
-
     listarProductos=Productos.objects.get(id=codigoProducto)
-    print listarProductos
-
-    
+    print listarProductos  
     print "SIGEEEE"
     print cedula
-    elCliente = Cliente.objects.get(cedula=cedula)
     laHabitacion = Habitacion.objects.get(habitacion=request.GET['Numerohabitacion'])
     print laHabitacion
     unCliente= Cliente.objects.get(cedula=cedula)
-    cliReservacion=Reservacion.objects.get(habitacion=laHabitacion,cliente=unCliente,estado=EstadosReservacion.objects.get(estado='Activo'))
-    print " pasoooo id reservacion"
-    print cliReservacion
-    print str(unCliente.id)+" "+str(unCliente.cedula)+" "+str(unCliente.nombre)
+    print unCliente
     f = Factura.objects.filter(id=request.GET['nFactura']).count()
-    print request.GET['nFactura']
     print f
     print str('factura ')+str(EstadosFactura.objects.get(estado='Activo'))
     if f ==0:
+        cliReservacion=Reservacion.objects.get(cliente=unCliente,habitacion=laHabitacion,estado=EstadosReservacion.objects.get(estado='Activo'))
+        print cliReservacion
         fact = Factura(
             fecha=request.GET['fecha'],
             subtotal=request.GET['subtotal'],
@@ -73,6 +66,7 @@ def guardarFactura(request):
             reservacion= cliReservacion
             )
         fact.save()
+
         laHabitacion.estado=EstadosHabitacion.objects.get(estado='Inactivo')
         laHabitacion.save()
         print "la habitacion se inactivo"
@@ -83,8 +77,6 @@ def guardarFactura(request):
     idfac=Factura.objects.get(id=factura)
     print (str('id de factura ')+str(idfac))
     
-
-
     ser=ServicioCliente.objects.get(habitacion=laHabitacion,producto=listarProductos,cliente=unCliente,estado=EstadosServicio.objects.get(estado='Activo'))
     print ser
     facser=FacturaServicios(servico=ser,factura=idfac)
@@ -95,60 +87,6 @@ def guardarFactura(request):
     print "el servicio paso a inactivo"
     print "---fin---"
     return render_to_response('factura/crear.html',context_instance=RequestContext(request))
-
-    
-
-
-
-def guardarUnaFactura(request):
-    print "ENTROOOOO :V :v "
-    cedula = request.GET['cedula']
-
-
-    total =request.GET['total']
-    print "SIGEEEE"
-    print cedula
-  
-    laHabitacion = Habitacion.objects.get(habitacion=request.GET['Numerohabitacion'])
-
-   
-    unCliente= Cliente.objects.get(cedula=cedula)
-    cliReservacion=Reservacion.objects.get(cliente=unCliente,habitacion=laHabitacion)
-    print " pasoooo id reservacion"
-    print cliReservacion
-    print str(unCliente.id)+" "+str(unCliente.cedula)+" "+str(unCliente.nombre)
-    f = Factura.objects.filter(id=request.GET['nFactura']).count()
-    print request.GET['nFactura']
-    print f
-    print str('factura ')+str(EstadosFactura.objects.get(estado='Activo'))
-    if f ==0:
-        fact = Factura(
-            fecha=request.GET['fecha'],
-            subtotal=request.GET['subtotal'],
-            iva=request.GET['iva'],
-            total =request.GET['total'],
-            estado= EstadosFactura.objects.get(estado='Activo'),
-            reservacion= cliReservacion
-            )
-        fact.save()
-    print str("pasooooooooooooo")
-    
-    laHabitacion.estado=EstadosHabitacion.objects.get(estado='Inactivo')
-    laHabitacion.save()
-    print (str(laHabitacion)+"paso a inactiva")
-
-    cliReservacion.estado=EstadosReservacion.objects.get(estado='Inactivo')
-    cliReservacion.save()
-    print ("la reservacion se inactivo")
-    print "-----fin---"
-
-    return render_to_response('factura/crear.html',context_instance=RequestContext(request))
-
-
-
-
-
-
 
 class editarFactura(UpdateView):
 	model=Factura
@@ -185,7 +123,7 @@ class buscarFactura(TemplateView):
         print reser
 
 
-        factu = Factura.objects.filter(Q(reservacion__icontains=reser)).order_by("id")
+        factu = Factura.objects.filter(Q(reservacion__icontains=reser)|Q(id__icontains=buscar)).order_by("id")
         print factu
         data = serializers.serialize('json',factu,fields=('fecha','subtotal','iva','total','estado','reservacion'))
         return HttpResponse(data,content_type='application/json')
@@ -227,3 +165,46 @@ def generar_pdf(request):
     response.write(buff.getvalue())
     buff.close()
     return response
+
+def guardarUnaFactura(request):
+    print "ENTROOOOO :V :v "
+    cedula = request.GET['cedula']
+    total =request.GET['total']
+    numero=request.GET['Numerohabitacion']
+    print "SIGEEEE"
+    print cedula
+    laHabitacion = Habitacion.objects.get(habitacion=numero)
+    print laHabitacion
+    unCliente= Cliente.objects.get(cedula=cedula)
+    print unCliente
+    cliReservacion=Reservacion.objects.get(cliente=unCliente,habitacion=laHabitacion,estado=EstadosReservacion.objects.get(estado='Activo'))
+    print " pasoooo id reservacion"
+    print cliReservacion
+    print str(unCliente.id)+" "+str(unCliente.cedula)+" "+str(unCliente.nombre)
+    f = Factura.objects.filter(id=request.GET['nFactura']).count()
+    print request.GET['nFactura']
+    print f
+    print str('factura ')+str(EstadosFactura.objects.get(estado='Activo'))
+    if f ==0:
+        fact = Factura(
+            fecha=request.GET['fecha'],
+            subtotal=request.GET['subtotal'],
+            iva=request.GET['iva'],
+            total =request.GET['total'],
+            estado= EstadosFactura.objects.get(estado='Activo'),
+            reservacion= cliReservacion
+            )
+        fact.save()
+    print str("pasooooooooooooo")
+    
+    laHabitacion.estado=EstadosHabitacion.objects.get(estado='Inactivo')
+    laHabitacion.save()
+    print (str(laHabitacion)+"paso a inactiva")
+
+    cliReservacion.estado=EstadosReservacion.objects.get(estado='Inactivo')
+    cliReservacion.save()
+    print ("la reservacion se inactivo")
+    print "-----fin---"
+
+    return render_to_response('factura/crear.html',context_instance=RequestContext(request))
+
