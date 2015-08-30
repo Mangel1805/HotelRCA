@@ -39,7 +39,7 @@ def registrarReservacionTempo(request):
     estadoCliente=EstadosCliente.objects.get(estado='Activo')
    
     print estadoHabitacion
-    cntx={'listarHabitacion':Habitacion.objects.filter(estado=estadoHabitacion),'listarclientes':Cliente.objects.filter(estado=estadoCliente)}
+    cntx={'listarHabitacion':Habitacion.objects.filter(estado=estadoHabitacion).order_by("id"),'listarclientes':Cliente.objects.filter(estado=estadoCliente).order_by("id")}
     print cntx
     
     return render_to_response('reservacion/crearFicticia.html', cntx,context_instance=RequestContext(request))

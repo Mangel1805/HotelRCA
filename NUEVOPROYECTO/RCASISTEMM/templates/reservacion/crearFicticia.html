@@ -130,23 +130,23 @@
 
                                 <label for="cedula">Cédula:</label>
                                 <div class="input-group">
-                                    <input class="form-control ty" type="search" name="cedula" id="txtcedula" required autocomplete="off" placeholder="Cedula" size="100" onkeyup = "if(event.keyCode == 13) javascript:buscarCliente()" / >
+                                    <input class="form-control ty" type="search" maxlength="10" name="cedula" id="txtcedula" required autocomplete="off" placeholder="Cedula" size="100" onkeyup = "if(event.keyCode == 13) javascript:buscarCliente()" / >
                                     <span class="input-group-btn"><button class="btn btn-info" type="button" value="Buscar" onclick="javascript:buscarCliente()" ><i class="glyphicon glyphicon-search"></i></button></span>
                                 </div>
                                 <div class="input-group">
                                 <label for="nombre">Nombre:</label>
-                                <input type="text" class="form-control" name="nombre" id="txtnombre" placeholder="Nombre" >
+                                <input type="text" class="form-control" maxlength="30" name="nombre" id="txtnombre" placeholder="Nombre" >
                                 </div>
                                 <div class="input-group">
                                 <label for="apellido">Apellido:</label>
-                                <input type="text" class="form-control" name="apellido" id="txtapellido" placeholder="Apellido" >
+                                <input type="text" class="form-control" maxlength="30" name="apellido" id="txtapellido" placeholder="Apellido" >
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="row-fluid">
                                   <div class="input-group">
                                     <label for="direccion">Dirección:</label>
-                                    <input type="text" class="form-control" name="direccion" id="txtdireccion" placeholder="Direccion" >
+                                    <input type="text" class="form-control" maxlength="80" name="direccion" id="txtdireccion" placeholder="Direccion" >
                                     </div>
                                     <div class="input-group">
                                     <label for="ciudad">Ciudad:</label>
@@ -154,7 +154,7 @@
                                     </div>
                                     <div class="input-group">
                                   <label for="tlfono">Teléfono:</label>
-<input type="text" class="form-control" name="tlfono" id="txttelefono" placeholder="Telefono" ></div>
+                          <input type="text" class="form-control" name="tlfono" id="txttelefono" maxlength="10" placeholder="Telefono" ></div>
                                 </div>
                             </div>    </div>
     
@@ -208,7 +208,7 @@
         </div>
                                     </div>
                                     <div class="row">
-                                    <div class='input-group date' id='datetimepicker2'>
+                                    <div class='input-group date' onclick="javascript:calcular()"id='datetimepicker2'>
                     <input type='text' id="txtfecha_fin" class="form-control" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -427,7 +427,7 @@ var habitaciones=[]
           var categoria = "{{habitacion.categoria}}"
           document.getElementById("txttipo").value=tipo;
           document.getElementById("txtcategoria").value=categoria;
-          calcular();
+          calcular1();
         }
       {% endfor %}
     }
@@ -485,7 +485,68 @@ var habitaciones=[]
      
 
     }
-     function calcular(){
+
+    function calculofecha(opcion,texto){
+      var cadena =texto;
+      var dia="";
+      var mes="";
+      var ano="";
+     
+      for(i=0; i<10; i++) 
+        if ((i==1)||(i==0)){
+           mes=mes+cadena.charAt(i);
+        }else{
+          if ((i==3)||(i==4)){
+           dia=dia+cadena.charAt(i);
+          }else{
+            if((i==6)||(i==7)||(i==8)||(i==9)){
+                ano=ano+cadena.charAt(i)
+            }
+          }
+        }
+        switch (opcion) {
+         case "dia":
+            console.log(dia)
+            return(dia)           
+            break;
+         case "mes":
+            console.log(mes)
+            return(mes) 
+            break;
+        }
+    }
+    function rango(){
+      var cantidad=0;
+      var dia1=calculofecha('dia',document.getElementById("txtfecha_inicio").value);
+      var dia2=calculofecha('dia',document.getElementById("txtfecha_fin").value);
+      var mes1=calculofecha('mes',document.getElementById("txtfecha_inicio").value);
+      var mes2=calculofecha('mes',document.getElementById("txtfecha_fin").value);
+     
+      if ((parseInt(dia1)==parseInt(dia2))&&(parseInt(mes1)==parseInt(mes2))) {
+          cantidad=1;
+          return cantidad;
+      }else{
+        if ((parseInt(dia1)<parseInt(dia2))&&(parseInt(mes1)==parseInt(mes2))) {
+            cantidad=parseInt(dia2)-parseInt(dia1)
+            return cantidad;
+        } else{
+          if ((parseInt(mes1)<parseInt(mes2))) {
+            cantidad=((parseInt(mes2)-parseInt(mes1))*(parseInt("31"))-parseInt(dia1))+parseInt(dia2)
+            return cantidad;
+          } else{
+            if ((parseInt(dia1)>parseInt(dia2))&&(parseInt(mes1)==parseInt(mes2))) {
+             return cantidad;
+            } else{
+              if ((parseInt(dia1)>parseInt(dia2))&&(parseInt(mes1)>parseInt(mes2))) {
+              return cantidad;
+              };
+            };
+          };
+        };
+      };
+    }
+
+     function calcular1(){
       var adulto=document.getElementById('estadoAdulto').value;
       var nino=document.getElementById('estadoNino').value;
       if(adulto>1){
@@ -493,37 +554,164 @@ var habitaciones=[]
       }else{
         document.getElementById('txttotal').value= redondeo(re(obtenerCosto()))+(parseInt(nino)*5);
       }
-      
-    
+     }
+
+      function calcular(){
+      var adulto=document.getElementById('estadoAdulto').value;
+      var nino=document.getElementById('estadoNino').value;
+      var numero=rango();
+      console.log("esto vale "+numero)
+      if (numero!=0) {
+        if(adulto>1){
+          document.getElementById('txttotal').value= (redondeo(re(obtenerCosto()))+ (parseInt(adulto-1)*10)+(parseInt(nino)*5))*numero;
+        }else{
+          document.getElementById('txttotal').value= (redondeo(re(obtenerCosto()))+(parseInt(nino)*5))*numero;
+        }
+      } else{
+        alert("Seleccione una fecha Correctamente");
+      };
+   
      }
 
     function m(){
     var ss=document.getElementById("txtfecha_inicio").value;
       return( ss)
     }
+    function validarCedula(){
+            var cedula = document.getElementById("txtcedula").value;
+            //Preguntamos si la cedula consta de 10 digitos
+            if(cedula.length == 10){
+                if(cedula==2222222222){
+                    alert("La cedula no es Valida :v no me vas a trolear ")
+                    return false
+                }
+                //Obtenemos el digito de la region que sonlos dos primeros digitos
+                var digito_region = cedula.substring(0,2);
+                //Pregunto si la region existe ecuador se divide en 24 regiones
+                if( digito_region >= 1 && digito_region <=24 ){
+                    // Extraigo el ultimo digito
+                    var ultimo_digito = cedula.substring(9,10);
+                    //Agrupo todos los pares y los sumo
+                    var pares = parseInt(cedula.substring(1,2)) + parseInt(cedula.substring(3,4)) + parseInt(cedula.substring(5,6)) + parseInt(cedula.substring(7,8));
+                    //Agrupo los impares, los multiplico por un factor de 2, si la resultante es > que 9 le restamos el 9 a la resultante
+                    var numero1 = cedula.substring(0,1);
+                    var numero1 = (numero1 * 2);
+                    if( numero1 > 9 ){ var numero1 = (numero1 - 9); }
+                    var numero3 = cedula.substring(2,3);
+                    var numero3 = (numero3 * 2);
+                    if( numero3 > 9 ){ var numero3 = (numero3 - 9); }
+                    var numero5 = cedula.substring(4,5);
+                    var numero5 = (numero5 * 2);
+                    if( numero5 > 9 ){ var numero5 = (numero5 - 9); }
+                    var numero7 = cedula.substring(6,7);
+                    var numero7 = (numero7 * 2);
+                    if( numero7 > 9 ){ var numero7 = (numero7 - 9); }
+
+                    var numero9 = cedula.substring(8,9);
+                    var numero9 = (numero9 * 2);
+                    if( numero9 > 9 ){ var numero9 = (numero9 - 9); }
+
+                    var impares = numero1 + numero3 + numero5 + numero7 + numero9;
+
+                    //Suma total
+                    var suma_total = (pares + impares);
+
+                    //extraemos el primero digito
+                    var primer_digito_suma = String(suma_total).substring(0,1);
+
+                    //Obtenemos la decena inmediata
+                    var decena = (parseInt(primer_digito_suma) + 1) * 10;
+
+                    //Obtenemos la resta de la decena inmediata - la suma_total esto nos da el digito validador
+                    var digito_validador = decena - suma_total;
+
+                    //Si el digito validador es = a 10 toma el valor de 0
+                    if(digito_validador == 10)
+                        var digito_validador = 0;
+
+                    //Validamos que el digito validador sea igual al de la cedula
+                    if(digito_validador == ultimo_digito){
+                        alert('la cedula: ' + cedula + ' es correcta');
+                        return true
+                    }else{
+                        alert('la cedula:' + cedula + ' es incorrecta');
+                        return false
+                    }
+                }else{
+                    // imprimimos en consola si la region no pertenece
+                    alert('Esta cedula no pertenece a ninguna region');
+                    return false
+                }
+            }else{
+                //imprimimos en consola si la cedula tiene mas o menos de 10 digitos
+                alert('Esta cedula tiene menos de 10 Digitos');
+                return false
+            }
+      
+    }
+
+
+
+
+
+
+
+
+
 
 
 
   $('#btnGuardar').click(function guardar(){
+    if ((document.getElementById("txthabitacion").value=='')) {
+      alert("No se pueden dejar Campos Vacios en el Número de Habitación");
+    } else{
+      if (document.getElementById("txtcedula").value=='') {
+        alert("No se pueden dejar Campos Vacios De Cédula ");
+      } else{
+        if (document.getElementById("txtnombre").value=='') {
+          alert("No se pueden dejar Campos Vacios De Nombre ");
+        } else{
+          if (document.getElementById("txtapellido").value=='') {
+            alert("No se pueden dejar Campos Vacios De Apellido ");
+          } else{
+            if ((document.getElementById("txtfecha_inicio").value=='')||(document.getElementById("txtfecha_fin").value=='')) {
+              alert("No se pueden dejar campos vacios en las fechas");
 
-      $.get('/reservacion/guardarFicticiaXCliente/',{
-          cedula:document.getElementById("txtcedula").value,
-          nombre:document.getElementById("txtnombre").value,
-          apellido:document.getElementById("txtapellido").value,
-          direccion:document.getElementById("txtdireccion").value,
-          ciudad:document.getElementById("txtciudad").value,
-          telefono:document.getElementById("txttelefono").value,
-          Numerohabitacion:document.getElementById("txthabitacion").value,
-          fecha_inicio:convertirfecha(document.getElementById("txtfecha_inicio").value), 
-          fecha_fin:convertirfecha(document.getElementById("txtfecha_fin").value), 
-          Nadultos:document.getElementById('estadoAdulto').value,
-          Nninos:document.getElementById('estadoNino').value,
-          total:document.getElementById("txttotal").value,   
+            } else{
 
-        });
-        alert("Datos Guardados Correctamente... ")
-        setTimeout("location.href='/'",100);
-    })
+              if (validarCedula()) {
+                if (rango()!=0) {
+                  $.get('/reservacion/guardarFicticiaXCliente/',{
+                    cedula:document.getElementById("txtcedula").value,
+                    nombre:document.getElementById("txtnombre").value,
+                    apellido:document.getElementById("txtapellido").value,
+                    direccion:document.getElementById("txtdireccion").value,
+                    ciudad:document.getElementById("txtciudad").value,
+                    telefono:document.getElementById("txttelefono").value,
+                    Numerohabitacion:document.getElementById("txthabitacion").value,
+                    fecha_inicio:convertirfecha(document.getElementById("txtfecha_inicio").value), 
+                    fecha_fin:convertirfecha(document.getElementById("txtfecha_fin").value), 
+                    Nadultos:document.getElementById('estadoAdulto').value,
+                    Nninos:document.getElementById('estadoNino').value,
+                    total:document.getElementById("txttotal").value,   
+
+                  });
+                  alert("Datos Guardados Correctamente... ")
+                  setTimeout("location.href='/'",100);
+               
+                } else{
+                  alert("Seleccione la fecha Correctamente");
+                };
+              };     
+            }; 
+          };
+        };
+      };
+
+    };
+
+    
+  })
 
 
 

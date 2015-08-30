@@ -19,7 +19,25 @@ from django.db.models import Q
 #from django.template import Context, Template,RequestContext
 
 class index(TemplateView):
-	template_name='inicio/index.html'
+	template_name='factura/fa.html'
+
+
+class imprimir(TemplateView):
+    template_name='factura/fa.html'
+    def get_context_data(self,**kwargs):
+        ctx = super(imprimir, self).get_context_data(**kwargs)
+        ctx['listarClientes'] = Cliente.objects.all()
+        ctx['nFactura'] = Factura.objects.all().count()
+        numero=Factura.objects.all().count()
+        ctx['listarFacturas'] = Factura.objects.get(id=numero)
+        ctx['listarserviciosFac'] = FacturaServicios.objects.filter(factura=numero)
+        ctx['listarservicios'] = ServicioCliente.objects.all()
+        ctx['listarReservacion'] = Reservacion.objects.all()
+        ctx['listarProductos'] = Productos.objects.all()
+        ctx['listarHabitacion'] = Habitacion.objects.all()
+        print ctx
+     
+        return ctx
 
 def generarVentaFactura(request):
     estadoHabitacion = EstadosHabitacion.objects.get(estado='Activo')

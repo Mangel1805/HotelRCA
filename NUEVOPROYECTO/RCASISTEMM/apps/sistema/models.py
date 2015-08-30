@@ -36,9 +36,9 @@ class EstadosCliente(models.Model):
         return self.estado
 
 class Cliente(models.Model):
-    cedula = models.CharField(max_length=10, blank=True)
-    nombre = models.CharField(max_length=30, blank=True)
-    apellido = models.CharField(max_length=30, blank=True)
+    cedula = models.CharField(max_length=10)
+    nombre = models.CharField(max_length=30)
+    apellido = models.CharField(max_length=30)
     telefono = models.CharField(max_length=10, blank=True)
     direccion = models.CharField(max_length=80, blank=True)
     email  = models.EmailField( blank=True)

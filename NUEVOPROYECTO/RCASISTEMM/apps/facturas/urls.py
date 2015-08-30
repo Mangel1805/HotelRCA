@@ -7,6 +7,7 @@ urlpatterns = patterns('',
     #url(r'^$', index.as_view(),name='home'),
     #********************Factura*********************************************
     url(r'^$', index.as_view(),name='home'),
+    url(r'^imprimir/$', imprimir.as_view(),name='imprimir'),
     #url(r'^registrar/$', crearFactura.as_view(),name='crearFactura'),
 
 

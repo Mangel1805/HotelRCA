@@ -127,6 +127,11 @@
           <div class="col-xs-2">
             <button type="button" class="btn btn-danger" id="btnGuardar"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> GUARDAR</button>
           <i class="icon-save"></i></button></div>
+
+          
+
+
+           
         <div class="col-xs-5"></div>
 
     </div>
@@ -498,8 +503,11 @@ $("#btnGuardar").click(
           }
 
           alert("Datos Guardados Correctamente... ")
-
+          
+          var myWindow = window.open("/factura/imprimir/");
+          setTimeout(function(){ myWindow }, 3000);
           setTimeout("location.href='/factura/listar'",100);
+          
         }
         
       }

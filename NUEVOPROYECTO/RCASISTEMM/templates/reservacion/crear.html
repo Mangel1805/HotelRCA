@@ -58,7 +58,7 @@
 
                                 <label for="cedula">Cédula:</label>
                                 <div class="input-group">
-                                    <input class="form-control ty" type="search" name="cedula" id="txtcedula" required autocomplete="off" placeholder="Cedula" size="100" onkeyup = "if(event.keyCode == 13) javascript:buscarCliente()" / >
+                                    <input class="form-control ty"pattern="[0-9]*" type="search" name="cedula" id="txtcedula" required autocomplete="off" placeholder="Cedula" size="100" onkeyup = "if(event.keyCode == 13) javascript:buscarCliente()" / >
                                     <span class="input-group-btn"><button class="btn btn-info" type="button" value="Buscar" onclick="javascript:buscarCliente()" ><i class="glyphicon glyphicon-search"></i></button></span>
                                 </div>
                                 <div id="mensaje2" class="errores"> Ingrese Cédula</div>
@@ -138,8 +138,8 @@
         </div>
                                     </div>
                                     <div class="row">
-                                    <div class='input-group date' id='datetimepicker2'>
-                    <input type='text' id="txtfecha_fin" class="form-control" />
+                                    <div class='input-group date'onclick="javascript:calcular()" id='datetimepicker2'>
+                    <input type='text' id="txtfecha_fin"  class="form-control" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -264,7 +264,7 @@ var habitaciones=[]
           var categoria = "{{habitacion.categoria}}"
           document.getElementById("txttipo").value=tipo;
           document.getElementById("txtcategoria").value=categoria;
-          calcular();
+          calcular1();
         }
       {% endfor %}
     }
@@ -300,7 +300,66 @@ var habitaciones=[]
         var fecha=ano+"-"+mes+"-"+dia
         return(fecha)
     }
+    function calculofecha(opcion,texto){
+      var cadena =texto;
+      var dia="";
+      var mes="";
+      var ano="";
+     
+      for(i=0; i<10; i++) 
+        if ((i==1)||(i==0)){
+           mes=mes+cadena.charAt(i);
+        }else{
+          if ((i==3)||(i==4)){
+           dia=dia+cadena.charAt(i);
+          }else{
+            if((i==6)||(i==7)||(i==8)||(i==9)){
+                ano=ano+cadena.charAt(i)
+            }
+          }
+        }
+        switch (opcion) {
+         case "dia":
+            console.log(dia)
+            return(dia)           
+            break;
+         case "mes":
+            console.log(mes)
+            return(mes) 
+            break;
+        }
+    }
+    function rango(){
+      var cantidad=0;
+      var dia1=calculofecha('dia',document.getElementById("txtfecha_inicio").value);
+      var dia2=calculofecha('dia',document.getElementById("txtfecha_fin").value);
+      var mes1=calculofecha('mes',document.getElementById("txtfecha_inicio").value);
+      var mes2=calculofecha('mes',document.getElementById("txtfecha_fin").value);
+     
 
+      if ((parseInt(dia1)==parseInt(dia2))&&(parseInt(mes1)==parseInt(mes2))) {
+          cantidad=1;
+          return cantidad;
+      }else{
+        if ((parseInt(dia1)<parseInt(dia2))&&(parseInt(mes1)==parseInt(mes2))) {
+            cantidad=parseInt(dia2)-parseInt(dia1)
+            return cantidad;
+        } else{
+          if ((parseInt(mes1)<parseInt(mes2))) {
+            cantidad=(parseInt("31")-parseInt(dia1))+parseInt(dia2)
+            return cantidad;
+          } else{
+            if ((parseInt(dia1)>parseInt(dia2))&&(parseInt(mes1)==parseInt(mes2))) {
+             return cantidad;
+            } else{
+              if ((parseInt(dia1)>parseInt(dia2))&&(parseInt(mes1)>parseInt(mes2))) {
+              return cantidad;
+              };
+            };
+          };
+        };
+      };
+    }
 
     function re(texto){
       var cadena = texto;
@@ -322,17 +381,38 @@ var habitaciones=[]
      
 
     }
-     function calcular(){
+    function calcular1(){
       var adulto=document.getElementById('estadoAdulto').value;
       var nino=document.getElementById('estadoNino').value;
-      if(adulto>1){
-      document.getElementById('txttotal').value= redondeo(re(obtenerCosto()))+ (parseInt(adulto-1)*10)+(parseInt(nino)*5);
-      }else{
-        document.getElementById('txttotal').value= redondeo(re(obtenerCosto()))+(parseInt(nino)*5);
-      }
+     
+        if(adulto>1){
+          document.getElementById('txttotal').value= (redondeo(re(obtenerCosto()))+ (parseInt(adulto-1)*10)+(parseInt(nino)*5));
+        }else{
+          document.getElementById('txttotal').value= (redondeo(re(obtenerCosto()))+(parseInt(nino)*5));
+        }
       
-    
+   
      }
+
+    function calcular(){
+      var adulto=document.getElementById('estadoAdulto').value;
+      var nino=document.getElementById('estadoNino').value;
+      var numero=rango();
+      console.log("esto vale "+numero)
+      if (numero!=0) {
+        if(adulto>1){
+          document.getElementById('txttotal').value= (redondeo(re(obtenerCosto()))+ (parseInt(adulto-1)*10)+(parseInt(nino)*5))*numero;
+        }else{
+          document.getElementById('txttotal').value= (redondeo(re(obtenerCosto()))+(parseInt(nino)*5))*numero;
+        }
+      } else{
+        alert("Seleccione una fecha Correctamente");
+      };
+   
+     }
+
+
+
 
     function m(){
     var ss=document.getElementById("txtfecha_inicio").value;
@@ -347,9 +427,10 @@ var habitaciones=[]
           $("#mensaje2").fadeIn("slow");
               return false;
      }else{
-
-
-      $.get('/reservacion/guardar/',{
+      if ((document.getElementById("txtfecha_inicio").value=='')||(document.getElementById("txtfecha_fin").value=='')) {
+        alert("No se pueden dejar campos vacios en las fechas");
+      } else{
+        $.get('/reservacion/guardar/',{
           Numerohabitacion:document.getElementById("txthabitacion").value,
           cedula:document.getElementById("txtcedula").value, 
           fecha_inicio:convertirfecha(document.getElementById("txtfecha_inicio").value), 
@@ -361,6 +442,7 @@ var habitaciones=[]
         });
         alert("Datos Guardados Correctamente... ")
         setTimeout("location.href='/reservacion/listar/'",100);
+      };    
     }
     })
 
