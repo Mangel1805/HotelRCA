@@ -24,24 +24,20 @@ class index(TemplateView):
 
 def registrarReservacion(request):
     estadoHabitacion = EstadosHabitacion.objects.get(estado='Inactivo')
-   
     estadoCliente=EstadosCliente.objects.get(estado='Activo')
-   
-    print estadoHabitacion
-    cntx={'listarHabitacion':Habitacion.objects.filter(estado=estadoHabitacion),'listarclientes':Cliente.objects.filter(estado=estadoCliente)}
-    print cntx
-    
-    return render_to_response('reservacion/crear.html', cntx,context_instance=RequestContext(request))
-    
-def registrarReservacionTempo(request):
-    estadoHabitacion = EstadosHabitacion.objects.get(estado='Inactivo')
-   
-    estadoCliente=EstadosCliente.objects.get(estado='Activo')
-   
     print estadoHabitacion
     cntx={'listarHabitacion':Habitacion.objects.filter(estado=estadoHabitacion).order_by("id"),'listarclientes':Cliente.objects.filter(estado=estadoCliente).order_by("id")}
     print cntx
-    
+    return render_to_response('reservacion/crear.html', cntx,context_instance=RequestContext(request))
+
+
+
+def registrarReservacionTempo(request):
+    estadoHabitacion = EstadosHabitacion.objects.get(estado='Inactivo')
+    estadoCliente=EstadosCliente.objects.get(estado='Activo')
+    print estadoHabitacion
+    cntx={'listarHabitacion':Habitacion.objects.filter(estado=estadoHabitacion).order_by("id"),'listarclientes':Cliente.objects.filter(estado=estadoCliente).order_by("id")}
+    print cntx
     return render_to_response('reservacion/crearFicticia.html', cntx,context_instance=RequestContext(request))
 
 
@@ -213,7 +209,7 @@ def guardarReservacionTempo(request):
     
     except Exception, e:
         print "guarda todo"
-        cliente=Cliente(cedula=cedula,nombre=nombre,apellido=apellido,telefono=telefono,direccion=direccion,estado=EstadosCliente.objects.get(estado='Activo'))
+        cliente=Cliente(cedula=cedula,nombre=nombre,apellido=apellido,telefono=telefono,direccion=direccion,email='',estado=EstadosCliente.objects.get(estado='Activo'))
         cliente.save()
         print "se guardo Cliente"
         cli= Cliente.objects.get(cedula=cedula)
@@ -245,12 +241,34 @@ class modificarReservacion(UpdateView):
 	template_name='reservacion/editar.html'
 	success_url=reverse_lazy('listarReservacion')
 
-class eliminarReservacion(DeleteView):
-	model=Reservacion
-	context_object_name="reservaciones"
-	template_name='reservacion/eliminar.html'
-	success_url=reverse_lazy('listarReservacion')
+def cambiarEstado(request):
+    print "ENTROOOOO :V :v "
+    numero=request.GET['Numerohabitacion']
+    print numero
+    laHabitacion = Habitacion.objects.get(habitacion=request.GET['Numerohabitacion'])
+    print laHabitacion
+    print "continua"
+    laHabitacion.estado=EstadosHabitacion.objects.get(estado='Inactivo')
+    laHabitacion.save()
+    print (str(laHabitacion)+"paso a Inactivo")
+    print str("Se Guardo")
 
+    
+    return render_to_response('reservacion/listar.html',context_instance=RequestContext(request))
+
+
+
+
+class eliminarReservacion(DeleteView):
+    model=Reservacion
+    context_object_name="reservaciones"
+    template_name='reservacion/eliminar.html'
+    success_url=reverse_lazy('listarReservacion')
+    def get_context_data(self,**kwargs):
+        ctx = super(eliminarReservacion, self).get_context_data(**kwargs)
+        ctx['listarhabitacion'] = Habitacion.objects.filter(estado=EstadosHabitacion.objects.get(estado='Activo'))
+        print ctx
+        return ctx
 
 
 class eliminarReservacionFicticia(DeleteView):

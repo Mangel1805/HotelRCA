@@ -2,8 +2,6 @@ from django.conf.urls import patterns, include, url
 from .views import *
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'SonytelSistem.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
     #url(r'^$', index.as_view(),name='home'),
     #********************Reservacion*********************************************
     url(r'^$', index.as_view(),name='home'),
@@ -13,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^guardarFicticiaXCliente/$', guardarFicticiaXCliente,name='guardarFicticiaXCliente'),
     url(r'^guardar/$', guardarReservacion,name='guardarReservacion'),
     url(r'^modificar/(?P<pk>[\d]+)$', modificarReservacion.as_view(),name='editarReservacion'),
+    url(r'^cambiarEstado/$', cambiarEstado,name='cambiarEstado'),
     url(r'^eliminar/(?P<pk>[\d]+)$', eliminarReservacion.as_view(),name='eliminarReservacion'),
     url(r'^eliminarFicticia/(?P<pk>[\d]+)$', eliminarReservacionFicticia.as_view(),name='eliminarReservacionFicticia'),
     url(r'^listar/$', listarReservacion.as_view(),name='listarReservacion'),

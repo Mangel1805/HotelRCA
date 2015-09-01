@@ -41,7 +41,7 @@ class Cliente(models.Model):
     apellido = models.CharField(max_length=30)
     telefono = models.CharField(max_length=10, blank=True)
     direccion = models.CharField(max_length=80, blank=True)
-    email  = models.EmailField( blank=True)
+    email  = models.EmailField()
     ocupacion = models.CharField(max_length=20, blank=True)
     estado = models.ForeignKey(EstadosCliente,blank=True, null=True)
     ciudad = models.ForeignKey(Ciudad,blank=True, null=True)

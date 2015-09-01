@@ -17,8 +17,8 @@
            
              <label for="cedula">N° Habitación:</label>
              <div class="input-group">
-                                    <input class="form-control filtar" type="search" name="habitacion" id="txthabitacion" required="" autocomplete="off" placeholder="N° Habitación" onkeyup="if(event.keyCode == 13) javascript:buscarHabitacion()">
-               <span class="input-group-btn"><button class="btn btn-info" type="button" value="Buscar" onclick="javascript:buscarHabitacion()"><i class="glyphicon glyphicon-search"></i></button></span>
+                <input class="form-control filtar"  type="search" name="habitacion" id="txthabitacion" required="" autocomplete="off" placeholder="N° Habitación" onkeypress="return valida(event)" onkeyup="if(event.keyCode == 13) javascript:buscarHabitacion()">
+               <span class="input-group-btn"><button class="btn btn-info" type="button" value="Buscar" onclick="javascript:buscarHabitacion()" autofocus><i class="glyphicon glyphicon-search"></i></button></span>
                                 </div>
                                 <div id="mensaje1" class="errores"> Ingrese Habitación</div>
            
@@ -58,7 +58,7 @@
 
                                 <label for="cedula">Cédula:</label>
                                 <div class="input-group">
-                                    <input class="form-control ty"pattern="[0-9]*" type="search" name="cedula" id="txtcedula" required autocomplete="off" placeholder="Cedula" size="100" onkeyup = "if(event.keyCode == 13) javascript:buscarCliente()" / >
+                                    <input class="form-control ty" autofocus onkeypress="return valida(event)" maxlength="10"type="search" name="cedula" id="txtcedula" required autocomplete="off" placeholder="Cedula" size="100" onkeyup = "if(event.keyCode == 13) javascript:buscarCliente()" / >
                                     <span class="input-group-btn"><button class="btn btn-info" type="button" value="Buscar" onclick="javascript:buscarCliente()" ><i class="glyphicon glyphicon-search"></i></button></span>
                                 </div>
                                 <div id="mensaje2" class="errores"> Ingrese Cédula</div>
@@ -83,7 +83,7 @@
                                     </div>
                                     <div class="input-group">
                                   <label for="tlfono">Teléfono:</label>
-<input type="text" class="form-control" name="tlfono" id="txttelefono" placeholder="Telefono" readonly>
+<input type="text" class="form-control" name="tlfono" id="txttelefono"  placeholder="Telefono" readonly>
 </div>
                                 </div>
                             </div>    </div>
@@ -411,8 +411,19 @@ var habitaciones=[]
    
      }
 
+    function valida(e){
+    tecla = (document.all) ? e.keyCode : e.which;
 
-
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla==8){
+        return true;
+    }
+        
+    // Patron de entrada, en este caso solo acepta numeros
+    patron =/[0-9]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+    }
 
     function m(){
     var ss=document.getElementById("txtfecha_inicio").value;

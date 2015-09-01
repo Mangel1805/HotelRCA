@@ -193,23 +193,62 @@
             }
       
     }
+    function existe(){
+      {% for cli in listarCliente  %}
+        if ('{{cli.cedula}}'==document.getElementById("id_cedula").value) {
+          return true;
+        }else{
+          return false;
+        };
+      {% endfor %}
+    }
+
     function funcion(){
       if (document.getElementById("id_cedula").value=='') {
       alert("Ingrese un número Cédula");
-      return false
+      return false;
       } else{
-        if (validarCedula()) {
-          return true
-          alert("Datos Guardados Correctamente")
-        }else{
-          return false
-        };
+          if (existe()) {
+            alert("La Cédula ya Existe");
+            return false;
+          } else{
+            if (validarCedula()) {
+              if (document.getElementById("id_telefono").value=='') {
+                alert("Ingrese numéro de teléfono");
+                return false;
+              } else{
+                if (validarEntero()) {
+                  return true;
+                  alert("Datos Guardados Correctamente")
+                } else{
+                  return false
+                };
+              };
+            }else{
+              return false
+            };
+          };
+        
 
       };
 
     }
 
 
+function validarEntero(){ 
+      //intento convertir a entero. 
+      //si era un entero no le afecta, si no lo era lo intenta convertir 
+      valor=document.getElementById("id_telefono").value;
+      //Compruebo si es un valor numérico 
+      if (isNaN(valor)) { 
+         //entonces (no es numero) devuelvo el valor cadena vacia 
+         alert("EL campo telefono debe ser numérico");
+         return false ;
+      }else{ 
+         //En caso contrario (Si era un número) devuelvo el valor 
+         return true ;
+      } 
+} 
 
 </script>
 {%endblock js%}

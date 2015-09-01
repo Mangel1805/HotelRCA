@@ -19,10 +19,15 @@ from reportlab.platypus import Table
 class index(TemplateView):
 	template_name='inicio/index.html'
 
+
 class crearCliente(CreateView):
-	template_name='cliente/crear.html'
-	model=Cliente
-	success_url=reverse_lazy('listarCliente')
+    model=Cliente
+    template_name='cliente/crear.html'
+    success_url=reverse_lazy('listarCliente')
+    def get_context_data(self,**kwargs):
+        ctx = super(crearCliente, self).get_context_data(**kwargs)
+        ctx['listarCliente'] = Cliente.objects.order_by("id")
+        return ctx
 
 class editarCliente(UpdateView):
 	model=Cliente
