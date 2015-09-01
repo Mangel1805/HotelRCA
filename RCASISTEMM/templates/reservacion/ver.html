@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>RCA HOTEL | Reservacion|Temporal</title>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
+<style type="text/css">
+	.errores{
+            -webkit-boxshadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            background: red;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            display: none;
+            font-size: 14px;
+            margin-top: -40px;
+            margin-left: -150px;
+            padding: 10px;
+            position: absolute;
+        }
+</style>
+
+<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css">
+<link rel="stylesheet" href="{{STATIC_URL}}css/stilo.css">
+<link href="{{STATIC_URL}}css/style.css" rel="stylesheet" type="text/css" media="all"/>
+
+<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-datetimepicker.css">
+<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-datetimepicker.min.css">
+    
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="{{STATIC_URL}}js/jquery.min.js"></script>
+
+
+
+</head>
+<body>
+<!--header starts-->
+<div class="header">
+	 <div class="top-header">
+		 <div class="container">
+			 <div class="logo">
+				 <a href="/"><img src="{{STATIC_URL}}images/logo.png"/></a>
+			 <div class="clearfix"></div>
+			 </div>
+			 <span class="menu"> </span>
+			 <div class="m-clear"></div>
+			 <div class="top-menu">
+				<ul>
+					 <li><a class="scroll" href="/">INICIO</a></li>
+					 <li ><a href="/nosotros">NOSOTROS</a></li>
+					 <li><a class="scroll" href="/galeria">GALERIA</a></li>
+					 <li class="active"><a class="scroll" href="/servicios">SERVICIOS</a></li>
+					 <li><a class="scroll" href="/contactenos">CONTACTENOS</a></li>
+					 <div class="clearfix"></div>
+                 </ul>
+				 <script>
+					$("span.menu").click(function(){
+						$(".top-menu ul").slideToggle(200);
+					});
+				</script>
+			 </div>
+		  </div>
+	  </div>
+</div>
+
+ <div class="rooms text-center">
+	 <div class="container">
+		<h3><strong>Sistema Integral Rca Hotel</strong></h3>
+		<div class="container"> 
+		
+
+		<div class="well">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 col-lg-offset-2 col-lg-8">
+       <div class="alert alert-danger" role="alert"><H3> <div class="text-center">Formulario de Reservación</div> </H3>   </div>
+  </div>
+  <hr>
+</div>
+<div class="container">
+  <div class="row text-center">
+   
+    <div class="col-md-6 col-lg-12">
+    <div class="col-md-6 col-lg-2
+     col-lg-4 col-lg-offset-1">
+           
+             <label for="cedula">N° Habitación:</label>
+             <div class="input-group">
+                                    <input class="form-control filtar" type="search" name="habitacion" id="txthabitacion" required="" autocomplete="off" placeholder="N° Habitación" onkeyup="if(event.keyCode == 13) javascript:buscarHabitacion()">
+               <span class="input-group-btn"><button class="btn btn-info" type="button" value="Buscar" onclick="javascript:buscarHabitacion()"><i class="glyphicon glyphicon-search"></i></button></span>
+                                </div>
+           
+    </div>
+     <div class="col-md-6 col-lg-4">
+     <label for="cedula">Tipo Habiación:</label>
+             <div class="input-group">
+         
+           <input type="text" class="form-control" id="txttipo" readonly placeholder="Tipo de habitación" autocomplete="off" size="150">
+                                </div>
+     
+    </div>
+     <div class="col-md-6 col-lg-4">
+     <label for="cedula">Tipo Habiación:</label>
+             <div class="input-group">
+          
+          <input type="text" class="form-control tyheader" id="txtcategoria" readonly placeholder="Categoría de Habitación" size="150">
+
+                                </div>
+    </div>
+    
+    </div>
+  </div>
+  </div>
+  <hr>
+  
+  </div>
+ 
+  <div class="row">
+    <div class="col-sm-4 text-center col-lg-offset-1 col-lg-5">
+     </br>  
+    <div class="alert alert-danger" role="alert">
+        <H3> <div class="text-center">Datos de Cliente</div></H3>   
+      </div>
+      <div class="row">
+      <div class="col-xs-6 col-lg-6">
+
+                                <label for="cedula">Cédula:</label>
+                                <div class="input-group">
+                                    <input class="form-control ty" type="search" name="cedula" id="txtcedula" required autocomplete="off" placeholder="Cedula" size="100" onkeyup = "if(event.keyCode == 13) javascript:buscarCliente()" / >
+                                    <span class="input-group-btn"><button class="btn btn-info" type="button" value="Buscar" onclick="javascript:buscarCliente()" ><i class="glyphicon glyphicon-search"></i></button></span>
+                                </div>
+                                <div class="input-group">
+                                <label for="nombre">Nombre:</label>
+                                <input type="text" class="form-control" name="nombre" id="txtnombre" placeholder="Nombre" >
+                                </div>
+                                <div class="input-group">
+                                <label for="apellido">Apellido:</label>
+                                <input type="text" class="form-control" name="apellido" id="txtapellido" placeholder="Apellido" >
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row-fluid">
+                                  <div class="input-group">
+                                    <label for="direccion">Dirección:</label>
+                                    <input type="text" class="form-control" name="direccion" id="txtdireccion" placeholder="Direccion" >
+                                    </div>
+                                    <div class="input-group">
+                                    <label for="ciudad">Ciudad:</label>
+                                    <input type="text" class="form-control" name="ciudad" id="txtciudad" placeholder="Ciudad" >
+                                    </div>
+                                    <div class="input-group">
+                                  <label for="tlfono">Teléfono:</label>
+<input type="text" class="form-control" name="tlfono" id="txttelefono" placeholder="Telefono" ></div>
+                                </div>
+                            </div>    </div>
+    
+    </div>
+    <div class="col-sm-4 text-center col-lg-5 col-lg-offset-0">
+     </br>  
+    <div class="alert alert-danger" role="alert">
+        <H3> <div class="text-center">Tiempo a Reservar </div></H3>   
+      </div>
+      <div class="row">
+      <div class="col-xs-6 col-lg-6">
+      <div class="row">
+      </br>      
+      <label for="direccion">Fecha Inicio:</label>
+      </div>
+      <div class="row">
+            </br>     
+      <label for="direccion">Fecha Fin:</label>
+      </div>
+      <div class="row">
+      </br></br>
+      <label for="direccion">Adultos:</label>
+       </br></br>
+   		<select name="info" id="estadoAdulto" onChange="javascript:calcular()" class="mbn">
+                    <optgroup label="">
+                      <option value="1">1 personas</option>
+                      <option value="2">2 personas</option>
+                      <option value="3">3 personas</option>
+                      <option value="4">4 personas</option>
+                      <option value="5">5 personas</option>
+                    </optgroup>
+
+                  </select>
+      </div>
+      <div class="row">
+      </br></br>
+      <label for="direccion">total a Pagar:</label>
+      </div>
+      
+      </div>
+                            <div class="col-xs-6">
+                                <div class="row-fluid">
+                                    
+                                    <div class="row">
+                                          </br>
+                                    <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' id="txtfecha_inicio" class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+        </div>
+                                    </div>
+                                    <div class="row">
+                                    <div class='input-group date' id='datetimepicker2'>
+                    <input type='text' id="txtfecha_fin" class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+        </div>
+                                    <div>
+                                    <div class="row">
+                                    </br></br>
+                                    <label for="direccion">Niños:</label>
+                                    </div>
+                                     <div class="row">
+                                     </br>
+	   		<select name="info" id="estadoNino" onChange="javascript:calcular()" class="mbn mbn-lg">
+	                    <optgroup label="">
+	                      <option value="0">0 niños</option>
+	                      <option value="1">1 niños</option>
+	                      <option value="2">2 niños</option>
+	                      <option value="3">3 niños</option>
+	                      <option value="4">4 niños</option>
+	                      <option value="5">5 niños</option>
+	                    </optgroup>
+
+	                  </select>
+
+     							      </div>                                  
+                                       <div class="row">                           
+                                        </br>  
+                                         </br> 
+                                         <div class="input-group">   
+                                         <input type="text " id="txttotal" class="form-control" readonly placeholder="Pagar $">
+                                    </div>
+                                </div>
+                            </div>    
+                            
+                            
+                         </div>
+    
+    </div>
+     
+       
+                  	 <div class="col-xs-6 col-lg-offset-0 col-lg-12">
+                      </br>  
+                       </br>  
+                     		 <button type="button" class="btn btn-danger" id="btnGuardar"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> GUARDAR
+          <i class="icon-save"></i></button></div>
+                  	 </div>
+                     
+                
+                </div>
+         </div>           
+                        
+  </div>
+</div>
+    
+
+<div class="">
+        <section class="content">
+           
+
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+  <div class="row"> </div>
+</div> 
+	 </div>
+</div>
+
+ <!---->
+<div class="fotter">
+	 <div class="container">
+		 <h3>Mejor Confort, Mejor Hospitalidad</h3>
+		 <h4>"Hospitalidad, Calidad & Buena Localizacion. Nuestro Hotel Calidad a su Dispocicion" - RCA HOTEL</h4>
+		 <i class="man"></i>
+	 </div>
+</div>
+<!---->
+<div class="fotter-info">
+	  <div class="container">
+	      <div class="col-md-5 details">
+			 <div class="hotel-info">
+				 <h4>ACERCA DEL HOTEL</h4>
+				 <p>EL RCA Hotel es ideal para las personas que buscan hospedarse en un lugar elegante, bien ubicado y seguro, a tan solo 50 minutos del aeropuerto, exclusivo y familiar a la vez, donde puedan resolver todos sus negocios o hacer su transición de la manera más agradable y eficiente posible.</p>
+				 <p>El Hotel está ubicado en un sector comercial a cuatro cuadras del Parque Central "Juan Montalvo". Estamos listos para atenderlos a las 24 horas.</p>
+			 </div>
+			 <div class="news">
+				 <h4>ULTIMAS NOTICIAS </h4>
+				 <h5>RCA Hotel APERTURA DE PROMOCION</h5>
+				 <a href="#">1 SEPT</a>
+				 <h5>FIESTAS DE MACHALA</h5>
+				 <a href="#">5 SEPT</a>
+				 <h5>REINA MUNDIAL DEL BANANO</h5>
+				 <a href="#">10 SEPT</a>
+				 <h5>PREGON POR LA CIUDAD</h5>
+				 <a href="#">15 SEPT</a>		
+			 </div>
+				<div class="clearfix"></div>
+		 </div>
+		 <div class="col-md-7 details">
+			 <div class="join">
+				 <h4>FERIA DE LA CIUDAD</h4>
+				 <p>Machala ya organiza su fiesta por los 191 años de cantonización
+Desde ayer se aceleran los trabajos para dejar listos los 30 carros alegóricos con los que la capital orense empezará los festejos para recordar los 191 años de cantonización. Diez artesanos locales desde el mes anterior trabajan en los diseños de estas alegorías. </p>
+				 <p>Uno de los carros principales y considerado especial es el que estará destinado para Paulina Vega, la actual Miss Universo, quien presidirá este evento. Los organizadores decidieron colocar varios elementos que identifican a la colombiana.</p>
+				 <a href="#">LEA MAS..</a>
+			 </div>
+			 <div class="member">
+		<h4>AREA DE MEMBRESIA</h4>
+			 {% if user.is_authenticated %}
+                     <font color="white"> Bienvenidooo {{user.username|capfirst}}</font>
+                      <a href="/cerrar/"> <font color="silver"> >>Salir<<</font></a>
+             {% else %}
+             <form method="POST">
+             {% csrf_token %}
+			 <p>Username</p>
+			 <input name="username" type="text" id="inputEmail" placeholder="Usuario">
+			 <p>Password</p>
+			 <input name="password" type="password" id="inputPassword" placeholder="Contraseña">	
+			 <hr>
+			 <input type="submit" value="INGRESAR"/>
+             <a href="/registrarse/" class="reg"><font color="silver">Registrarse</font></a>
+			 </form>
+			 {% endif %} 
+
+</div>
+			 <div class="clearfix"></div>
+		 </div>
+		 <div class="clearfix"></div>
+	  </div>
+      <h6>Direccion:Boyaca entre 9 de Mayo Juan Montalvo. 
+      <br>
+      Telefonos:(07)-292-3494 -- (07)-296-8052
+      <br> 
+      Localidad:Machala - El Oro - Ecuador
+      <br>
+	 Copyright &copy; 2015 <a href="/">Hotel RCA</a>. Todos Los Derechos Reservados</h6>	  
+</div>
+<!---->
+<script src="{{STATIC_URL}}js/jquery-1.11.2.min.js"></script> 
+<script src="{{STATIC_URL}}js/bootstrap-datetimepicker.js"></script>
+<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+<script src="{{STATIC_URL}}js/moment.js"></script>
+<script src="{{STATIC_URL}}js/bootstrap-datetimepicker.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/jquery.ui.touch-punch.min.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/bootstrap.min.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/bootstrap-select.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/bootstrap-switch.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/flatui-checkbox.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/flatui-radio.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/jquery.placeholder.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/typeahead.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/application.js"></script>
+<script >
+    $(function () {
+                  $('#datetimepicker1').datetimepicker();
+              });
+    $(function () {
+                  $('#datetimepicker2').datetimepicker();
+              });
+    
+
+    var cedulass=[]
+
+
+    var cont  = 0;
+      {% for cliente in listarclientes %}
+      cedulass[cont]="{{cliente.cedula}}";
+      console.log(cedulass[cont]);
+      cont=cont+1;
+      {% endfor %}
+       $('input.ty').typeahead({
+                      local: cedulass
+        });
+
+var habitaciones=[]
+
+
+    var con  = 0;
+      {% for habitacion in listarHabitacion %}
+      habitaciones[con]="{{habitacion.habitacion}}";
+      console.log(habitaciones[con]);
+      con=con+1;
+      {% endfor %}
+       $('input.filtar').typeahead({
+                      local: habitaciones
+        });
+
+ 
+    function buscarCliente(){
+      var cedulaBuscar=document.getElementById("txtcedula").value;
+      {% for cliente in listarclientes %}
+
+          if("{{ cliente.cedula }}"==cedulaBuscar){
+          var nombre = "{{cliente.nombre}}"
+          var apellido = "{{cliente.apellido}}"
+          var direccion = "{{cliente.direccion}}"
+          var telefono = "{{cliente.telefono}}"
+          var ciudad = "{{cliente.ciudad}}"
+          document.getElementById("txtnombre").value=nombre;
+          document.getElementById("txtapellido").value=apellido;
+          document.getElementById("txtdireccion").value=direccion;
+          document.getElementById("txttelefono").value=telefono;
+          document.getElementById("txtciudad").value=ciudad;
+          
+         
+        }
+      {% endfor %}
+    }
+    function buscarHabitacion(){
+      var habitacionBuscar=document.getElementById("txthabitacion").value;
+      {% for habitacion in listarHabitacion %}
+
+          if("{{ habitacion.habitacion }}"==habitacionBuscar){
+         
+          var tipo = "{{habitacion.tipo}}"
+          var categoria = "{{habitacion.categoria}}"
+          document.getElementById("txttipo").value=tipo;
+          document.getElementById("txtcategoria").value=categoria;
+          calcular();
+        }
+      {% endfor %}
+    }
+  function obtenerCosto(){
+      var habitacionBuscar=document.getElementById("txthabitacion").value;
+      {% for habitacion in listarHabitacion %}
+
+          if("{{ habitacion.habitacion }}"==habitacionBuscar){
+         
+          return ("{{habitacion.precio}}")
+        }
+      {% endfor %}
+    }
+
+     function convertirfecha(texto){
+      var cadena =texto;
+      var dia="";
+      var mes="";
+      var ano="";
+     
+      for(i=0; i<10; i++) 
+        if ((i==1)||(i==0)){
+           mes=mes+cadena.charAt(i);
+        }else{
+          if ((i==3)||(i==4)){
+           dia=dia+cadena.charAt(i);
+          }else{
+            if((i==6)||(i==7)||(i==8)||(i==9)){
+                ano=ano+cadena.charAt(i)
+            }
+          }
+        }
+        var fecha=ano+"-"+mes+"-"+dia
+        return(fecha)
+    }
+
+
+    function re(texto){
+      var cadena = texto;
+      var aux='';
+      for(i=0; i<cadena.length; i++) 
+        if (cadena.charAt(i)==','){
+           aux=aux+".";
+        }else{
+          aux=aux+cadena.charAt(i);
+        }
+        return aux;
+    }
+     
+     function redondeo(numero){
+
+      var flotante = parseFloat(numero);
+      var resultado = Math.round(flotante*100)/100;
+      return +(Math.round(flotante + "e+2")  + "e-2");
+     
+
+    }
+     function calcular(){
+      var adulto=document.getElementById('estadoAdulto').value;
+      var nino=document.getElementById('estadoNino').value;
+      if(adulto>1){
+      document.getElementById('txttotal').value= redondeo(re(obtenerCosto()))+ (parseInt(adulto-1)*10)+(parseInt(nino)*5);
+      }else{
+        document.getElementById('txttotal').value= redondeo(re(obtenerCosto()))+(parseInt(nino)*5);
+      }
+      
+    
+     }
+
+    function m(){
+    var ss=document.getElementById("txtfecha_inicio").value;
+      return( ss)
+    }
+
+
+
+  $('#btnGuardar').click(function guardar(){
+
+      $.get('/reservacion/guardarFicticiaXCliente/',{
+          cedula:document.getElementById("txtcedula").value,
+          nombre:document.getElementById("txtnombre").value,
+          apellido:document.getElementById("txtapellido").value,
+          direccion:document.getElementById("txtdireccion").value,
+          ciudad:document.getElementById("txtciudad").value,
+          telefono:document.getElementById("txttelefono").value,
+          Numerohabitacion:document.getElementById("txthabitacion").value,
+          fecha_inicio:convertirfecha(document.getElementById("txtfecha_inicio").value), 
+          fecha_fin:convertirfecha(document.getElementById("txtfecha_fin").value), 
+          Nadultos:document.getElementById('estadoAdulto').value,
+          Nninos:document.getElementById('estadoNino').value,
+          total:document.getElementById("txttotal").value,   
+
+        });
+        alert("Datos Guardados Correctamente... ")
+        setTimeout("location.href='/'",100);
+    })
+
+
+
+
+
+
+  </script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+
+</body>
+
+</html>

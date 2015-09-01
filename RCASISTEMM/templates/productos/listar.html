@@ -1,0 +1,149 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h3>Todos los Productos</h3>
+<span class="label label-default">Lista de productos</span>
+<div class="well">
+ 		<div class="btn-toolbar" role="toolbar">   
+ 		 	<div class="col-lg-6" >
+               	<a href="{% url 'crearProducto'  %}">
+				<button type="button" class="btn btn-danger" name='btnAgregar'onclick=""><span class=" glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</button>
+                </a>
+		
+                 
+                <a href="{% url 'pdf_Productos'  %}">
+                <button name="btnReporte" type="button" class="btn btn-danger"><span class=" glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reporte</button>   </a>
+             </div>   
+            <div class="col-lg-6" > 
+     	 		
+				
+		    		  <div class="input-group">
+		     			 <input type="text"    id="txtBuscar" class=" pull-right form-control" autofocus placeholder="Buscar..."   >
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button"><span class=" glyphicon glyphicon-search" aria-hidden="true"></button>
+						      </span>
+					      	
+		       			</div>
+		    
+		   	
+		    </div>
+     	  
+     	  	
+        </div>    	 
+
+<br> </br>
+	<div id="divTabla" class="table-responsive">
+		<table  id = "tblTabla" class="table table-bordered table-hover">
+	        <thead>
+	          <tr>
+	            <td class="success">#</td>
+	            <td class="success">NOMBRE</td>
+	            <td class="success">DESCRIPCION</td>
+	            <td class="success">COSTO</td>
+	            <td class="success">ESTADO</td>
+	            <td class="success">------</td>
+	            <td class="success">------</td>
+	          </tr>
+	        </thead>
+	        <tbody >
+	   
+	         
+	          <!-- Aplicadas en las celdas (<td> o <th>) -->
+		          {% for producto in productos %}
+			          <tr id="row{{producto.id}}" class="active">
+			          	<td >{{producto.id}}</td>
+		          		<td >{{producto.nombre}}</td>
+			            <td >{{producto.descripcion}}</td>
+			            <td >$ {{producto.costo}}</td>
+			            <td >{{producto.estado}}</td>
+			            <td ><button class='btn btn-danger' id="btnupdate{{producto.id}}" value="{{producto.id}}" onclick='actualizarDatos({{producto.id}})'>
+			            	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+			            </button> </td>
+			            <td ><button class='btn btn-danger btn' id="btndelete" value="{{producto.id}}" onclick='eliminarDatos({{producto.id}})'>
+			            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+			            </button></td>
+			          </tr>
+		          {% endfor %}
+	      	</tbody>
+		</table>
+		
+	</div>
+  <div id="datos">
+</div> 
+</div>
+
+{% endblock content %}
+{%block js%}
+  
+
+<script>
+		$('#txtBuscar').on('keypress',filtrado);
+		function filtrado(){
+			var nombre = $(this).val();
+			console.log(nombre);
+			$.ajax({
+				data:{'nombre':nombre},
+				url:'/producto/buscar/',
+				type: 'get',
+
+				success: function(data){
+					document.getElementById('tblTabla').style.display = 'none'
+					var html = '<div id="divTabla" class="table-responsive"><table id = "tblTabla" class="table table-hover"><thead><tr><td class="success">#</td><td class="success">NOMBRE</td><td class="success">DESCRIPCIÓN</td><td class="success">COSTO</td><td class="success">ESTADO</td><td class="success">------</td><td class="success">------</td></tr></thead><tbody >'
+					for(var i = 0; i<data.length ; i++){
+
+						var ident = ''
+
+
+						{% for prod in productos  %}
+							if ('{{prod.nombre}}'==data[i].fields.nombre) {
+								ident = '{{prod.id}}';
+								ciudad = '{{prod.ciudad}}';
+								estado='{{prod.estado}}'
+							};
+
+
+						{% endfor %}
+
+						html += '<tr><td>'+ident+'</td><td >'+data[i].fields.nombre+'</td><td >'+data[i].fields.descripcion+'</td><td >'+data[i].fields.costo+'</td><td >'+estado+'</td>';
+						var botones = "<td ><button class='btn btn-danger' id='btnupdate"+ident+"' value="+ident+" onclick='actualizarDatos("+ident+")'><span class='glyphicon glyphicon-edit'></i></button> </td><td ><button class='btn btn-danger' id='btndelete' value="+ident+" onclick='eliminarDatos("+ident+")'><span class='glyphicon glyphicon-remove-sign'></i></button></td></tr>";
+						html +=botones;
+					}
+					
+					var uni='</tbody></table></div>'
+					$('#datos').html(html+uni);
+				}
+	
+	
+	
+			});
+	
+		}
+
+	function actualizarDatos(r){
+		var s = document.getElementById('btnupdate'+r).value
+		setTimeout("location.href='/producto/modificar/"+r+"'"+"",10);
+
+	}
+	function eliminarDatos(r){
+		var s = document.getElementById('btnupdate'+r).value
+		setTimeout("location.href='/producto/eliminar/"+r+"'"+"",10);
+
+	}
+	</script>
+
+	<script type="text/javascript">
+		 var nombre = []
+		    
+
+		    var contador  = 0;
+		    {% for prod in productos %}
+		      nombre[contador]="{{prod.nombre}}";
+		      console.log(nombre[contador]);
+		      contador=contador+1;
+		    {% endfor %}
+
+		        $('input.typeahead').typeahead({
+		                local: nombre
+		            });
+</script>
+{%endblock js%}

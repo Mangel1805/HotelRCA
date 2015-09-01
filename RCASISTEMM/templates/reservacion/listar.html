@@ -1,0 +1,324 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h3>Todas las Reservaciones</h3>
+<span class="label label-default">Lista de Reservaciones</span>
+
+<div class="well">
+ 		<div class="btn-toolbar" role="toolbar">   
+ 		 	<div class="col-lg-6" >
+               	<a href="{% url 'crearReservacion'  %}">
+				<button type="button" class="btn btn-danger" name='btnAgregar'onclick=""><span class=" glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</button>
+                </a>
+		
+                 
+                <a href="{% url 'pdf_Reservaciones'  %}">
+                <button name="btnReporte" type="button" class="btn btn-danger"><span class=" glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reporte</button>   </a>
+             </div>   
+            <div class="col-lg-6" > 
+     	 		<div class="input-group">
+		     			 <input type="text"    id="txtBuscar" class=" pull-right form-control" autofocus placeholder="Buscar..."   >
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button"><span class=" glyphicon glyphicon-search" aria-hidden="true"></button>
+						      </span>
+					      	
+		       	</div>
+		    </div>
+     	  
+     	  	
+        </div>    	 
+
+<br> </br>
+	<div id="divTabla" class="table-responsive">
+		<table id = "tblTabla" class="table table-bordered table-hover">
+	        <thead>
+	          <tr>
+	            <td class="success">#</td>
+	            <td class="success">HABITACION</td>
+	            <td class="success">RESERVADA POR</td>
+	            <td class="success">N° ADULTOS</td>
+	            <td class="success">N° NIÑOS</td>
+	             <td class="success">FECHA INICIO</td>
+	             <td class="success">FECHA FIN</td>
+	             <td class="success">PRECIO</td>
+	            <td class="success">ESTADO</td>
+	            
+	          </tr>
+	        </thead>
+	        <tbody >
+	   
+	         
+	          <!-- Aplicadas en las celdas (<td> o <th>) -->
+		          {% for reservacion in listarReservacion %}
+			          <tr id="row{{reservacion.id}}"class="active">
+			          	<td >{{reservacion.id}}</td>
+		          		<td >{{reservacion.habitacion}}</td>
+		          		<td >{{reservacion.cliente}}</td>
+		          		<td >{{reservacion.adultos}}</td>
+		          		<td >{{reservacion.ninos}}</td>
+			            <td >{{reservacion.fecha_inicio}}</td>
+						<td >{{reservacion.fecha_fin}}</td>
+						<td >{{reservacion.precio}}</td>
+						<td >{{reservacion.estado}}</td>
+		           		<td ><button class='btn btn-danger' id="btnupdate{{reservacion.id}}" value="{{reservacion.id}}" onclick='actualizarDatos({{reservacion.id}})'>
+			            	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+			            </button> </td>
+			            <td ><button class='btn btn-danger btn' id="btndelete{{reservacion.id}}" value="{{reservacion.id}}" onclick='eliminarDatos({{reservacion.id}})'>
+			            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+			            </button></td>
+			          </tr>
+		          {% endfor %}
+	      	</tbody>
+		</table>
+	
+	</div>
+  <div id="datos">
+</div> 
+
+
+<div class="text-center"><h3>Reservaciones Pendientes</h3></div>
+		<div class="table-responsive">
+		<table id="tablaficticia" class="table table-bordered table-hover">
+	        <thead>
+	          <tr>
+	            <td class="success">#</td>
+	            <td class="success">CÉDULA</td>
+	            <td class="success">RESERVADA POR</td>
+	            <td class="success">HABITACIÓN</td>
+	            <td class="success">TELÉFONO</td>
+	            <td class="success">N° ADULTOS</td>
+	            <td class="success">N° NIÑOS</td>
+	            <td class="success">FECHA INICIO</td>
+	            <td class="success">FECHA FIN</td>
+	            <td class="success">PRECIO</td>
+	            <td class="success">ACTIVAR</td>
+	            <td class="success">ELIMIAR</td>
+	          </tr>
+	        </thead>
+	        <tbody >
+	   
+	         
+	          <!-- Aplicadas en las celdas (<td> o <th>) -->
+		          {% for ficticia in ficticia %}
+			          <tr class="active">
+			          	<td >{{ficticia.id}}</td>
+		          		<td >{{ficticia.cedula}}</td>
+		          		<td >{{ficticia.nombre}} {{ficticia.apellido}}</td>
+		          		<td >{{ficticia.habitacion}}</td>
+		          		<td >{{ficticia.telefono}}</td>
+		          		<td >{{ficticia.adultos}}</td>
+		          		<td >{{ficticia.ninos}}</td>
+			            <td >{{ficticia.fecha_inicio}}</td>
+						<td >{{ficticia.fecha_fin}}</td>
+						<td >{{ficticia.precio}}</td>
+		           		<td ><button class='btn btn-success' id="btn" value="{{ficticia.id}}" onclick='actualizar({{ficticia.id}})'>
+			            	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+			            </button> </td>
+			            <td ><button class='btn btn-danger btn' id="btndelete{{ficticia.id}}" value="{{ficticia.id}}"onclick='eliminarficticia({{ficticia.id}})'>
+			            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+			            </button></td>
+			          </tr>
+		          {% endfor %}
+	      	</tbody>
+		</table>
+	</div>
+  
+</div>
+</div>
+</div>
+</div> 
+{% endblock content %}
+{%block js%}
+  
+
+<script>
+		$('#txtBuscar').on('keypress',filtrado);
+		function filtrado(){
+			var nombre = $(this).val();
+			console.log(nombre);
+			$.ajax({
+				data:{'nombre':nombre},
+				url:'/reservacion/buscar/',
+				type: 'get',
+
+				success: function(data){
+					document.getElementById('tblTabla').style.display = 'none'
+					var html = '<div id="divTabla" class="table-responsive"><table id = "tblTabla" class="table table-bordered table-hover"><thead><tr><td class="success">#</td><td class="success">HABITACIÓN</td><td class="success">CLIENTE</td><td class="success">FECHA INICIO</td><td class="success">FEHCA FIN</td><td class="success">ADULTOS</td><td class="success">NINOS</td><td class="success">PRECIO</td><td class="success">ESTADO</td><td class="success">------</td><td class="success">------</td></tr></thead><tbody >'
+					for(var i = 0; i<data.length ; i++){
+
+						var ident = ''
+						var estado=''
+						var habita=''
+						var client=''
+
+						{% for clie in listarclientes  %}
+							if ('{{clie.id}}'==data[i].fields.cliente) {
+								client='{{clie}}'
+						};
+						{% endfor %}
+						{% for reservacion in listarReservacion %}
+							if('{{reservacion.cliente}}'==client){
+								habita='{{reservacion.habitacion}}'
+								ident='{{reservacion.id}}'
+								estado='{{reservacion.estado}}'
+							}
+						{%endfor%}
+
+
+						html += '<tr><td>'+ident+'</td><td >'+habita+'</td><td >'+client+'</td><td >'+data[i].fields.fecha_inicio+'</td><td >'+data[i].fields.fecha_fin+'</td><td >'+data[i].fields.adultos+'</td><td >'+data[i].fields.ninos+'</td><td >'+data[i].fields.precio+'</td><td >'+estado+'</td>';
+						var botones = "<td ><button class='btn btn-danger' id='btnupdate"+ident+"' value="+ident+" onclick='actualizarDatos("+ident+")'><span class='glyphicon glyphicon-edit'></i></button> </td><td ><button class='btn btn-danger' id='btndelete' value="+ident+" onclick='eliminarDatos("+ident+")'><span class='glyphicon glyphicon-remove-sign'></i></button></td></tr>";
+						html +=botones;
+					}
+					
+					var uni='</tbody></table></div>'
+					$('#datos').html(html+uni);
+				}
+	
+	
+	
+			});
+	
+		}
+	function actualizarDatos(r){
+		var s = document.getElementById('btnupdate'+r).value;
+		setTimeout("location.href='/reservacion/modificar/"+r+"'"+"",10);
+
+	}
+	function eliminarDatos(r){
+		var s = document.getElementById('btnupdate'+r).value;
+		setTimeout("location.href='/reservacion/eliminar/"+r+"'"+"",10);
+
+	}
+	function eliminarficticia(r){
+		var s = document.getElementById('btndelete'+r).value;
+		setTimeout("location.href='/reservacion/eliminarFicticia/"+r+"'"+"",10);
+	}
+</script>
+
+<script>
+	function hola(r){
+		
+		alert(r)
+	}
+	
+	function convertirfecha(texto){
+      var cadena =texto;
+      var dia="";
+      var mes="";
+      var ano="";
+     
+      for(i=0; i<cadena.length; i++) 
+        if ((i==1)||(i==0)){
+           dia=dia+cadena.charAt(i);
+        }else{
+          if ((i==6)||(i==4)){
+           dia=dia+cadena.charAt(i);
+          }else{
+            if((i==6)||(i==7)||(i==8)||(i==9)){
+                ano=ano+cadena.charAt(i)
+            }
+          }
+        }
+        var fecha=ano+"-"+mes+"-"+dia
+        return(fecha)
+    }
+	function numeromes(texto){
+
+		if(texto=='Enero'){
+			return "01";
+		}
+		if(texto=='Febrero'){
+			return "02";
+		}
+		if(texto=='Marzo'){
+			return "03";
+		}
+		if(texto=='Abril'){
+			return "04";
+		}
+		if(texto=='Mayo'){
+			return "05";
+		}
+		if(texto=='Junio'){
+			return "06";
+		}
+		if(texto=='Julio'){
+			return "07";
+		}
+		if(texto=='Agosto'){
+			return "08";
+		}
+		if(texto=='Septiembre'){
+			return "09";
+		}
+		if(texto=='Octubre'){
+			return "10";
+		}
+		if(texto=='Noviembre'){
+			return "11";
+		}
+		if(texto=='Diciembre'){
+			return "12";
+		}
+	}
+
+    function fecha(texto){
+    	
+		var posicion = texto.indexOf(" ")
+		var dia  = texto.substring(0,posicion);
+		var mes = texto.substring(posicion+4,(texto.length)-8);
+		var ano = texto.substring((texto.length)-4,texto.length);
+		return(ano+"-"+numeromes(mes)+"-"+dia);
+    }
+ 	function re(texto){
+      var cadena = texto;
+      var aux='';
+      for(i=0; i<cadena.length; i++) 
+        if (cadena.charAt(i)==','){
+           aux=aux+".";
+        }else{
+          aux=aux+cadena.charAt(i);
+        }
+        return aux;
+    }
+     
+    function redondeo(numero){
+
+      var flotante = parseFloat(numero);
+      var resultado = Math.round(flotante*100)/100;
+      return +(Math.round(flotante + "e+2")  + "e-2");
+    }
+
+	function actualizar(id){
+
+		{% for ficticia in ficticia %}
+		
+			if('{{ficticia}}'==id){
+				$.get('/reservacion/guardarFicticia/',{
+					ficticia:"{{ficticia.id}}",
+					cedula:"{{ficticia.cedula}}",
+					nombre:"{{ficticia.nombre}}",
+					apellido:"{{ficticia.apellido}}",
+					telefono:"{{ficticia.telefono}}",
+					direccion:"{{ficticia.direccion}}",
+					habitacion:"{{ficticia.habitacion}}",
+					fecha_inicio:fecha("{{ficticia.fecha_inicio}}"),
+					fecha_fin:fecha("{{ficticia.fecha_fin}}"),
+					adultos:"{{ficticia.adultos}}",
+					ninos:"{{ficticia.adultos}}",
+					precio:redondeo(re("{{ficticia.precio}}"))
+			        });
+				alert("Datos Guardados Correctamente... ");
+				setTimeout("location.href='/reservacion/listar/'",100);
+		    }
+			   
+		{%endfor%}
+
+
+	}
+
+
+
+	</script>
+	
+{%endblock js%}

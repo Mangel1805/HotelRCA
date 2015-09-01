@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+	<h3>Eliminar la reservacion de la Habitacion</h3>
+ 
+	<Form  action = ""  method = "post" >
+	<hr>
+	 {%  csrf_token  %} 
+    <p><h3> {{  ficticia.habitacion}}  cliente {{ficticia.nombre}} {{ficticia.apellido}}  el dia  {{ficticia.fecha_inicio}} </del></h3></p> 
+    <hr>
+    <input class="btn btn-danger" type="submit" value="Confirmar"> 
+	</form>
+
+{% endblock content %}

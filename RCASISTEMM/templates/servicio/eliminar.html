@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+	<h3>Eliminar el servico </h3>
+ 
+	<Form  action = ""  method = "post" > 
+	<hr>{%  csrf_token  %} 
+    <p><h3>"{{  servicios.producto}} Pedidos por el Cliente {{servicios.cliente  }}"....!!!</h3>  </p> 
+    <hr>
+    <input class="btn btn-danger" type="submit" value="Confirmar">
+	</form>
+
+{% endblock content %}

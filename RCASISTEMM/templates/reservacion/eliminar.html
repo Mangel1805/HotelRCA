@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+	<h3>Eliminar la reservacion de la Habitacion</h3>
+ 
+	<Form  action = ""  method = "post" > 
+	<hr>{%  csrf_token  %} 
+    <p><h3> {{  reservaciones.habitacion}} reservada por el cliente {{  reservaciones.cliente}} el dia  {{  reservaciones.fecha_inicio}} </h3></p> 
+    <hr>
+    <input class="btn btn-danger" id="btnEliminar" type="submit" value="Confirmar"> 
+	</form>
+
+{% endblock content %}
+{%block js%}
+<script>
+function obtener(){
+	
+	{% for habi in listarhabitacion  %}
+        if ('{{habi}}'=='{{reservaciones.habitacion}}') {
+          return '{{habi.habitacion}}'
+        };
+      {% endfor %}
+}
+
+$('#btnEliminar').click(function guardar(){
+   $.get('/reservacion/cambiarEstado/',{
+          Numerohabitacion:obtener(),  
+
+        });
+        alert("Se modifico Estado de Habitación A Inactivo")
+
+    
+
+    })
+</script>
+{%endblock js%}

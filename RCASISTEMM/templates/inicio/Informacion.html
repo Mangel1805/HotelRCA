@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-lg-4"></div>
+</div>
+<div class="well">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="alert alert-danger" role="alert">
+      <div class="text-center">
+        <H3><strong>Datos Del Hotel</strong> </H3>   </div>
+        </div>
+    </div>
+  </div>
+  <hr>
+</div>
+<div class="container">
+  <div class="row text-center">
+    
+  </div>
+  
+  <div class="row"> </div>
+  <div class="row">
+<div class="col-sm-4 text-center col-lg-12">
+  	<div class="row">
+    <div class="col-lg-10 col-lg-offset-2">
+    		<div class="col-lg-5 col-lg-offset-0">
+    		{% for hotel in  Hotel %}
+			        
+
+            <label><strong>Ruc</strong></label>
+             <div class="input-group">
+            <strong><input class="form-control text-center" size="170" id="txtruc" type="text" readonly placeholder="{{hotel.ruc}}"></strong>
+            </div>
+            <label><strong>Dirección</strong></label>
+             <div class="input-group">
+            <strong><input class="form-control text-center" size="170" id="txtdirecion" type="text" readonly placeholder="{{hotel.direccion}}"></strong>
+            </div>
+		    </div>
+            <div class="col-lg-5">
+			<label><strong>Teléfono</strong></label>
+       <div class="input-group">
+            <strong> <input class="form-control text-center" size="170" id="txttelefono" type="text" readonly placeholder="{{hotel.telefono}}"></strong>
+            </div>
+            <label><strong>Organigrama</strong></label>
+             <div class="input-group">
+             <strong><input class="form-control text-center"  size="170" id="txtorganigrama" type="text" readonly placeholder="{{hotel.organigrama}}"></strong>
+             </div>
+		    </div>
+    
+    {% endfor %}
+    		
+    
+    </div>
+    </div>
+      
+  </div>
+</div>
+   
+  </div>
+</div>
+</div>
+{% endblock content %}

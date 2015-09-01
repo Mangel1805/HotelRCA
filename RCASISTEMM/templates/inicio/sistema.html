@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>RCA HOTEL | Sistema</title>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
+
+<style type="text/css">
+	.dropdown-submenu {
+    position:relative;
+	}
+	.dropdown-submenu>.dropdown-menu {
+	    top:0;
+	    left:100%;
+	    margin-top:-6px;
+	    margin-left:-1px;
+	    -webkit-border-radius:0 6px 6px 6px;
+	    -moz-border-radius:0 6px 6px 6px;
+	    border-radius:0 6px 6px 6px;
+	}
+	.dropdown-submenu:hover>.dropdown-menu {
+	    display:block;
+	}
+	.dropdown-submenu>a:after {
+	    display:block;
+	    content:" ";
+	    float:right;
+	    width:0;
+	    height:0;
+	    border-color:transparent;
+	    border-style:solid;
+	    border-width:5px 0 5px 5px;
+	    border-left-color:#cccccc;
+	    margin-top:5px;
+	    margin-right:-10px;
+	}
+	.dropdown-submenu:hover>a:after {
+	    border-left-color:#ffffff;
+	}
+	.dropdown-submenu.pull-left {
+	    float:none;
+	}
+	.dropdown-submenu.pull-left>.dropdown-menu {
+	    left:-100%;
+	    margin-left:10px;
+	    -webkit-border-radius:6px 0 6px 6px;
+	    -moz-border-radius:6px 0 6px 6px;
+	    border-radius:6px 0 6px 6px;
+	}
+</style>
+
+
+<link rel="stylesheet" href="../../static/css/bootstrap.css">
+<link href="{{STATIC_URL}}css/bootstrap.css" rel='stylesheet' type='text/css'/>
+<link href="{{STATIC_URL}}css/style.css" rel="stylesheet" type="text/css" media="all"/>
+<link rel="stylesheet" href="{{STATIC_URL}}css/stilo.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="{{STATIC_URL}}js/jquery.min.js"></script>
+</head>
+<body>
+<!--header starts-->
+<div class="header">
+	 <div class="top-header">
+		 <div class="container">
+			 <div class="logo">
+				 <a href="/"><img src="{{STATIC_URL}}images/logo.png"/></a>
+			 <div class="clearfix"></div>
+			 </div>
+			 <span class="menu"> </span>
+			 <div class="m-clear"></div>
+			 <div class="top-menu">
+				<ul>
+					 <li><a class="scroll" href="/">INICIO</a></li>
+					 <li><a class="scroll" href="/nosotros">NOSOTROS</a></li>
+					 <li><a class="scroll" href="/galeria">GALERIA</a></li>
+					 <li><a class="scroll" href="/servicios">SERVICIOS</a></li>
+					 <li><a class="scroll" href="/contactenos">CONTACTENOS</a></li>
+                     <li class="active"><a href="/sistema">SISTEMA</a></li>
+					<!-- <li class="menu-item dropdown">
+	                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">SISTEMA<b class="caret"></b></a>
+	                    <ul class="dropdown-menu">
+	                        <li class="menu-item dropdown dropdown-submenu">
+	                            <a href="/nosotros" class="dropdown-toggle" data-toggle="dropdown">CLIENTE</a>
+	                            <ul class="dropdown-menu">
+	                                <li class="menu-item ">
+	                                    <a href="/nosotros">noso</a>
+	                                </li>
+	                                <li class="menu-item dropdown dropdown-submenu">
+	                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Level 2</a>
+	                                    <ul class="dropdown-menu">
+	                                        <li>
+	                                            <a href="#">Link 3</a>
+	                                        </li>
+	                                    </ul>
+	                                </li>
+	                            </ul>
+
+	                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">HABITACIÓN</a>
+	                            <ul class="dropdown-menu">
+	                                <li class="menu-item ">
+	                                    <a href="#">Link 1</a>
+	                                </li>
+	                                <li class="menu-item dropdown dropdown-submenu">
+	                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Level 2</a>
+	                                    <ul class="dropdown-menu">
+	                                        <li>
+	                                            <a href="#">Link 3</a>
+	                                        </li>
+	                                    </ul>
+	                                </li>
+	                            </ul>
+
+
+
+	                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">CLIENTE</a>
+	                            <ul class="dropdown-menu">
+	                                <li class="menu-item ">
+	                                    <a href="#">Link 1</a>
+	                                </li>
+	                                <li class="menu-item dropdown dropdown-submenu">
+	                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Level 2</a>
+	                                    <ul class="dropdown-menu">
+	                                        <li>
+	                                            <a href="#">Link 3</a>
+	                                        </li>
+	                                    </ul>
+	                                </li>
+	                            </ul>
+	                        </li>
+	                    </ul>
+	                </li>-->
+                    </ul>				    
+				 <script>
+					$("span.menu").click(function(){
+						$(".top-menu ul").slideToggle(200);
+					});
+				</script>                
+			 </div>
+		  </div>
+	  </div>
+</div>
+<!---->
+ <div class="main_bg">
+	 <div class="container">
+		 <div class="main">	          
+			   <ul class="service_list">
+				 <li>
+					 <div class="ser_img">
+						    <a href="/cliente/listar"><span class="next"> </span>
+							<img src="{{STATIC_URL}}images/admcliente.jpg" alt="" />
+							
+							</a>
+				      </div>	
+						<h4><a  href="/cliente/listar">Adm. Cliente</a></h4>
+				 </li>
+				 <li>
+					 <div class="ser_img">
+							<a href="/habitacion/listar"><span class="next"> </span>
+							<img src="{{STATIC_URL}}images/admhabit.jpg" alt="" />
+							
+							</a>
+					 </div>					 
+					 <h4><a href="/habitacion/listar">Adm. Habitaciones</a></h4>
+				 </li>
+                 <li>
+					 <div class="ser_img">
+					     <a href="/reservacion/listar"><span class="next"> </span>
+						 <img src="{{STATIC_URL}}images/admreserva.jpg" alt="" />
+						 
+						 </a>
+				     </div>						
+					    <h4><a href="/reservacion/listar">Adm. Reservaciones</a></h4>
+				 </li>
+				 <li>
+					 <div class="ser_img">
+							<a href="/tipoHabitacion/listar"><span class="next"> </span>
+							<img src="{{STATIC_URL}}images/admtipoh.png" alt="" />
+							
+							</a>
+					 </div>						
+						<h4><a href="/tipoHabitacion/listar">Adm. Tipo Habitaciones</a></h4>
+				 </li>
+				 
+					<div class="clear"></div>
+			  </ul>
+			  
+			  <ul class="service_list top">
+              <li>
+					 <div class="ser_img">
+							<a href="/categoriaHabitacion/listar"><span class="next"> </span>
+							<img src="{{STATIC_URL}}images/admcath.jpg" alt="" />
+							
+							</a>
+					 </div>						
+						<h4><a href="/categoriaHabitacion/listar">Adm. Categoria Habitaciones</a></h4>
+				 </li>
+              <li>
+					 <div class="ser_img">
+							<a href="/producto/listar"><span class="next"> </span>
+							<img src="{{STATIC_URL}}images/admprod.jpg" alt="" />
+							
+							</a>
+					 </div>						
+						<h4><a href="/producto/listar">Adm. Productos</a></h4>
+				 </li>
+				 <li>
+					 <div class="ser_img">
+						 <a href="/factura/listar"><span class="next"> </span>
+						 <img src="{{STATIC_URL}}images/admfactu.gif" alt="" />
+						 
+						 </a>
+					 </div>						
+						<h4><a  href="/factura/listar">Adm. Facturas</a></h4>
+				 </li>
+				 <li>
+				     <div class="ser_img">
+							<a href="/egreso/listar"><span class="next"> </span>
+							<img src="{{STATIC_URL}}images/admegresos.png" alt="" />
+							
+							</a>
+					 </div>	
+						<h4><a href="/egreso/listar">Adm. Egresos</a></h4>											
+			     </li>
+				
+					<div class="clear"></div>
+			  </ul>
+              <ul class="service_list top">
+               <li>
+					 <div class="ser_img">
+						 <a href="/ingreso/listar"><span class="next"> </span>
+						 <img src="{{STATIC_URL}}images/admingresos.jpg" alt="" />
+						 
+						 </a>
+					 </div>		
+						<h4><a  href="/ingreso/listar">Adm. Ingresos</a></h4>
+				 </li>
+              <li>
+					 <div class="ser_img">
+							<a href="/usuario/listar"><span class="next"> </span>
+							<img src="{{STATIC_URL}}images/admempleados.jpg" alt="" />
+							
+							</a>
+					 </div>						
+						<h4><a href="/usuario/listar">Adm. Empleados</a></h4>
+				 </li>
+				 <li>
+					 <div class="ser_img">
+						 <a href="/hotel/listar"><span class="next"> </span>
+						 <img src="{{STATIC_URL}}images/admdatos.jpg" alt="" />
+						 
+						 </a>
+					 </div>						
+						<h4><a  href="/hotel/listar">Datos del Hotel</a></h4>
+				 </li>
+				 <li>
+				     <div class="ser_img">
+							<a href=""><span class="next"> </span>
+							<img src="{{STATIC_URL}}images/admhotelrca.jpg" alt="" />
+							
+							</a>
+					 </div>	
+						<h4><a href="">RCA HOTEL</a></h4>											
+			     </li>
+				 	<div class="clear"></div>
+			  </ul>
+			 <div class="clear"></div>
+		   </div>
+	  </div>
+</div>
+<!---->
+<div class="fotter">
+	  <div class="container">
+		 <h3>Mejor Confort, Mejor Hospitalidad</h3>
+		 <h4>"Hospitalidad, Calidad & Buena Localizacion. Nuestro Hotel Calidad a su Dispocicion" - RCA HOTEL</h4>
+		 <i class="man"></i>
+	 </div>
+</div>
+<!---->
+<div class="fotter-info">
+	  <div class="container">
+	      <div class="col-md-5 details">
+			 <div class="hotel-info">
+				 <h4>ACERCA DEL HOTEL</h4>
+				 <p>EL RCA Hotel es ideal para las personas que buscan hospedarse en un lugar elegante, bien ubicado y seguro, a tan solo 50 minutos del aeropuerto, exclusivo y familiar a la vez, donde puedan resolver todos sus negocios o hacer su transición de la manera más agradable y eficiente posible.</p>
+				 <p>El Hotel está ubicado en un sector comercial a cuatro cuadras del Parque Central "Juan Montalvo". Estamos listos para atenderlos a las 24 horas.</p>
+			 </div>
+			 <div class="news">
+				 <h4>ULTIMAS NOTICIAS </h4>
+				 <h5>RCA Hotel APERTURA DE PROMOCION</h5>
+				 <a href="#">1 SEPT</a>
+				 <h5>FIESTAS DE MACHALA</h5>
+				 <a href="#">5 SEPT</a>
+				 <h5>REINA MUNDIAL DEL BANANO</h5>
+				 <a href="#">10 SEPT</a>
+				 <h5>PREGON POR LA CIUDAD</h5>
+				 <a href="#">15 SEPT</a>		
+			 </div>
+				<div class="clearfix"></div>
+		 </div>
+		 <div class="col-md-7 details">
+			 <div class="join">
+				 <h4>FERIA DE LA CIUDAD</h4>
+				 <p>Machala ya organiza su fiesta por los 191 años de cantonización
+Desde ayer se aceleran los trabajos para dejar listos los 30 carros alegóricos con los que la capital orense empezará los festejos para recordar los 191 años de cantonización. Diez artesanos locales desde el mes anterior trabajan en los diseños de estas alegorías. </p>
+				 <p>Uno de los carros principales y considerado especial es el que estará destinado para Paulina Vega, la actual Miss Universo, quien presidirá este evento. Los organizadores decidieron colocar varios elementos que identifican a la colombiana.</p>
+				 <a href="#">LEA MAS..</a>
+			 </div>
+			 <div class="member">
+			<h4>AREA DE MEMBRESIA</h4>
+			 {% if user.is_authenticated %}
+                     <font color="white"> Bienvenido {{user.username|capfirst}}</font>
+                      <a href="/cerrar/"> <font color="silver"> >>Salir<< </font></a>
+             {% else %}
+             <form method="POST">
+             {% csrf_token %}
+			 <p>Username</p>
+			 <input name="username" type="text" id="inputEmail" placeholder="Usuario">
+			 <p>Password</p>
+			 <input name="password" type="password" id="inputPassword" placeholder="Contraseña">	
+			 <hr>
+			 <input type="submit" value="INGRESAR"/>
+             <a href="/registrarse/" class="reg"><font color="silver">Registrarse</font></a>
+			 </form>
+			 {% endif %} 
+</div>
+			 <div class="clearfix"></div>
+		 </div>
+		 <div class="clearfix"></div>
+	  </div>
+      <h6>Direccion:Boyaca entre 9 de Mayo Juan Montalvo. 
+      <br>
+      Telefonos:(07)-292-3494 -- (07)-296-8052
+      <br> 
+      Localidad:Machala - El Oro - Ecuador
+      <br>
+	 Copyright &copy; 2015 <a href="/">Hotel RCA</a>. Todos Los Derechos Reservados</h6>	  
+</div>
+<!---->
+<script src="{{STATIC_URL}}js/jquery-1.11.2.min.js"></script> 
+<script src="{{STATIC_URL}}js/bootstrap-datetimepicker.js"></script>
+<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+<script src="{{STATIC_URL}}js/moment.js"></script>
+<script src="{{STATIC_URL}}js/bootstrap-datetimepicker.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/jquery.ui.touch-punch.min.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/bootstrap.min.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/bootstrap-select.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/bootstrap-switch.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/flatui-checkbox.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/flatui-radio.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/jquery.placeholder.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/typeahead.js"></script>
+<script src="{{ STATIC_URL }}Flat-UI/js/application.js"></script>
+</body>
+</html>

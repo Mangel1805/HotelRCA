@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+	<h1>Eliminar Factura</h1>
+ 
+	<Form  action = ""  method = "post" > {%  csrf_token  %} 
+    <p> <h3><del> {{  facturas.id  }} con fecha del {{  facturas.fecha  }}</del></h3></p> 
+     <input class="btn btn-Danger" type="submit" value="Confirmar">
+	</form>
+
+{% endblock content %}

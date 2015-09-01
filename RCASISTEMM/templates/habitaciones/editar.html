@@ -1,0 +1,64 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="well">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-7 col-md-offset-3">
+      <div class="alert alert-danger" role="alert">
+      <div class="text-center">
+        <H3>Modificar Habitación</H3>   </div>
+        </div>
+    </div>
+  </div>
+  <hr>
+</div>
+<div class="container">
+  <div class="row text-center">
+    
+  </div>
+  <form method="post">
+    {% load bootstrap3 %}
+    <div id="form">
+        {% csrf_token %}
+  <div class="row"> </div>
+  <div class="row">
+<div class="col-sm-4 text-center col-lg-12">
+  	<div class="row">
+    <div class="col-lg-10 col-lg-offset-2">
+    		<div class="col-lg-4 col-lg-offset-1">
+        <div class="input-group">
+         {% bootstrap_field form.habitacion %}
+         {% bootstrap_field form.tipo %}
+         {% bootstrap_field form.categoria %}
+         </div>
+		    </div>
+            <div class="col-lg-4">
+            <div class="input-group">
+		        {% bootstrap_field form.precio %}
+            	{% bootstrap_field form.estado %}
+            	</div>
+		    </div>
+    
+    
+    
+    </div>
+    </div>
+     <hr>
+                <input class="btn btn-danger" type="submit" value="Modificar">
+  </div>
+</div>
+<form>
+  <div class="row">
+    <div class="col-lg-4"></div>
+</div>
+    <div class="col-lg-"></div>
+  </div>
+  </div>
+
+</div>
+
+
+  
+
+{% endblock content %}

@@ -1,0 +1,66 @@
+
+
+{% extends "base.html" %}
+{% block content %}
+<div class="well">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="alert alert-danger" role="alert">
+      <div class="text-center">
+        <H3><strong>Datos del Hotel</strong> </H3>   </div>
+        </div>
+    </div>
+  </div>
+  <hr>
+</div>
+<div class="container">
+  <div class="row text-center">
+    
+  </div>
+  <form method="post">
+    {% load bootstrap3 %}
+    <div id="form">
+        {% csrf_token %}
+  <div class="row"> </div>
+  <div class="row">
+    <div class="col-sm-1 text-center col-lg-12">
+      	<div class="row">
+          <div class="col-lg-10 col-lg-offset-1">
+          		<div class="col-lg-5 col-lg-offset-1">
+                <div class="input-group">
+                   {% bootstrap_field form.ruc %}
+                   {% bootstrap_field form.direccion %}
+                </div>        
+      		    </div>
+
+              <div class="col-lg-4">
+                  <div class="input-group">
+      		          {% bootstrap_field form.telefono %}
+                  	{% bootstrap_field form.organigrama %}
+                  </div>
+                  	
+      		    </div>
+          
+          
+          
+          </div>
+        </div>
+         <hr>
+                    <input class="btn btn-danger" type="submit" value="Modificar">
+    </div>
+</div>
+<form>
+  <div class="row">
+    <div class="col-lg-4"></div>
+</div>
+    <div class="col-lg-"></div>
+  </div>
+  </div>
+
+</div>
+
+
+  
+
+{% endblock content %}

@@ -1,0 +1,203 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h3>Todos los Egresos</h3>
+<span class="label label-default">Lista de Egresos</span>
+	 
+<div class="well">
+ 		<div class="btn-toolbar" role="toolbar">   
+ 		 	<div class="col-lg-4" >
+               	<a href="{% url 'crearEgreso'  %}">
+					<button type="button" class="btn btn-danger" name='btnAgregar'onclick=""><span class=" glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</button>
+                </a>
+		
+                 
+                <a href="{% url 'pdf_Egresos'  %}">
+              	  <button name="btnReporte" type="button" class="btn btn-danger"><span class=" glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reporte</button>  
+              	</a>
+             </div>   
+           <div class="col-lg-8" > 
+     	 		<div class="row" >
+	     	 		<div class="col-lg-1" >
+	     	 			<label>Inicio:</label>
+	     	 		</div>
+	     	 		<div class="col-lg-4" >
+		     	 		 <div class='input-group date' id='datetimepicker1'>
+		                    <input type='text' id="txtfecha_inicio" class="form-control" />
+		                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                 </div>
+	     	 		</div>
+	     	 		<div class="col-lg-1" >
+	     	 		<label>Hasta:</label>
+	     	 		</div>
+	     	 		<div class="col-lg-4" >
+	     	 		 <div class='input-group date' id='datetimepicker2'>
+	                                        <input type='text' id="txtfecha_fin" class="form-control" />
+	                                        <span class="input-group-addon">
+	                                            <span class="glyphicon glyphicon-calendar"></span>
+	                                        </span>
+	                                     </div>
+
+			   
+			   		 
+			    </div>
+			    <div class="col-lg-2" >
+			    <button type="button" class="btn btn-danger" id="btnBuscar">Buscar|<span class=" glyphicon glyphicon-search" aria-hidden="true"></span> </button>
+			    </div>
+     	 		</div>
+     	 		</div>
+     	  
+       
+
+</div>         <br><br>
+	<div id="divTabla" class="table-responsive">
+		<table id = "tblTabla" class="table table-bordered table-hover">
+	        <thead>
+	          <tr>
+	            <td class="success">#</td>
+	            <td class="success">USUARIO</td>
+	            <td class="success">FECHA</td>
+	            <td class="success">ARTÍCULO</td>
+	            <td class="success">TIPO</td>
+	            <td class="success">DETALLE</td>
+	            <td class="success">CANTIDAD</td>
+	            <td class="success">P.V.U</td>
+	            <td class="success">P. TOTAL</td>
+	            <td class="success">Estado</td>
+	            <td class="success">------</td>
+	            <td class="success">------</td>
+	          </tr>
+	        </thead>
+	        <tbody >
+	
+	         
+	          <!-- Aplicadas en las celdas (<td> o <th>) -->
+		          {% for egreso in egresos %}
+			          <tr id="row{{egreso.id}}" class="active">
+			          	<td >{{egreso.id}}</td>
+		          		<td >{{egreso.usuario}}</td>
+			            <td >{{egreso.fecha}}</td>
+			            <td >{{egreso.articulo}}</td>
+			            <td >{{egreso.tipo}}</td>
+			            <td >{{egreso.detalle}}</td>
+			            <td >{{egreso.cantidad}}</td>
+			            <td >{{egreso.precio_unitario}}</td>
+			            <td >{{egreso.precio_total}}</td>
+			            <td >{{egreso.estado}}</td>
+		           		<td ><button class='btn btn-danger' id="btnupdate{{egreso.id}}" value="{{egreso.id}}" onclick='actualizarDatos({{egreso.id}})'>
+			            	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+			            </button> </td>
+			            <td ><button class='btn btn-danger btn' id="btndelete{{egreso.id}}" value="{{egreso.id}}" onclick='eliminarDatos({{egreso.id}})'>
+			            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+			            </button></td>
+			          </tr>
+		          {% endfor %}
+	      	</tbody>
+		</table>
+	</div>
+  <div id="datos">
+</div> 
+</div>
+
+{% endblock content %}
+{%block js%}
+  
+
+<script>
+
+	$('#btnBuscar').on('click',filtrado);
+		function filtrado(){
+			
+			var inicio = convertirfecha(document.getElementById("txtfecha_inicio").value)
+			var fin = convertirfecha(document.getElementById("txtfecha_fin").value)
+			console.log(inicio);
+			console.log(fin);
+			$.ajax({
+				data:{'inicio':inicio,'fin':fin},
+				url:'/egreso/buscar/',
+				type: 'get',
+
+				success: function(data){
+					document.getElementById('tblTabla').style.display = 'none'
+					var html = '<div id="divTabla" class="table-responsive"><table id = "tblTabla" class="table table-bordered table-hover"><thead><tr><td class="success">#</td><td class="success">USUARIO</td><td class="success">FECHA</td><td class="success">ARTÍCULO</td><td class="success">TIPO</td><td class="success">DETALLE</td><td class="success">CANTIDAD</td><td class="success">P.V.U</td><td class="success">P.TOTAL</td><td class="success">ESTADO</td><td class="success">------</td><td class="success">------</td></tr></thead><tbody >'
+					for(var i = 0; i<data.length ; i++){
+
+						var usuario = '';
+
+
+						{% for usu in listarUsuarios  %}
+							if ('{{usu.id}}'==data[i].fields.usuario) {
+								usuarioo='{{usu.username}}';
+								usuario='{{usu}}';
+							};
+
+						{% endfor %}
+
+						{% for egre in egresos  %}
+							if ('{{egre.usuario}}'==usuario) {
+								ID='{{egre.id}}';
+								estado='{{egre.estado}}'
+							}
+						{% endfor %}
+
+
+						html += '<tr><td>'+ID+'</td><td >'+usuarioo+'</td><td >'+data[i].fields.fecha+'</td><td >'+data[i].fields.articulo+'</td><td >'+data[i].fields.tipo+'</td><td >'+data[i].fields.detalle+'</td><td >'+data[i].fields.cantidad+'</td><td >'+data[i].fields.precio_unitario+'</td><td >'+data[i].fields.precio_total+'</td><td >'+estado+'</td>';
+						var botones = "<td ><button class='btn btn-danger' id='btnupdate"+ID+"' value="+ID+" onclick='actualizarDatos("+ID+")'><span class='glyphicon glyphicon-edit'></i></button> </td><td ><button class='btn btn-danger' id='btndelete' value="+ID+" onclick='eliminarDatos("+ID+")'><span class='glyphicon glyphicon-remove-sign'></i></button></td></tr>";
+						html +=botones;
+					}
+					
+					var uni='</tbody></table></div>'
+					$('#datos').html(html+uni);
+				}
+	
+	
+	
+			});
+	
+		}
+
+		
+
+
+
+   $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+    $(function () {
+        $('#datetimepicker2').datetimepicker();
+    });
+
+	function actualizarDatos(r){
+		var s = document.getElementById('btnupdate'+r).value
+		setTimeout("location.href='/egreso/modificar/"+r+"'"+"",10);
+
+	}
+	function eliminarDatos(r){
+		var s = document.getElementById('btnupdate'+r).value
+		setTimeout("location.href='/egreso/eliminar/"+r+"'"+"",10);
+
+	}
+	function convertirfecha(texto){
+      var cadena =texto;
+      var dia="";
+      var mes="";
+      var ano="";
+     
+      for(i=0; i<10; i++) 
+        if ((i==1)||(i==0)){
+           mes=mes+cadena.charAt(i);
+        }else{
+          if ((i==3)||(i==4)){
+           dia=dia+cadena.charAt(i);
+          }else{
+            if((i==6)||(i==7)||(i==8)||(i==9)){
+                ano=ano+cadena.charAt(i)
+            }
+          }
+        }
+        var fecha=ano+"-"+mes+"-"+dia
+        return(fecha)
+    }
+	</script>
+
+{%endblock js%}

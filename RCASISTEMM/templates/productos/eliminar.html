@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+	<h3>Eliminar Producto</h3>
+ 
+	<Form  action = ""  method = "post" >
+	<hr>
+	 {%  csrf_token  %} 
+    <p> <h3> Eliminar {{  productos  }} "...!!!  </h3></p> 
+    <hr>
+
+     <input class="btn btn-danger" type="submit" value="Confirmar">
+	</form>
+
+{% endblock content %}

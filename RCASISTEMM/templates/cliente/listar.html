@@ -1,0 +1,154 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h3>Todos los Clientes</h3>
+<span class="label label-default">Lista de Clientes</span>
+
+<div class="well">
+ 		<div class="btn-toolbar" role="toolbar">   
+ 		 	<div class="col-lg-6" >
+               	<a href="{% url 'crearCliente'  %}">
+					<button type="button" class="btn btn-danger" name='btnAgregar'onclick=""><span class=" glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</button>
+                </a>
+		
+                 
+                <a href="{% url 'pdf_Clientes'  %}">
+              	  <button name="btnReporte" type="button" class="btn btn-danger"><span class=" glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reporte</button>  
+              	</a>
+             </div>   
+            <div class="col-lg-6" > 
+     	 		
+				
+		    		   <div class="input-group">
+		     			 <input type="text"    id="txtBuscar" class=" pull-right form-control" autofocus placeholder="Buscar..."   >
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button"><span class=" glyphicon glyphicon-search" aria-hidden="true"></button>
+						      </span>
+					     	
+		       			</div>
+		    
+		    
+		   		
+		    </div>
+     	  
+        </div> 
+        <br></br>  	
+	<div id="divTabla" class="table-responsive">
+		<table id = "tblTabla" class="table table-bordered table-hover">
+	        <thead>
+	          <tr>
+	            <td class="success">#</td>
+	            <td class="success">CEDULA</td>
+	            <td class="success">NOMBRE</td>
+	            <td class="success">APELLIDO</td>
+	            <td class="success">TELEFONO</td>
+	            <td class="success">DIRECCION</td>
+	            <td class="success">EMAIL</td>
+	            <td class="success">Ocupacion</td>
+	            <td class="success">ESTADO</td>
+	            <td class="success">CIUDAD</td>
+	            <td class="success">------</td>
+	            <td class="success">------</td>
+	          </tr>
+	        </thead>
+	        <tbody >
+	   
+	         
+	          <!-- Aplicadas en las celdas (<td> o <th>) -->
+		          {% for cliente in  listarCliente %}
+			          <tr id="row{{cliente.id}}" class="active">
+			          	<td >{{cliente.id}}</td>
+		          		<td >{{cliente.cedula}}</td>
+			            <td >{{cliente.nombre}}</td>
+			            <td >{{cliente.apellido}}</td>
+			            <td >{{cliente.telefono}}</td>
+			            <td >{{cliente.direccion}}</d>
+			            <td >{{cliente.email}}</td>
+			            <td >{{cliente.ocupacion}}</td>
+			            <td >{{cliente.estado}}</td>
+			            <td >{{cliente.ciudad}}</td>
+			            <td ><button class='btn btn-danger' id="btnupdate{{cliente.id}}" value="{{cliente.id}}" onclick='actualizarDatos({{cliente.id}})'>
+			            	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+			            </button> </td>
+			            <td ><button class='btn btn-danger btn' id="btndelete" value="{{cliente.id}}" onclick='eliminarDatos({{cliente.id}})'>
+			            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+			            </button></td>
+			          </tr>
+		          {% endfor %}
+	      	</tbody>
+		</table>
+		
+	</div>
+  <div id="datos">
+        
+    </div>
+</div>
+
+{% endblock content %}
+{%block js%}
+  
+
+<script>
+
+		$('#txtBuscar').on('keypress',filtrado);
+		function filtrado(){
+			var nombre = $(this).val();
+			console.log(nombre);
+			$.ajax({
+				data:{'nombre':nombre},
+				url:'/cliente/buscar/',
+				type: 'get',
+
+				success: function(data){
+					document.getElementById('tblTabla').style.display = 'none'
+					var html = '<div id="divTabla" class="table-responsive"><table id = "tblTabla" class="table table-hover"><thead><tr><td class="success">#</td><td class="success">CÉDULA</td><td class="success">NOMBRE</td><td class="success">APELLIDO</td><td class="success">TELÉFONO</td><td class="success">DIRECCIÓN </td><td class="success">EMAIL</td><td class="success">OCUPACIÓN</td><td class="success">CIUDAD</td><td class="success">ESTADO</td><td class="success">------</td><td class="success">------</td></tr></thead><tbody >'
+					for(var i = 0; i<data.length ; i++){
+
+						var ident = ''
+						var ciudad = ''
+						var estas=''
+
+						{% for cli in listarCliente  %}
+							if ('{{cli.cedula}}'==data[i].fields.cedula) {
+								ident = '{{cli.id}}';
+								ciudad = '{{cli.ciudad}}';
+								estado='{{cli.estado}}'
+							};
+
+
+						{% endfor %}
+
+						html += '<tr><td>'+ident+'</td><td >'+data[i].fields.cedula+'</td><td >'+data[i].fields.nombre+'</td><td >'+data[i].fields.apellido+'</td><td >'+data[i].fields.telefono+'</td><td >'+data[i].fields.direccion+'</td><td >'+data[i].fields.email+'</td><td >'+data[i].fields.ocupacion+'</td><td >'+ciudad+'</td><td >'+estado+'</td>';
+						var botones = "<td ><button class='btn btn-danger' id='btnupdate"+ident+"' value="+ident+" onclick='actualizarDatos("+ident+")'><span class='glyphicon glyphicon-edit'></i></button> </td><td ><button class='btn btn-danger' id='btndelete' value="+ident+" onclick='eliminarDatos("+ident+")'><span class='glyphicon glyphicon-remove-sign'></i></button></td></tr>";
+						html +=botones;
+					}
+					
+					var uni='</tbody></table></div>'
+					$('#datos').html(html+uni);
+				}
+	
+	
+	
+			});
+	
+		}
+
+
+	function actualizarDatos(r){
+		var s = document.getElementById('btnupdate'+r).value
+		setTimeout("location.href='/cliente/modificar/"+r+"'"+"",10);
+
+	}
+	function eliminarDatos(r){
+		var s = document.getElementById('btnupdate'+r).value
+		setTimeout("location.href='/cliente/eliminar/"+r+"'"+"",10);
+
+	}
+
+	    
+
+
+	</script>
+
+	
+{%endblock js%}
